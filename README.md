@@ -1,4 +1,4 @@
-# Suikimuku.nvim (翠輝無空)
+<h1 align="center">Suikimuku.nvim</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Neovim-0.8%2B-57A143?style=flat-square&logo=neovim&logoColor=white" alt="Neovim" />
@@ -7,7 +7,9 @@
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="MIT License" />
 </p>
 
-A comprehensive four-theme color scheme for Neovim inspired by Japanese aesthetic philosophy. Each theme represents a different aspect of nature and consciousness, designed for various coding environments and preferences.
+<p align="center">
+A comprehensive four-theme color scheme (翠輝無空) for Neovim inspired by Japanese aesthetic philosophy. Each theme represents a different aspect of nature and consciousness, designed for various coding environments and preferences.
+</p>
 
 ## The Four Themes
 

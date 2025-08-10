@@ -18,6 +18,7 @@ M.config = {
 M.palettes = {
     -- Sui (翠) - Atmospheric Teal Garden
     sui = {
+        default_transparent = false,  -- Solid bg for atmospheric depth
         bg = {
             primary = '#0A1B1A',
             secondary = '#0F2A28',
@@ -48,6 +49,7 @@ M.palettes = {
 
     -- Ki (輝) - Crystal Radiant Light
     ki = {
+        default_transparent = false,  -- Solid bg for crystal clarity
         bg = {
             primary = '#FAFCFF',
             secondary = '#F0F9FF',
@@ -78,6 +80,7 @@ M.palettes = {
 
     -- Mu (無) - WCAG AAA High-Contrast Grayscale
     mu = {
+        default_transparent = true,   -- Transparent for pure focus
         bg = {
             primary = '#000000',
             secondary = '#1A1A1A',
@@ -108,6 +111,7 @@ M.palettes = {
 
     -- Ku (空) - Terminal Solarized Dark
     ku = {
+        default_transparent = true,   -- Transparent for terminal harmony
         bg = {
             primary = '#000F10',
             secondary = '#073642',
@@ -167,8 +171,13 @@ end
 
 -- Generate highlight groups
 function M.get_highlights(colors)
-    local transparent_bg = M.config.transparent and "NONE" or colors.bg.primary
-    local transparent_float = M.config.transparent and "NONE" or colors.bg.float
+    -- Use theme default unless explicitly overridden by user
+    local use_transparent = M.config.transparent ~= nil 
+        and M.config.transparent 
+        or colors.default_transparent
+    
+    local transparent_bg = use_transparent and "NONE" or colors.bg.primary
+    local transparent_float = use_transparent and "NONE" or colors.bg.float
     
     return {
         -- Editor
