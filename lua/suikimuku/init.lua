@@ -33,11 +33,11 @@ M.palettes = {
 		},
 		syntax = {
 			func = "#69D2E7", -- Ethereal light blue
-			keyword = "#EC4899", -- Bright magenta
+			keyword = "#4d4dfa", -- Vibrant atmospheric purple
 			string = "#52C489", -- Emerald growth
-			type = "#87CEEB", -- Sky blue
+			type = "#A7DBD8", -- Aqua mint
 			const = "#F38630", -- Warm orange
-			special = "#A7DBD8", -- Aqua mint
+			special = "#EC4899", -- Bright magenta
 		},
 		diag = {
 			error = "#F38630",
@@ -114,8 +114,8 @@ M.palettes = {
 		default_transparent = true, -- Transparent for terminal harmony
 		bg = {
 			primary = "#000F10",
-			secondary = "#073642",
-			float = "#114555",
+			secondary = "#072842",
+			float = "#283d5e",
 			highlight = "#203047",
 		},
 		fg = {

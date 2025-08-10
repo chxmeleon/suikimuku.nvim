@@ -20,6 +20,7 @@ local themes = {
 		green = { "#52C489", "#B8E6D3", "#D1F2E8" },
 		orange = { "#F38630", "#FA6900", "#E6944D" },
 		magenta = { "#EC4899", "#FF77AA", "#E6A3C7" },
+		purple = { "#4d4dfa", "#6B6BFB", "#8989FC" },
 		cyan = { "#69D2E7", "#5FB3B3", "#6BC4BC" },
 		yellow = { "#FEF3C7", "#F2D98A", "#E6C44D" },
 	},
@@ -70,8 +71,8 @@ local themes = {
 	ku = {
 		base = {
 			"#000F10",
-			"#073642",
-			"#114555",
+			"#072842",
+			"#283d5e",
 			"#203047",
 			"#586E75",
 			"#839496",
