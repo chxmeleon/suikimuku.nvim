@@ -57,8 +57,8 @@ M.palettes = {
 			highlight = "#CBD5E1",
 		},
 		fg = {
-			primary = "#475569",
-			secondary = "#64748B",
+			primary = "#64748B",
+			secondary = "#475569",
 			muted = "#334155",
 			subtle = "#64748B",
 		},
