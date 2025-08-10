@@ -9,7 +9,7 @@
 
 A comprehensive four-theme color scheme for Neovim inspired by Japanese aesthetic philosophy. Each theme represents a different aspect of nature and consciousness, designed for various coding environments and preferences.
 
-## 🎨 The Four Themes
+## The Four Themes
 
 ### 翠 (Sui) - Atmospheric Teal Garden
 *Organic, cinematic depth with aqua-mint dreams*
@@ -43,7 +43,7 @@ A comprehensive four-theme color scheme for Neovim inspired by Japanese aestheti
 - **Use Case**: Terminal workflows, consistent shell-to-editor experience
 - **Aesthetic**: Deep ocean tones with golden highlights, familiar Solarized comfort
 
-## 📦 Installation
+## Installation
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -86,7 +86,7 @@ require('suikimuku').setup({ style = 'ku' })
 EOF
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Basic Setup
 
@@ -130,18 +130,18 @@ require('suikimuku').setup({
 })
 ```
 
-## 🎯 Features
+## Features
 
-- **🌈 Four Distinct Themes**: Each with unique philosophy and color palette
-- **🔄 Dynamic Switching**: Change themes on-the-fly without restart
-- **👁️ Accessibility**: WCAG AAA compliant contrast ratios
-- **🪟 Transparency Support**: Configurable background opacity
-- **🖥️ Terminal Harmony**: Perfect integration with terminal colors
-- **🎨 Rich Syntax Highlighting**: Modern TreeSitter and LSP support
-- **⚙️ Highly Configurable**: Extensive customization options
-- **📱 Responsive Design**: Works in GUI and terminal Neovim
+- **Four Distinct Themes**: Each with unique philosophy and color palette
+- **Dynamic Switching**: Change themes on-the-fly without restart
+- **Accessibility**: WCAG AAA compliant contrast ratios
+- **Transparency Support**: Configurable background opacity
+- **Terminal Harmony**: Perfect integration with terminal colors
+- **Rich Syntax Highlighting**: Modern TreeSitter and LSP support
+- **Highly Configurable**: Extensive customization options
+- **Responsive Design**: Works in GUI and terminal Neovim
 
-## 🔧 Configuration Options
+## Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -150,11 +150,11 @@ require('suikimuku').setup({
 | `opacity` | number | `0.64` | Background opacity (0.0-1.0) when transparent |
 | `monochrome` | boolean | `false` | Force grayscale mode (overrides style) |
 
-## 🎨 Complete Color Specifications
+## Complete Color Specifications
 
 ### Base32 Color Palette
 
-#### 🌑 Background Colors (Base 00-03)
+#### Background Colors (Base 00-03)
 
 | Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |-------|----------|---------|---------|---------|
@@ -163,7 +163,7 @@ require('suikimuku').setup({
 | **Base 02** (Panel) | `#1A3E3B` | `#E1F5FE` | `#2D2D2D` | `#114555` |
 | **Base 03** (Highlight) | `#2A5651` | `#CBD5E1` | `#404040` | `#203047` |
 
-#### 🌕 Foreground Colors (Base 04-07)
+#### Foreground Colors (Base 04-07)
 
 | Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |-------|----------|---------|---------|---------|
@@ -172,7 +172,7 @@ require('suikimuku').setup({
 | **Base 06** (Bright) | `#C8E6F5` | `#334155` | `#E6E6E6` | `#93A1A1` |
 | **Base 07** (Highlight) | `#F0FEFF` | `#1E293B` | `#FFFFFF` | `#FDF6E3` |
 
-#### 🎨 Accent Colors (Base 08-0F)
+#### Accent Colors (Base 08-0F)
 
 | Color | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |-------|----------|---------|---------|---------|
@@ -185,7 +185,7 @@ require('suikimuku').setup({
 | **Base 0E** (Purple) | `#8B5CF6` | `#8B5CF6` | `#808080` | `#6C71C4` |
 | **Base 0F** (Magenta) | `#EC4899` | `#EC4899` | `#707070` | `#D33682` |
 
-#### 🔍 Semantic Colors
+#### Semantic Colors
 
 **Syntax Highlighting**
 | Element | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
@@ -206,7 +206,7 @@ require('suikimuku').setup({
 | **Info** | `#69D2E7` | `#3B82F6` | `#B8B8B8` | `#268BD2` |
 | **Hint** | `#52C489` | `#10B981` | `#A0A0A0` | `#859900` |
 
-### 🌈 Theme-Specific Design Philosophy
+### Theme-Specific Design Philosophy
 
 #### 翠 (Sui) - Atmospheric Teal Garden
 - **Philosophy**: Fusion of design palettes with Makoto Shinkai's atmospheric depth
@@ -243,7 +243,7 @@ require('suikimuku').setup({
 - **Aesthetic**: Deep ocean tones with golden highlights, consistent with your shell experience
 - **Integration**: Matches your kitty.conf colors exactly for unified visual experience
 
-### 🔧 Advanced Configuration
+### Advanced Configuration
 
 All configuration options with their defaults:
 
@@ -258,7 +258,7 @@ All configuration options with their defaults:
 }
 ```
 
-### 💡 Implementation Notes
+### Implementation Notes
 
 1. **Base32 Organization**: Colors follow Base16 extended to 32 colors for richer syntax highlighting
 2. **Semantic Consistency**: Same semantic meanings across all themes (red=error, etc.)
@@ -266,7 +266,7 @@ All configuration options with their defaults:
 4. **Terminal Compatibility**: Colors chosen to work well in both GUI and terminal Neovim
 5. **Transparency Ready**: Background colors designed to work with various transparency levels
 
-### 🪟 Transparency Support
+### Transparency Support
 
 All themes support transparency with the following alpha levels:
 - **Primary Background**: Configurable opacity (default: 0.64 to match terminal)
@@ -274,7 +274,7 @@ All themes support transparency with the following alpha levels:
 - **Text**: Always fully opaque for readability
 - **Diagnostics**: Full opacity for visibility
 
-## 🧪 Testing Themes
+## Testing Themes
 
 Use the included test script to preview all themes:
 
@@ -285,7 +285,7 @@ Use the included test script to preview all themes:
 
 This will cycle through all four themes with a 2-second delay between each, demonstrating the visual differences.
 
-## 🎭 Theme Philosophy
+## Theme Philosophy
 
 ### Japanese Aesthetic Principles
 - **翠 (Sui)**: The vibrant green of new growth, representing creativity and inspiration
@@ -295,7 +295,7 @@ This will cycle through all four themes with a 2-second delay between each, demo
 
 Each theme embodies these philosophical concepts through carefully chosen colors and contrast relationships.
 
-## 🔗 Plugin Integration
+## Plugin Integration
 
 Suikimuku.nvim works seamlessly with popular Neovim plugins:
 
@@ -307,7 +307,7 @@ Suikimuku.nvim works seamlessly with popular Neovim plugins:
 - **Lualine**: Status line integration
 - **Which-key**: Key mapping popups
 
-## 🛠️ Development
+## Development
 
 ### Project Structure
 ```
@@ -326,11 +326,11 @@ suikimuku.nvim/
 4. Ensure accessibility standards are maintained
 5. Submit a pull request
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Inspired by Japanese aesthetic philosophy and natural color harmonies
 - Built on the Base16/Base32 color system for consistency
