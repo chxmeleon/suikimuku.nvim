@@ -1,4 +1,4 @@
--- SuiKimuku (翠輝無空) Theme System
+-- suikimuku (翠輝無空) Theme System
 -- Sui (翠) - Atmospheric Teal Garden: Multi-palette fusion with cinematic depth
 -- Ki (輝) - Crystal Radiant Light: Cool, crisp, luminous radiance
 -- Mu (無) - WCAG AAA Grayscale: Maximum contrast monochrome

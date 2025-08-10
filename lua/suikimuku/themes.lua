@@ -1,4 +1,4 @@
--- SuiKimuku (翠輝無空) Theme Color Data
+-- suikimuku (翠輝無空) Theme Color Data
 -- Raw color palette definitions for all four theme variations
 
 local themes = {
