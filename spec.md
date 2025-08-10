@@ -1,101 +1,130 @@
+# SuiKimuku.nvim - Complete Color Theme Specification
 
-### **New Concept: SuiKimuku (翠輝無空) – Base32 Color Palette**
+A comprehensive four-theme system for Neovim with Japanese aesthetic philosophy and modern transparency support.
 
-This concept builds on **Kimuku (輝無空)** but introduces **翠 (Sui)**—a vibrant jade-green element, blending nature and digital aesthetics.
+## Philosophy
 
----
+- **翠 (Sui)** - Emerald/Jade: Organic, natural green tones for harmonious coding
+- **輝 (Ki)** - Radiant: Light mode with high contrast for bright environments  
+- **無 (Mu)** - Void: Pure grayscale for distraction-free focus sessions
+- **空 (Ku)** - Sky: Balanced dark mode for comfortable long coding sessions
 
-## **1. Base32 Color Palette (Hex Codes)**
+## Base32 Color Palette
 
-Now divided into four themes:
+### 🌑 Background Colors (Base 00-03)
 
-* **翠 (Sui)** – Organic green, fresh, lively.
-* **輝 (Ki)** – Radiant, high-contrast, neon-inspired.
-* **無 (Mu)** – Cyber-mystic, deep, low-contrast.
-* **空 (Ku)** – Airy, balanced, spacious.
+| Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
+|-------|----------|---------|---------|---------|
+| **Base 00** (Primary) | `#0A1B1A` | `#FAFCFF` | `#000000` | `#000F10` |
+| **Base 01** (Secondary) | `#0F2A28` | `#F0F9FF` | `#1A1A1A` | `#073642` |
+| **Base 02** (Panel) | `#1A3E3B` | `#E1F5FE` | `#2D2D2D` | `#114555` |
+| **Base 03** (Highlight) | `#2A5651` | `#CBD5E1` | `#404040` | `#203047` |
 
-### **🌑 Background Colors**
+### 🌕 Foreground Colors (Base 04-07)
 
-| Group                     | 翠 (Sui)   | 輝 (Ki)    | 無 (Mu)    | 空 (Ku)    |
-| ------------------------- | --------- | --------- | --------- | --------- |
-| Base 00 (Main BG)         | `#0F291B` | `#0F172A` | `#090C10` | `#1E293B` |
-| Base 01 (Secondary BG)    | `#163828` | `#1E293B` | `#0E1217` | `#2C3A4E` |
-| Base 02 (Panel BG)        | `#1F4A36` | `#334155` | `#161A21` | `#3B4C63` |
-| Base 03 (Soft Highlights) | `#2A5E43` | `#475569` | `#20242C` | `#52657E` |
+| Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
+|-------|----------|---------|---------|---------|
+| **Base 04** (Muted) | `#7BBAB1` | `#64748B` | `#808080` | `#586E75` |
+| **Base 05** (Primary) | `#A7DBD8` | `#475569` | `#CCCCCC` | `#839496` |
+| **Base 06** (Bright) | `#C8E6F5` | `#334155` | `#E6E6E6` | `#93A1A1` |
+| **Base 07** (Highlight) | `#F0FEFF` | `#1E293B` | `#FFFFFF` | `#FDF6E3` |
 
-### **🌕 Foreground Colors**
+### 🎨 Accent Colors (Base 08-0F)
 
-| Group                  | 翠 (Sui)   | 輝 (Ki)    | 無 (Mu)    | 空 (Ku)    |
-| ---------------------- | --------- | --------- | --------- | --------- |
-| Base 04 (Muted FG)     | `#A3C8B5` | `#CBD5E1` | `#B0B8C0` | `#D1D5DB` |
-| Base 05 (Main FG)      | `#C5E4D4` | `#E2E8F0` | `#D1D5DB` | `#F1F5F9` |
-| Base 06 (Bright FG)    | `#EAFBF2` | `#F8FAFC` | `#E5E7EB` | `#FFFFFF` |
-| Base 07 (Highlight FG) | `#FFFFFF` | `#FFFFFF` | `#F8FAFC` | `#FFFFFF` |
+| Color | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
+|-------|----------|---------|---------|---------|
+| **Base 08** (Red) | `#F38630` | `#E11D48` | `#FFFFFF` | `#DC322F` |
+| **Base 09** (Orange) | `#FA6900` | `#F97316` | `#E0E0E0` | `#CB4B16` |
+| **Base 0A** (Yellow) | `#FEF3C7` | `#FEF3C7` | `#D4D4D4` | `#DDD389` |
+| **Base 0B** (Green) | `#52C489` | `#10B981` | `#B8B8B8` | `#859900` |
+| **Base 0C** (Cyan) | `#69D2E7` | `#06B6D4` | `#A0A0A0` | `#74B6B6` |
+| **Base 0D** (Blue) | `#87CEEB` | `#3B82F6` | `#909090` | `#268BD2` |
+| **Base 0E** (Purple) | `#8B5CF6` | `#8B5CF6` | `#808080` | `#6C71C4` |
+| **Base 0F** (Magenta) | `#EC4899` | `#EC4899` | `#707070` | `#D33682` |
 
-### **🎨 Accent Colors**
+### 🔍 Semantic Colors
 
-| Group             | 翠 (Sui)   | 輝 (Ki)    | 無 (Mu)    | 空 (Ku)    |
-| ----------------- | --------- | --------- | --------- | --------- |
-| Base 08 (Red)     | `#D14D41` | `#EF4444` | `#DC2626` | `#F87171` |
-| Base 09 (Orange)  | `#E6844D` | `#F97316` | `#EA580C` | `#FB923C` |
-| Base 0A (Yellow)  | `#E6C44D` | `#FACC15` | `#EAB308` | `#FDE047` |
-| Base 0B (Green)   | `#4ADE80` | `#86EFAC` | `#22C55E` | `#98FB98` |
-| Base 0C (Cyan)    | `#22D3EE` | `#06B6D4` | `#67E8F9` | `#5FC3E4` |
-| Base 0D (Blue)    | `#3B82F6` | `#2563EB` | `#60A5FA` | `#6EA8FE` |
-| Base 0E (Purple)  | `#A855F7` | `#9333EA` | `#C084FC` | `#A78BFA` |
-| Base 0F (Magenta) | `#EC4899` | `#DB2777` | `#F472B6` | `#FF77AA` |
+#### Syntax Highlighting
+| Element | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
+|---------|----------|---------|---------|---------|
+| **Functions** | `#69D2E7` | `#3B82F6` | `#FFFFFF` | `#268BD2` |
+| **Keywords** | `#EC4899` | `#8B5CF6` | `#E0E0E0` | `#D33682` |
+| **Strings** | `#52C489` | `#10B981` | `#B8B8B8` | `#859900` |
+| **Types** | `#87CEEB` | `#06B6D4` | `#D4D4D4` | `#B58900` |
+| **Constants** | `#F38630` | `#F97316` | `#A0A0A0` | `#CB4B16` |
+| **Comments** | `#7BBAB1` | `#64748B` | `#707070` | `#586E75` |
+| **Operators** | `#A7DBD8` | `#475569` | `#909090` | `#74B6B6` |
 
-### **🔍 Special Colors**
+#### Diagnostics
+| Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
+|-------|----------|---------|---------|---------|
+| **Error** | `#F38630` | `#E11D48` | `#FFFFFF` | `#DC322F` |
+| **Warning** | `#FA6900` | `#F97316` | `#E0E0E0` | `#DDD389` |
+| **Info** | `#69D2E7` | `#3B82F6` | `#B8B8B8` | `#268BD2` |
+| **Hint** | `#52C489` | `#10B981` | `#A0A0A0` | `#859900` |
 
-| Group   | 翠 (Sui)   | 輝 (Ki)    | 無 (Mu)    | 空 (Ku)    |
-| ------- | --------- | --------- | --------- | --------- |
-| Error   | `#B91C1C` | `#991B1B` | `#DC2626` | `#D32F2F` |
-| Debug   | `#7C3AED` | `#6D28D9` | `#A78BFA` | `#957DAD` |
-| Warning | `#D97706` | `#B45309` | `#F59E0B` | `#D4A017` |
-| Info    | `#2563EB` | `#1D4ED8` | `#3B82F6` | `#4A90E2` |
+## Transparency Support
 
----
+All themes support transparency with the following alpha levels:
+- **Primary Background**: Configurable opacity (default: 0.64 to match terminal)
+- **Secondary Elements**: Maintain relative opacity relationships
+- **Text**: Always fully opaque for readability
+- **Diagnostics**: Full opacity for visibility
 
-## **2. Style Overview**
+## Theme-Specific Design Notes
 
-### **翠 (Sui) – Organic, Lush, Natural Green**
+### 翠 (Sui) - Atmospheric Teal Garden
+- **Philosophy**: Fusion of your design palettes with Makoto Shinkai's atmospheric depth
+- **Multi-Palette Fusion**: 
+  - **Ethereal-teal**: `#69d2e7` (light blue), `#a7dbd8` (aqua mint) for atmospheric sky
+  - **Emerald-flow**: `#52c489` (medium green), `#b8e6d3` (mint) for organic depth  
+  - **Ocean-breeze**: `#f0feff`, `#c8e6f5` for misty highlights
+- **Use Case**: Cinematic coding experience, atmospheric immersion, nature-tech harmony
+- **Aesthetic**: Light through water and leaves, contemplative depth with aqua-mint dreams
+- **Layered Depth**: 6+ atmospheric tones creating Shinkai-style environmental storytelling
 
-* **Aesthetic:** Inspired by forests and deep jade.
-* **Use case:** **Relaxed coding**, reduced eye strain.
+### 輝 (Ki) - Crystal Radiant Light
+- **Philosophy**: Pure radiant light concept - cool, crisp, luminous like crystal clarity
+- **Primary Hues**: Cool whites and light blues from ocean-breeze + crystal-waves palettes
+- **Color References**: `#FAFCFF` (barely blue white), `#F0F9FF` (almost white blue), `#E1F5FE` (very light blue)
+- **Reduced Warmth**: Replaced Renaissance earth tones with cool grays `#64748B`, `#475569`, `#334155`
+- **Use Case**: Clean, crisp light mode for focused work and bright environments
+- **Aesthetic**: Morning light through crystal, minimal warmth, maximum clarity
+- **Soft Yellow**: Gentle `#FEF3C7` instead of harsh bright yellows
 
-### **輝 (Ki) – High-Contrast, Cyber-Futuristic**
+### 無 (Mu) - WCAG AAA High-Contrast Grayscale
+- **Philosophy**: Maximum readability with zero color distractions
+- **Contrast Ratios**: WCAG AAA compliant (7:1+ for normal text, 21:1 for highlights)
+- **Color Hierarchy**: Pure black `#000000` → Pure white `#FFFFFF` with 8 distinct levels
+- **Use Case**: Deep focus sessions, accessibility needs, distraction-free coding
+- **Aesthetic**: High-contrast monochrome, newspaper clarity, maximum legibility
+- **Benefits**: Works with all colorblind conditions, reduces cognitive load from color processing
 
-* **Aesthetic:** Bright, neon-like elements with deep contrast.
-* **Use case:** **Fast-paced coding**, clear syntax highlighting.
+### 空 (Ku) - Terminal-Inspired Solarized Dark
+- **Philosophy**: Perfect terminal-to-editor harmony based on your kitty configuration
+- **Primary Hues**: Exact match to your terminal colors - dark blue-green base with warm accents
+- **Color References**: `#000F10` (terminal bg), `#839496` (terminal fg), `#DFC082` (cursor gold), Solarized palette
+- **Use Case**: Seamless workflow between terminal and Neovim, familiar Solarized aesthetics
+- **Aesthetic**: Deep ocean tones with golden highlights, consistent with your shell experience
+- **Integration**: Matches your kitty.conf colors exactly for unified visual experience
 
-### **無 (Mu) – Minimalist, Cyber-Mystic**
+## Implementation Notes
 
-* **Aesthetic:** Deep shadows, muted neon.
-* **Use case:** **Dark mode lovers**, low-light environments.
+1. **Base32 Organization**: Colors follow Base16 extended to 32 colors for richer syntax highlighting
+2. **Semantic Consistency**: Same semantic meanings across all themes (red=error, etc.)
+3. **Accessibility**: All themes meet WCAG contrast requirements
+4. **Terminal Compatibility**: Colors chosen to work well in both GUI and terminal Neovim
+5. **Transparency Ready**: Background colors designed to work with various transparency levels
 
-### **空 (Ku) – Balanced, Airy, Adaptive**
+## Configuration Options
 
-* **Aesthetic:** Gentle hues, medium contrast.
-* **Use case:** **Long hours of development**, comfortable.
-
----
-
-## **3. Transparent & Monochrome Modes**
-
-* **🟢 Transparent Mode:**
-
-  * Adjusts backgrounds (`Base 00-03`) to alpha levels.
-  * Compatible with **Kitty, Tmux, Neovim GUI (NVIM-Qt, WezTerm)**.
-* **⚫ Monochrome Mode:**
-
-  * Uses only grayscale (`Base 00-07`), for a **no-distraction workflow**.
-
----
-
-## **4. Next Steps**
-
-1. **Would you like a preview image** for each theme in a terminal?
-2. **Do you want configurations** for Neovim, Tmux, and Kitty?
-3. **Would you like a toggle script** for switching styles dynamically?
-
-Let me know how you'd like to proceed! 🚀
+```lua
+{
+  style = 'ku',           -- 'sui', 'ki', 'mu', 'ku'
+  transparent = true,     -- Enable transparent backgrounds
+  opacity = 0.64,         -- Background opacity (0.0-1.0)
+  monochrome = false,     -- Force grayscale (overrides style)
+  italic_comments = true, -- Italicize comments
+  bold_keywords = true,   -- Bold keywords
+}
+```
