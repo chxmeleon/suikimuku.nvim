@@ -33,7 +33,7 @@ M.palettes = {
 		},
 		syntax = {
 			func = "#69D2E7", -- Ethereal light blue
-			keyword = "#4d4dfa", -- Vibrant atmospheric purple
+			keyword = "#335cff", -- Electric blue keywords
 			string = "#52C489", -- Emerald growth
 			type = "#A7DBD8", -- Aqua mint
 			const = "#F38630", -- Warm orange
@@ -125,12 +125,12 @@ M.palettes = {
 			subtle = "#586E75",
 		},
 		syntax = {
-			func = "#268BD2", -- Solarized blue
-			keyword = "#D33682", -- Solarized magenta
-			string = "#859900", -- Solarized green
-			type = "#B58900", -- Solarized yellow
-			const = "#CB4B16", -- Solarized orange
-			special = "#74B6B6", -- Solarized cyan
+			func = "#00D7FF", -- Bright cyan for functions/imports
+			keyword = "#e645ff", -- Vibrant magenta for keywords
+			string = "#FFD700", -- Bright yellow for strings
+			type = "#87CEEB", -- Sky blue for types
+			const = "#FF8C00", -- Bright orange for constants
+			special = "#00CED1", -- Dark turquoise for operators
 		},
 		diag = {
 			error = "#DC322F", -- Solarized red
