@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Grep(*)",
+      "Glob(*)",
+      "LS(*)",
+      "Edit(*)",
+      "MultiEdit(*)",
+      "Bash(bun run atdd:*)",
+      "Bash(bun test:*)",
+      "Bash(bun run *)",
+      "Bash(bun install:*)",
+      "Bash(pnpm run atdd:*)",
+      "Bash(pnpm test:*)",
+      "Bash(yarn run atdd:*)",
+      "Bash(yarn test:*)",
+      "Bash(npm run atdd:*)",
+      "Bash(npm test:*)",
+      "Bash(playwright test:*)",
+      "Bash(jest __tests__:*)",
+      "Bash(vitest:*)",
+      "Bash(date:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(basename:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Write(__tests__/**)",
+      "Write(tests/**)",
+      "Write(src/**/*.test.*)",
+      "Write(src/**/*.spec.*)",
+      "Write(features/*.yaml)",
+      "Write(analysis/**)",
+      "Write(.claudedocs/**)",
+      "Read(.claude/shared/**)",
+      "Read(.claude/contexts/**)",
+      "Read(.claude/templates/**)",
+      "Read(.claudedocs/**)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "WebFetch(http://*)",
+      "WebFetch(https://*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "env": {
+    "CLAUDE_CODE_ATDD_MODE": "true",
+    "DISABLE_COST_WARNINGS": "1",
+    "BASH_DEFAULT_TIMEOUT_MS": "60000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "8192"
+  },
+  "includeCoAuthoredBy": true,
+  "cleanupPeriodDays": 7,
+  "hooks": {
+    "PostToolUse": [],
+    "Stop": []
+  }
+}

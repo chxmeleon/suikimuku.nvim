@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuiKimuku (翠輝無空) Theme Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1A1B26;
+            --bg-secondary: #24283B;
+            --bg-float: #2F334D;
+            --bg-highlight: #3B4261;
+            --fg-primary: #C0CAF5;
+            --fg-secondary: #A9B1D6;
+            --fg-muted: #9AA5CE;
+            --fg-subtle: #565F89;
+            --syntax-func: #7AA2F7;
+            --syntax-keyword: #BB9AF7;
+            --syntax-string: #9ECE6A;
+            --syntax-type: #7DCFFF;
+            --syntax-const: #FF9E64;
+            --syntax-special: #2AC3DE;
+            --diag-error: #F7768E;
+            --diag-warn: #E0AF68;
+            --diag-info: #7AA2F7;
+            --diag-hint: #9ECE6A;
+            --transparency: 1.0;
+        }
+
+        [data-theme="sui"] {
+            --bg-primary: #0A1B1A;
+            --bg-secondary: #0F2A28;
+            --bg-float: #1A3E3B;
+            --bg-highlight: #2A5651;
+            --fg-primary: #A7DBD8;
+            --fg-secondary: #7BBAB1;
+            --fg-muted: #C8E6F5;
+            --fg-subtle: #7BBAB1;
+            --syntax-func: #69D2E7;
+            --syntax-keyword: #EC4899;
+            --syntax-string: #52C489;
+            --syntax-type: #87CEEB;
+            --syntax-const: #F38630;
+            --syntax-special: #A7DBD8;
+            --diag-error: #F38630;
+            --diag-warn: #FA6900;
+            --diag-info: #69D2E7;
+            --diag-hint: #52C489;
+        }
+
+        [data-theme="ki"] {
+            --bg-primary: #FAFCFF;
+            --bg-secondary: #F0F9FF;
+            --bg-float: #E1F5FE;
+            --bg-highlight: #CBD5E1;
+            --fg-primary: #475569;
+            --fg-secondary: #64748B;
+            --fg-muted: #334155;
+            --fg-subtle: #64748B;
+            --syntax-func: #3B82F6;
+            --syntax-keyword: #8B5CF6;
+            --syntax-string: #10B981;
+            --syntax-type: #06B6D4;
+            --syntax-const: #F97316;
+            --syntax-special: #475569;
+            --diag-error: #E11D48;
+            --diag-warn: #F97316;
+            --diag-info: #3B82F6;
+            --diag-hint: #10B981;
+        }
+
+        [data-theme="mu"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1A1A1A;
+            --bg-float: #2D2D2D;
+            --bg-highlight: #404040;
+            --fg-primary: #CCCCCC;
+            --fg-secondary: #808080;
+            --fg-muted: #E6E6E6;
+            --fg-subtle: #808080;
+            --syntax-func: #FFFFFF;
+            --syntax-keyword: #E0E0E0;
+            --syntax-string: #B8B8B8;
+            --syntax-type: #D4D4D4;
+            --syntax-const: #A0A0A0;
+            --syntax-special: #909090;
+            --diag-error: #FFFFFF;
+            --diag-warn: #E0E0E0;
+            --diag-info: #B8B8B8;
+            --diag-hint: #A0A0A0;
+        }
+
+        [data-theme="ku"] {
+            --bg-primary: #000F10;
+            --bg-secondary: #073642;
+            --bg-float: #114555;
+            --bg-highlight: #203047;
+            --fg-primary: #839496;
+            --fg-secondary: #586E75;
+            --fg-muted: #93A1A1;
+            --fg-subtle: #586E75;
+            --syntax-func: #268BD2;
+            --syntax-keyword: #D33682;
+            --syntax-string: #859900;
+            --syntax-type: #B58900;
+            --syntax-const: #CB4B16;
+            --syntax-special: #74B6B6;
+            --diag-error: #DC322F;
+            --diag-warn: #DDD389;
+            --diag-info: #268BD2;
+            --diag-hint: #859900;
+        }
+
+        body {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background-color: var(--bg-primary);
+            color: var(--fg-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .transparent {
+            background-color: rgba(from var(--bg-primary) r g b / var(--transparency));
+        }
+
+        .transparent .color-palette,
+        .transparent .code-editor,
+        .transparent .diagnostics {
+            background-color: rgba(from var(--bg-secondary) r g b / calc(var(--transparency) + 0.1));
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--syntax-func);
+        }
+
+        .header p {
+            color: var(--fg-muted);
+            font-size: 1.1rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .theme-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .transparency-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            background: var(--bg-secondary);
+            color: var(--fg-primary);
+            border: 2px solid var(--bg-highlight);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            background: var(--bg-highlight);
+            border-color: var(--syntax-func);
+        }
+
+        .theme-btn.active {
+            background: var(--syntax-func);
+            color: var(--bg-primary);
+            border-color: var(--syntax-func);
+        }
+
+        .transparency-slider {
+            width: 200px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-highlight);
+            outline: none;
+        }
+
+        .transparency-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--syntax-func);
+            cursor: pointer;
+        }
+
+        .transparency-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--syntax-func);
+            cursor: pointer;
+            border: none;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .color-palette {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--bg-highlight);
+        }
+
+        .color-section {
+            margin-bottom: 20px;
+        }
+
+        .color-section h3 {
+            color: var(--syntax-keyword);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .color-swatches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+        }
+
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background: var(--bg-float);
+            font-size: 0.85rem;
+        }
+
+        .color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            border: 1px solid var(--bg-highlight);
+        }
+
+        .code-editor {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--bg-highlight);
+            overflow: hidden;
+        }
+
+        .editor-header {
+            background: var(--bg-float);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--bg-highlight);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .editor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-close { background: var(--diag-error); }
+        .dot-minimize { background: var(--diag-warn); }
+        .dot-maximize { background: var(--syntax-string); }
+
+        .editor-content {
+            padding: 16px;
+            overflow-x: auto;
+        }
+
+        .line-numbers {
+            color: var(--fg-subtle);
+            margin-right: 16px;
+            user-select: none;
+        }
+
+        .code-line {
+            display: flex;
+            margin-bottom: 4px;
+        }
+
+        .code-line.highlight {
+            background: var(--bg-highlight);
+            margin: 0 -16px 4px -16px;
+            padding: 0 16px;
+        }
+
+        /* Syntax highlighting classes */
+        .keyword { color: var(--syntax-keyword); font-weight: bold; }
+        .function { color: var(--syntax-func); }
+        .string { color: var(--syntax-string); }
+        .type { color: var(--syntax-type); }
+        .constant { color: var(--syntax-const); }
+        .special { color: var(--syntax-special); }
+        .comment { color: var(--fg-subtle); font-style: italic; }
+        .error { color: var(--diag-error); }
+        .warning { color: var(--diag-warn); }
+
+        .diagnostics {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--bg-highlight);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .diag-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            background: var(--bg-float);
+        }
+
+        .diag-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .diag-error .diag-icon { background: var(--diag-error); color: var(--bg-primary); }
+        .diag-warn .diag-icon { background: var(--diag-warn); color: var(--bg-primary); }
+        .diag-info .diag-icon { background: var(--diag-info); color: var(--bg-primary); }
+        .diag-hint .diag-icon { background: var(--diag-hint); color: var(--bg-primary); }
+
+        @media (max-width: 768px) {
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-switcher {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body data-theme="ku">
+    <div class="container">
+        <div class="header">
+            <h1>SuiKimuku (翠輝無空)</h1>
+            <p>Four distinctive Neovim color themes with transparency support</p>
+        </div>
+
+        <div class="controls">
+            <div class="theme-switcher">
+                <button class="theme-btn" data-theme="sui">Sui (翠) - Emerald</button>
+                <button class="theme-btn" data-theme="ki">Ki (輝) - Light</button>
+                <button class="theme-btn" data-theme="mu">Mu (無) - Grayscale</button>
+                <button class="theme-btn active" data-theme="ku">Ku (空) - Dark</button>
+            </div>
+            <div class="transparency-control">
+                <label for="transparency" style="color: var(--fg-secondary);">Transparency:</label>
+                <input type="range" id="transparency" class="transparency-slider" min="0.3" max="1.0" step="0.1" value="1.0">
+                <span id="transparency-value" style="color: var(--fg-muted); min-width: 40px;">100%</span>
+            </div>
+        </div>
+
+        <div class="preview-grid">
+            <div class="color-palette">
+                <h2 style="color: var(--syntax-func); margin-bottom: 20px;">Color Palette</h2>
+                
+                <div class="color-section">
+                    <h3>Backgrounds</h3>
+                    <div class="color-swatches">
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--bg-primary);"></div>
+                            <span>Primary</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--bg-secondary);"></div>
+                            <span>Secondary</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--bg-float);"></div>
+                            <span>Float</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--bg-highlight);"></div>
+                            <span>Highlight</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>Syntax Colors</h3>
+                    <div class="color-swatches">
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-func);"></div>
+                            <span>Functions</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-keyword);"></div>
+                            <span>Keywords</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-string);"></div>
+                            <span>Strings</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-type);"></div>
+                            <span>Types</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-const);"></div>
+                            <span>Constants</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--syntax-special);"></div>
+                            <span>Special</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>Diagnostics</h3>
+                    <div class="color-swatches">
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--diag-error);"></div>
+                            <span>Error</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--diag-warn);"></div>
+                            <span>Warning</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--diag-info);"></div>
+                            <span>Info</span>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-box" style="background: var(--diag-hint);"></div>
+                            <span>Hint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-dot dot-close"></div>
+                    <div class="editor-dot dot-minimize"></div>
+                    <div class="editor-dot dot-maximize"></div>
+                    <span style="margin-left: 10px; color: var(--fg-muted);">theme-example.lua</span>
+                </div>
+                <div class="editor-content">
+                    <div class="code-line">
+                        <span class="line-numbers">1</span>
+                        <span class="comment">-- SuiKimuku theme demonstration</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">2</span>
+                        <span class="keyword">local</span> <span class="type">Theme</span> = <span class="function">require</span>(<span class="string">'suikimuku'</span>)
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">3</span>
+                    </div>
+                    <div class="code-line highlight">
+                        <span class="line-numbers">4</span>
+                        <span class="comment">-- Configure theme with transparency</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">5</span>
+                        <span class="type">Theme</span>.<span class="function">setup</span>({
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">6</span>
+                        &nbsp;&nbsp;<span class="special">style</span> = <span class="string">'ku'</span>, <span class="comment">-- 'sui', 'ki', 'mu', 'ku'</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">7</span>
+                        &nbsp;&nbsp;<span class="special">transparent</span> = <span class="constant">true</span>,
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">8</span>
+                        &nbsp;&nbsp;<span class="special">opacity</span> = <span class="constant">0.64</span>, <span class="comment">-- Match terminal</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">9</span>
+                        })
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">10</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">11</span>
+                        <span class="keyword">function</span> <span class="function">greet</span>(<span class="special">name</span>)
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">12</span>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">'Hello, '</span> .. <span class="special">name</span> .. <span class="string">'!'</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="line-numbers">13</span>
+                        <span class="keyword">end</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="diagnostics">
+            <h2 style="color: var(--syntax-func); margin-bottom: 15px;">Diagnostics & Theme Comparison</h2>
+            <div class="diag-item diag-error">
+                <div class="diag-icon">E</div>
+                <span>Module 'suikimuku' not found in package.lua</span>
+            </div>
+            <div class="diag-item diag-warn">
+                <div class="diag-icon">W</div>
+                <span>Transparency may affect readability in bright environments</span>
+            </div>
+            <div class="diag-item diag-info">
+                <div class="diag-icon">I</div>
+                <span>Theme switch: Ku (空) - Dark mode for comfortable coding</span>
+            </div>
+            <div class="diag-item diag-hint">
+                <div class="diag-icon">H</div>
+                <span>Try different themes: Sui (organic), Ki (light), Mu (focus)</span>
+            </div>
+        </div>
+        
+        <div class="theme-info" style="margin-top: 30px; background: var(--bg-secondary); padding: 20px; border-radius: 8px; border: 1px solid var(--bg-highlight);">
+            <h2 style="color: var(--syntax-func); margin-bottom: 15px;">Theme Philosophy</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <h3 style="color: var(--syntax-keyword); margin-bottom: 8px;">翠 (Sui) - Atmospheric Teal Garden</h3>
+                    <p style="color: var(--fg-secondary); font-size: 0.9rem;">Multi-palette fusion: your design colors + Makoto Shinkai atmosphere. Ethereal teal, emerald flow, ocean breeze creating cinematic depth with aqua-mint dreams.</p>
+                    <div style="margin-top: 8px; display: flex; gap: 4px;">
+                        <div style="width: 16px; height: 16px; background: #69d2e7; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Ethereal light blue"></div>
+                        <div style="width: 16px; height: 16px; background: #a7dbd8; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Aqua mint"></div>
+                        <div style="width: 16px; height: 16px; background: #52c489; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Emerald growth"></div>
+                        <div style="width: 16px; height: 16px; background: #f38630; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Warm orange"></div>
+                        <div style="width: 16px; height: 16px; background: #87ceeb; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Sky blue"></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: var(--syntax-keyword); margin-bottom: 8px;">輝 (Ki) - Crystal Radiant Light</h3>
+                    <p style="color: var(--fg-secondary); font-size: 0.9rem;">Pure radiant light concept - cool, crisp, luminous. Morning light through crystal with minimal warmth. Ocean-breeze + crystal-waves palette fusion.</p>
+                    <div style="margin-top: 8px; display: flex; gap: 4px;">
+                        <div style="width: 16px; height: 16px; background: #FAFCFF; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Barely blue white"></div>
+                        <div style="width: 16px; height: 16px; background: #F0F9FF; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Almost white blue"></div>
+                        <div style="width: 16px; height: 16px; background: #E1F5FE; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Very light blue"></div>
+                        <div style="width: 16px; height: 16px; background: #3B82F6; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Bright blue"></div>
+                        <div style="width: 16px; height: 16px; background: #FEF3C7; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Soft yellow"></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: var(--syntax-keyword); margin-bottom: 8px;">無 (Mu) - WCAG AAA Grayscale</h3>
+                    <p style="color: var(--fg-secondary); font-size: 0.9rem;">Maximum contrast (21:1 ratio) pure monochrome. WCAG AAA compliant for accessibility. Eliminates all color distractions for deep focus.</p>
+                    <div style="margin-top: 8px; display: flex; gap: 4px;">
+                        <div style="width: 16px; height: 16px; background: #000000; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Pure black"></div>
+                        <div style="width: 16px; height: 16px; background: #404040; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Dark gray"></div>
+                        <div style="width: 16px; height: 16px; background: #808080; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Medium gray"></div>
+                        <div style="width: 16px; height: 16px; background: #cccccc; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Light gray"></div>
+                        <div style="width: 16px; height: 16px; background: #ffffff; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Pure white"></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: var(--syntax-keyword); margin-bottom: 8px;">空 (Ku) - Terminal Solarized</h3>
+                    <p style="color: var(--fg-secondary); font-size: 0.9rem;">Perfect harmony with your kitty terminal. Deep ocean tones with golden accents. Seamless workflow between terminal and Neovim.</p>
+                    <div style="margin-top: 8px; display: flex; gap: 4px;">
+                        <div style="width: 16px; height: 16px; background: #000F10; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Terminal bg"></div>
+                        <div style="width: 16px; height: 16px; background: #073642; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Selection bg"></div>
+                        <div style="width: 16px; height: 16px; background: #839496; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Terminal fg"></div>
+                        <div style="width: 16px; height: 16px; background: #268BD2; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Blue"></div>
+                        <div style="width: 16px; height: 16px; background: #DFC082; border: 1px solid var(--bg-highlight); border-radius: 2px;" title="Cursor gold"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themeButtons = document.querySelectorAll('.theme-btn')
+        const transparencySlider = document.getElementById('transparency')
+        const transparencyValue = document.getElementById('transparency-value')
+        const body = document.body
+        const container = document.querySelector('.container')
+
+        // Theme switching
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.dataset.theme
+                
+                // Update active button
+                themeButtons.forEach(btn => btn.classList.remove('active'))
+                button.classList.add('active')
+                
+                // Update body theme
+                body.dataset.theme = theme
+                
+                // Update info text
+                updateThemeInfo(theme)
+            })
+        })
+
+        // Transparency control
+        transparencySlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value)
+            transparencyValue.textContent = Math.round(value * 100) + '%'
+            document.documentElement.style.setProperty('--transparency', value)
+            
+            // Add transparent class when not fully opaque
+            if (value < 1.0) {
+                body.classList.add('transparent')
+                // Add backdrop for better visibility
+                if (!document.querySelector('.backdrop')) {
+                    const backdrop = document.createElement('div')
+                    backdrop.className = 'backdrop'
+                    backdrop.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(45deg, 
+                            #f0f0f0 25%, transparent 25%,
+                            transparent 75%, #f0f0f0 75%),
+                        linear-gradient(45deg, 
+                            #f0f0f0 25%, transparent 25%,
+                            transparent 75%, #f0f0f0 75%);
+                        background-size: 20px 20px;
+                        background-position: 0 0, 10px 10px;
+                        z-index: -1;
+                        opacity: 0.1;
+                    `
+                    document.body.appendChild(backdrop)
+                }
+            } else {
+                body.classList.remove('transparent')
+                const backdrop = document.querySelector('.backdrop')
+                if (backdrop) backdrop.remove()
+            }
+        })
+
+        function updateThemeInfo(theme) {
+            const info = document.querySelector('.diagnostics .diag-info span')
+            const themeNames = {
+                'sui': 'Sui (翠) - Atmospheric teal garden theme active',
+                'ki': 'Ki (輝) - Crystal radiant light theme active',
+                'mu': 'Mu (無) - WCAG AAA high-contrast grayscale active',
+                'ku': 'Ku (空) - Terminal Solarized theme active'
+            }
+            info.textContent = `Theme active: ${themeNames[theme]}`
+        }
+
+        // Initialize with default transparency
+        transparencySlider.value = 1.0
+        transparencyValue.textContent = '100%'
+        
+        // Set initial theme to Ku
+        body.dataset.theme = 'ku'
+        updateThemeInfo('ku')
+    </script>
+</body>
+</html>

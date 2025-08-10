@@ -1,106 +1,138 @@
--- Kimuku (輝無空) Theme System
--- Ki (輝) - Radiance theme: Vibrant and energetic
--- Mu (無) - Void theme: Minimal and focused
--- Ku (空) - Sky theme: Serene and balanced
+-- SuiKimuku (翠輝無空) Theme System
+-- Sui (翠) - Atmospheric Teal Garden: Multi-palette fusion with cinematic depth
+-- Ki (輝) - Crystal Radiant Light: Cool, crisp, luminous radiance
+-- Mu (無) - WCAG AAA Grayscale: Maximum contrast monochrome
+-- Ku (空) - Terminal Solarized: Perfect harmony with terminal colors
 
 local M = {}
 
 -- Configuration with defaults
 M.config = {
-    style = 'ki',      -- 'ki', 'mu', or 'ku'
+    style = 'ku',        -- 'sui', 'ki', 'mu', or 'ku'
     transparent = false, -- Enable transparent background
-    monochrome = false,  -- Enable grayscale mode
+    opacity = 0.64,      -- Background opacity when transparent (0.0-1.0)
+    monochrome = false,  -- Force grayscale mode (overrides style)
 }
 
 -- Color Palettes
 M.palettes = {
-    -- Ki (輝) - Radiant theme
-    ki = {
+    -- Sui (翠) - Atmospheric Teal Garden
+    sui = {
         bg = {
-            primary = '#0B131A',
-            secondary = '#1B2329',
-            float = '#2A3439',
-            highlight = '#3A4757',
+            primary = '#0A1B1A',
+            secondary = '#0F2A28',
+            float = '#1A3E3B',
+            highlight = '#2A5651',
         },
         fg = {
-            primary = '#FFFDF1',
-            secondary = '#E5E3D8',
-            muted = '#C4D7F5',
-            subtle = '#657876',
+            primary = '#A7DBD8',
+            secondary = '#7BBAB1',
+            muted = '#C8E6F5',
+            subtle = '#7BBAB1',
         },
         syntax = {
-            func = '#338DF9',    -- Bright blue for functions
-            keyword = '#F51875', -- Vibrant magenta for keywords
-            string = '#96FF65',  -- Energetic green for strings
-            type = '#8F65F6',    -- Rich purple for types
-            const = '#FD692A',   -- Warm orange for constants
-            special = '#1EACB6', -- Cyan for special elements
+            func = '#69D2E7',    -- Ethereal light blue
+            keyword = '#EC4899', -- Bright magenta
+            string = '#52C489',  -- Emerald growth
+            type = '#87CEEB',    -- Sky blue
+            const = '#F38630',   -- Warm orange
+            special = '#A7DBD8', -- Aqua mint
         },
         diag = {
-            error = '#F8404C',
-            warn = '#ECD81D',
-            info = '#338DF9',
-            hint = '#96FF65',
+            error = '#F38630',
+            warn = '#FA6900',
+            info = '#69D2E7',
+            hint = '#52C489',
         },
     },
 
-    -- Mu (無) - Void theme
-    mu = {
+    -- Ki (輝) - Crystal Radiant Light
+    ki = {
         bg = {
-            primary = '#151515',
-            secondary = '#1E1E1E',
-            float = '#252525',
-            highlight = '#303030',
+            primary = '#FAFCFF',
+            secondary = '#F0F9FF',
+            float = '#E1F5FE',
+            highlight = '#CBD5E1',
         },
         fg = {
-            primary = '#F8F8F8',
-            secondary = '#E0E0E0',
-            muted = '#B0B0B0',
+            primary = '#475569',
+            secondary = '#64748B',
+            muted = '#334155',
+            subtle = '#64748B',
+        },
+        syntax = {
+            func = '#3B82F6',    -- Bright blue
+            keyword = '#8B5CF6', -- Purple
+            string = '#10B981',  -- Emerald green
+            type = '#06B6D4',    -- Cyan
+            const = '#F97316',   -- Orange
+            special = '#475569', -- Cool gray
+        },
+        diag = {
+            error = '#E11D48',
+            warn = '#F97316',
+            info = '#3B82F6',
+            hint = '#10B981',
+        },
+    },
+
+    -- Mu (無) - WCAG AAA High-Contrast Grayscale
+    mu = {
+        bg = {
+            primary = '#000000',
+            secondary = '#1A1A1A',
+            float = '#2D2D2D',
+            highlight = '#404040',
+        },
+        fg = {
+            primary = '#CCCCCC',
+            secondary = '#808080',
+            muted = '#E6E6E6',
             subtle = '#808080',
         },
         syntax = {
-            func = '#9BA9B5',    -- Subtle blue-gray
-            keyword = '#D4D4D4', -- Light gray
-            string = '#A8A8A8',  -- Mid gray
-            type = '#C0C0C0',    -- Silver gray
-            const = '#B8B8B8',   -- Another mid gray
-            special = '#949494', -- Darker gray
+            func = '#FFFFFF',    -- Pure white for maximum contrast
+            keyword = '#E0E0E0', -- Near white
+            string = '#B8B8B8',  -- Light gray
+            type = '#D4D4D4',    -- Very light gray
+            const = '#A0A0A0',   -- Medium light gray
+            special = '#909090', -- Medium gray
         },
         diag = {
-            error = '#CF6679',
-            warn = '#FFB86C',
-            info = '#9BA9B5',
-            hint = '#A8A8A8',
+            error = '#FFFFFF',   -- Maximum visibility
+            warn = '#E0E0E0',
+            info = '#B8B8B8',
+            hint = '#A0A0A0',
         },
     },
 
-    -- Ku (空) - Sky theme
+    -- Ku (空) - Terminal Solarized Dark
     ku = {
         bg = {
-            primary = '#1A1B26',
-            secondary = '#24283B',
-            float = '#2F334D',
-            highlight = '#3B4261',
+            primary = '#000F10',
+            secondary = '#073642',
+            float = '#114555',
+            highlight = '#203047',
         },
         fg = {
-            primary = '#C0CAF5',
-            secondary = '#A9B1D6',
-            muted = '#9AA5CE',
-            subtle = '#565F89',
+            primary = '#839496',
+            secondary = '#586E75',
+            muted = '#93A1A1',
+            subtle = '#586E75',
         },
         syntax = {
-            func = '#7AA2F7',    -- Soft blue
-            keyword = '#BB9AF7', -- Gentle purple
-            string = '#9ECE6A',  -- Calm green
-            type = '#7DCFFF',    -- Sky blue
-            const = '#FF9E64',   -- Soft orange
-            special = '#2AC3DE', -- Light cyan
+            func = '#268BD2',    -- Solarized blue
+            keyword = '#D33682', -- Solarized magenta
+            string = '#859900',  -- Solarized green
+            type = '#B58900',    -- Solarized yellow
+            const = '#CB4B16',   -- Solarized orange
+            special = '#74B6B6', -- Solarized cyan
         },
         diag = {
-            error = '#F7768E',
-            warn = '#E0AF68',
-            info = '#7AA2F7',
-            hint = '#9ECE6A',
+            error = '#DC322F',   -- Solarized red
+            warn = '#DDD389',    -- Bright yellow
+            info = '#268BD2',    -- Solarized blue
+            hint = '#859900',    -- Solarized green
         },
     },
 }
@@ -136,29 +168,87 @@ end
 -- Generate highlight groups
 function M.get_highlights(colors)
     local transparent_bg = M.config.transparent and "NONE" or colors.bg.primary
+    local transparent_float = M.config.transparent and "NONE" or colors.bg.float
     
     return {
         -- Editor
         Normal = { fg = colors.fg.primary, bg = transparent_bg },
-        NormalFloat = { fg = colors.fg.primary, bg = colors.bg.float },
+        NormalFloat = { fg = colors.fg.primary, bg = transparent_float },
+        NormalNC = { fg = colors.fg.secondary, bg = transparent_bg },
         SignColumn = { bg = transparent_bg },
         LineNr = { fg = colors.fg.subtle },
         CursorLine = { bg = colors.bg.secondary },
+        CursorLineNr = { fg = colors.syntax.func, bold = true },
+        ColorColumn = { bg = colors.bg.secondary },
+        Visual = { bg = colors.bg.highlight },
+        VisualNOS = { bg = colors.bg.highlight },
         
-        -- Syntax
+        -- Window elements
+        StatusLine = { fg = colors.fg.primary, bg = colors.bg.secondary },
+        StatusLineNC = { fg = colors.fg.subtle, bg = colors.bg.secondary },
+        TabLine = { fg = colors.fg.subtle, bg = colors.bg.secondary },
+        TabLineFill = { bg = colors.bg.primary },
+        TabLineSel = { fg = colors.fg.primary, bg = colors.bg.highlight },
+        WinSeparator = { fg = colors.bg.highlight },
+        
+        -- Syntax highlighting
         Function = { fg = colors.syntax.func },
+        ['@function'] = { fg = colors.syntax.func },
+        ['@function.call'] = { fg = colors.syntax.func },
+        ['@method'] = { fg = colors.syntax.func },
+        ['@method.call'] = { fg = colors.syntax.func },
+        
         Keyword = { fg = colors.syntax.keyword },
+        ['@keyword'] = { fg = colors.syntax.keyword },
+        ['@keyword.function'] = { fg = colors.syntax.keyword },
+        ['@keyword.operator'] = { fg = colors.syntax.keyword },
+        
         String = { fg = colors.syntax.string },
+        ['@string'] = { fg = colors.syntax.string },
+        ['@string.escape'] = { fg = colors.syntax.special },
+        
         Type = { fg = colors.syntax.type },
+        ['@type'] = { fg = colors.syntax.type },
+        ['@type.builtin'] = { fg = colors.syntax.type },
+        
         Constant = { fg = colors.syntax.const },
+        ['@constant'] = { fg = colors.syntax.const },
+        ['@constant.builtin'] = { fg = colors.syntax.const },
+        Number = { fg = colors.syntax.const },
+        Boolean = { fg = colors.syntax.const },
+        
         Special = { fg = colors.syntax.special },
+        ['@punctuation'] = { fg = colors.syntax.special },
+        ['@operator'] = { fg = colors.syntax.special },
+        
         Comment = { fg = colors.fg.subtle, italic = true },
+        ['@comment'] = { fg = colors.fg.subtle, italic = true },
+        
+        -- Variables
+        Identifier = { fg = colors.fg.primary },
+        ['@variable'] = { fg = colors.fg.primary },
+        ['@parameter'] = { fg = colors.fg.muted },
         
         -- Diagnostics
         DiagnosticError = { fg = colors.diag.error },
         DiagnosticWarn = { fg = colors.diag.warn },
         DiagnosticInfo = { fg = colors.diag.info },
         DiagnosticHint = { fg = colors.diag.hint },
+        
+        -- Git signs
+        GitSignsAdd = { fg = colors.syntax.string },
+        GitSignsChange = { fg = colors.diag.warn },
+        GitSignsDelete = { fg = colors.diag.error },
+        
+        -- Search
+        Search = { fg = colors.bg.primary, bg = colors.syntax.func },
+        IncSearch = { fg = colors.bg.primary, bg = colors.syntax.const },
+        
+        -- Popups
+        Pmenu = { fg = colors.fg.primary, bg = colors.bg.float },
+        PmenuSel = { fg = colors.bg.primary, bg = colors.syntax.func },
+        PmenuSbar = { bg = colors.bg.highlight },
+        PmenuThumb = { bg = colors.fg.subtle },
     }
 end
 
@@ -176,7 +266,7 @@ function M.setup(user_config)
     end
     
     -- Set colorscheme name
-    vim.g.colors_name = 'kimuku'
+    vim.g.colors_name = 'suikimuku'
     
     -- Get colors and highlights
     local colors = M.get_colors()

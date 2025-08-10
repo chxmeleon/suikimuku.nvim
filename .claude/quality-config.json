@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "auto_format": true,
+  "auto_lint": true,
+  "auto_test": false,
+  "coverage_threshold": 80,
+  "formatters": {
+    "javascript": "prettier --write",
+    "typescript": "prettier --write",
+    "python": "black",
+    "go": "gofmt -w",
+    "rust": "rustfmt"
+  },
+  "linters": {
+    "javascript": "eslint",
+    "typescript": "tsc --noEmit && eslint",
+    "python": "flake8",
+    "go": "golint",
+    "rust": "cargo clippy"
+  },
+  "test_commands": {
+    "javascript": "{{package_manager}} test",
+    "typescript": "{{package_manager}} test",
+    "python": "pytest",
+    "go": "go test ./...",
+    "rust": "cargo test"
+  },
+  "package_manager_detection": {
+    "enabled": true,
+    "priority": ["bun", "pnpm", "yarn", "npm"],
+    "fallback": "bun"
+  }
+}
