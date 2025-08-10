@@ -194,7 +194,7 @@ require('suikimuku').setup({
 |---------|----------|---------|---------|---------|
 | **Functions** | `#69D2E7` | `#3B82F6` | `#FFFFFF` | `#00D7FF` |
 | **Keywords** | `#335cff` | `#8B5CF6` | `#E0E0E0` | `#e645ff` |
-| **Strings** | `#52C489` | `#10B981` | `#B8B8B8` | `#FFD700` |
+| **Strings** | `#52C489` | `#10B981` | `#B8B8B8` | `#38e8aa` |
 | **Types** | `#A7DBD8` | `#06B6D4` | `#D4D4D4` | `#87CEEB` |
 | **Constants** | `#F38630` | `#F97316` | `#A0A0A0` | `#FF8C00` |
 | **Comments** | `#7BBAB1` | `#64748B` | `#707070` | `#586E75` |
@@ -246,9 +246,9 @@ require('suikimuku').setup({
 - **Vibrant Syntax Colors**: 
   - **Electric cyan**: `#00D7FF` for functions and imports
   - **Vibrant magenta**: `#e645ff` for keywords and control flow
-  - **Bright gold**: `#FFD700` for strings and literals
+  - **Turquoise green**: `#38e8aa` for strings and literals
   - **Sky blue**: `#87CEEB` for types and declarations
-  - **Turquoise**: `#00CED1` for operators and special characters
+  - **Dark turquoise**: `#00CED1` for operators and special characters
 - **Background Evolution**: Enhanced blue tones (`#072842`, `#283d5e`) for better depth
 - **Use Case**: Modern terminal workflows, high-contrast coding, enhanced syntax readability
 - **Aesthetic**: Deep ocean depths with electric neon highlights, cyberpunk-inspired coding environment

@@ -81,7 +81,7 @@ local themes = {
 		},
 		-- Enhanced vibrant palette
 		blue = { "#00D7FF", "#87CEEB", "#6699CC" },
-		green = { "#859900", "#586E75", "#96FF65" },
+		green = { "#38e8aa", "#586E75", "#96FF65" },
 		yellow = { "#FFD700", "#DDD389", "#EAB875" },
 		orange = { "#FF8C00", "#FD692A", "#EDC894" },
 		red = { "#DC322F", "#E11624", "#F8404C" },
