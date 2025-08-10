@@ -169,8 +169,8 @@ require('suikimuku').setup({
 
 | Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |-------|----------|---------|---------|---------|
-| **Base 04** (Muted) | `#7BBAB1` | `#64748B` | `#808080` | `#586E75` |
-| **Base 05** (Primary) | `#A7DBD8` | `#475569` | `#CCCCCC` | `#839496` |
+| **Base 04** (Muted) | `#7BBAB1` | `#475569` | `#808080` | `#586E75` |
+| **Base 05** (Primary) | `#A7DBD8` | `#64748B` | `#CCCCCC` | `#839496` |
 | **Base 06** (Bright) | `#C8E6F5` | `#334155` | `#E6E6E6` | `#93A1A1` |
 | **Base 07** (Highlight) | `#F0FEFF` | `#1E293B` | `#FFFFFF` | `#FDF6E3` |
 
@@ -180,12 +180,12 @@ require('suikimuku').setup({
 |-------|----------|---------|---------|---------|
 | **Base 08** (Red) | `#F38630` | `#E11D48` | `#FFFFFF` | `#DC322F` |
 | **Base 09** (Orange) | `#FA6900` | `#F97316` | `#E0E0E0` | `#FF8C00` |
-| **Base 0A** (Yellow) | `#FEF3C7` | `#FEF3C7` | `#D4D4D4` | `#FFD700` |
+| **Base 0A** (Yellow) | `#FEF3C7` | `#FEF3C7` | `#D4D4D4` | `#38e8aa` |
 | **Base 0B** (Green) | `#52C489` | `#10B981` | `#B8B8B8` | `#859900` |
 | **Base 0C** (Cyan) | `#69D2E7` | `#06B6D4` | `#A0A0A0` | `#00CED1` |
 | **Base 0D** (Blue) | `#69D2E7` | `#3B82F6` | `#909090` | `#00D7FF` |
-| **Base 0E** (Purple) | `#335cff` | `#8B5CF6` | `#808080` | `#6C71C4` |
-| **Base 0F** (Magenta) | `#EC4899` | `#EC4899` | `#707070` | `#e645ff` |
+| **Base 0E** (Purple) | `#1e9ee8` | `#8B5CF6` | `#808080` | `#6C71C4` |
+| **Base 0F** (Magenta) | `#bce089` | `#EC4899` | `#707070` | `#e645ff` |
 
 #### Semantic Colors
 
@@ -193,12 +193,12 @@ require('suikimuku').setup({
 | Element | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |---------|----------|---------|---------|---------|
 | **Functions** | `#69D2E7` | `#3B82F6` | `#FFFFFF` | `#00D7FF` |
-| **Keywords** | `#335cff` | `#8B5CF6` | `#E0E0E0` | `#e645ff` |
+| **Keywords** | `#1e9ee8` | `#8B5CF6` | `#E0E0E0` | `#e645ff` |
 | **Strings** | `#52C489` | `#10B981` | `#B8B8B8` | `#38e8aa` |
 | **Types** | `#A7DBD8` | `#06B6D4` | `#D4D4D4` | `#87CEEB` |
 | **Constants** | `#F38630` | `#F97316` | `#A0A0A0` | `#FF8C00` |
 | **Comments** | `#7BBAB1` | `#64748B` | `#707070` | `#586E75` |
-| **Operators** | `#EC4899` | `#475569` | `#909090` | `#00CED1` |
+| **Operators** | `#bce089` | `#475569` | `#909090` | `#00CED1` |
 
 **Diagnostics**
 | Level | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
@@ -214,14 +214,14 @@ require('suikimuku').setup({
 - **Philosophy**: Serene underwater workspace combining natural tranquility with digital precision
 - **Deep Sea Color Palette**: 
   - **Ocean Depths**: `#0A1B1A`, `#0F2A28`, `#1A3E3B` for calming dark backgrounds
-  - **Bioluminescent Blue**: `#335cff` (electric blue keywords) for syntax highlighting like glowing sea life
+  - **Ocean Blue**: `#1e9ee8` (ocean blue keywords) for syntax highlighting like illuminated water
   - **Aqua Mint**: `#69d2e7` (functions), `#a7dbd8` (types) for crystal-clear water clarity
   - **Emerald Coral**: `#52c489` (strings) for organic sea vegetation
   - **Warm Coral**: `#f38630` (constants) for vibrant underwater life
-  - **Magenta Anemone**: `#ec4899` (special) for exotic sea creatures
+  - **Light Sea Green**: `#bce089` (special) for gentle sea grass and floating vegetation
 - **Use Case**: Calm, immersive coding sessions with natural depth and modern digital clarity
 - **Aesthetic**: Deep sea coding environment where syntax glows like bioluminescent marine life
-- **Digital Harmony**: Electric blue keywords (`#335cff`) provide modern contrast against organic aqua foundation
+- **Digital Harmony**: Ocean blue keywords (`#1e9ee8`) provide natural water contrast against organic aqua foundation
 
 #### 輝 (Ki) - Crystal Radiant Light
 - **Philosophy**: Pure radiant light concept - cool, crisp, luminous like crystal clarity

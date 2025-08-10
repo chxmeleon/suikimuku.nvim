@@ -17,10 +17,10 @@ local themes = {
 		-- Ethereal teal palette
 		blue = { "#69D2E7", "#87CEEB", "#C8E6F5" },
 		aqua = { "#A7DBD8", "#7BBAB1", "#52C489" },
-		green = { "#52C489", "#B8E6D3", "#D1F2E8" },
+		green = { "#52C489", "#bce089", "#D1F2E8" },
 		orange = { "#F38630", "#FA6900", "#E6944D" },
 		magenta = { "#EC4899", "#FF77AA", "#E6A3C7" },
-		purple = { "#335cff", "#5A7EFF", "#819CFF" },
+		purple = { "#1e9ee8", "#4CB8F0", "#7AD1F7" },
 		cyan = { "#69D2E7", "#5FB3B3", "#6BC4BC" },
 		yellow = { "#FEF3C7", "#F2D98A", "#E6C44D" },
 	},

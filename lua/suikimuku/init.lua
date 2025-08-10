@@ -33,11 +33,11 @@ M.palettes = {
 		},
 		syntax = {
 			func = "#69D2E7", -- Ethereal light blue
-			keyword = "#335cff", -- Electric blue keywords
+			keyword = "#1e9ee8", -- Ocean blue keywords
 			string = "#52C489", -- Emerald growth
 			type = "#A7DBD8", -- Aqua mint
 			const = "#F38630", -- Warm orange
-			special = "#EC4899", -- Bright magenta
+			special = "#bce089", -- Light green for operators
 		},
 		diag = {
 			error = "#F38630",
