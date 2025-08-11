@@ -13,9 +13,9 @@ M.default_transparent = false  -- Light themes work well with transparency
 M.colors = {
 	-- Background colors - Light sage green harmony
 	bg_primary = '#E8F4E8',        -- Light sage background
-	bg_secondary = '#F2F8F2',      -- Very light sage white
+	bg_secondary = '#D4ECD4',      -- Sage green highlight
 	bg_float = '#DEF0DE',          -- Medium sage float
-	bg_highlight = '#D4ECD4',      -- Sage green highlight
+	bg_highlight = '#F2F8F2',      -- Very light sage white
 	
 	-- Foreground colors - Forest green text
 	fg_primary = '#2D5A2D',        -- Dark forest green primary text
