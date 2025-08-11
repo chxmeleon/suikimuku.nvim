@@ -1,924 +1,1297 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Suikimuku.nvim - Extended 32-Color System Preview</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        /* Extended 32-Color CSS Variables */
-        :root {
-            /* Default theme variables will be overridden by theme selection */
-        }
+      /* Extended 32-Color CSS Variables */
+      :root {
+        /* Default theme variables will be overridden by theme selection */
+      }
 
-        /* Sui (Digital Aquarium) Theme */
-        [data-theme="sui"] {
-            /* Background Family */
-            --bg-primary: #0A1B1A;
-            --bg-secondary: #0F2A28;
-            --bg-float: #1A3E3B;
-            --bg-highlight: #2A5651;
-            
-            /* Foreground Family */
-            --fg-primary: #A7DBD8;
-            --fg-secondary: #7BBAB1;
-            --fg-muted: #C8E6F5;
-            --fg-subtle: #6B9F96;
-            
-            /* Blue Family */
-            --blue-primary: #69D2E7;
-            --blue-dark: #4A9BB0;
-            --blue-light: #87E0F0;
-            --blue-bright: #A0F0FF;
-            
-            /* Teal Family */
-            --teal-primary: #A7DBD8;
-            --teal-dark: #7BBAB1;
-            --teal-light: #C8E6F5;
-            --teal-bright: #B5F0ED;
-            
-            /* Green Family */
-            --green-primary: #52C489;
-            --green-dark: #3A8B5F;
-            --green-light: #6FD49F;
-            --green-bright: #7DE8A8;
-            
-            /* Purple Family */
-            --purple-primary: #1e9ee8;
-            --purple-dark: #1570A8;
-            --purple-light: #4BB8F0;
-            --purple-bright: #66C8FF;
-            
-            /* Orange Family */
-            --orange-primary: #F38630;
-            --orange-dark: #B85E20;
-            --orange-light: #FF9D4D;
-            --orange-bright: #FFB366;
-            
-            /* Red Family */
-            --red-primary: #E85A4F;
-            --red-dark: #B03E35;
-            --red-light: #F2776B;
-            --red-bright: #FF8A7F;
-        }
+      /* Sui (Digital Aquarium) Theme */
+      [data-theme="sui"] {
+        /* Background Family */
+        --bg-primary: #0a1b1a;
+        --bg-secondary: #0f2a28;
+        --bg-float: #1a3e3b;
+        --bg-highlight: #2a5651;
 
-        /* Ki (Crystal Light) Theme */
-        [data-theme="ki"] {
-            --bg-primary: #FAFCFF;
-            --bg-secondary: #F0F9FF;
-            --bg-float: #E1F5FE;
-            --bg-highlight: #CBD5E1;
-            
-            --fg-primary: #475569;
-            --fg-secondary: #64748B;
-            --fg-muted: #94A3B8;
-            --fg-subtle: #CBD5E1;
-            
-            --blue-primary: #3B82F6;
-            --blue-dark: #1E40AF;
-            --blue-light: #60A5FA;
-            --blue-bright: #93C5FD;
-            
-            --teal-primary: #06B6D4;
-            --teal-dark: #0891B2;
-            --teal-light: #22D3EE;
-            --teal-bright: #67E8F9;
-            
-            --green-primary: #10B981;
-            --green-dark: #059669;
-            --green-light: #34D399;
-            --green-bright: #6EE7B7;
-            
-            --purple-primary: #8B5CF6;
-            --purple-dark: #7C3AED;
-            --purple-light: #A78BFA;
-            --purple-bright: #C4B5FD;
-            
-            --orange-primary: #F97316;
-            --orange-dark: #EA580C;
-            --orange-light: #FB923C;
-            --orange-bright: #FDBA74;
-            
-            --red-primary: #E11D48;
-            --red-dark: #BE123C;
-            --red-light: #F43F5E;
-            --red-bright: #FB7185;
-        }
+        /* Foreground Family */
+        --fg-primary: #a7dbd8;
+        --fg-secondary: #7bbab1;
+        --fg-muted: #c8e6f5;
+        --fg-subtle: #6b9f96;
 
-        /* Mu (WCAG Grayscale) Theme */
-        [data-theme="mu"] {
-            --bg-primary: #000000;
-            --bg-secondary: #1A1A1A;
-            --bg-float: #2D2D2D;
-            --bg-highlight: #404040;
-            
-            --fg-primary: #FFFFFF;
-            --fg-secondary: #E6E6E6;
-            --fg-muted: #CCCCCC;
-            --fg-subtle: #808080;
-            
-            --blue-primary: #D4D4D4;
-            --blue-dark: #808080;
-            --blue-light: #E6E6E6;
-            --blue-bright: #F0F0F0;
-            
-            --teal-primary: #CCCCCC;
-            --teal-dark: #909090;
-            --teal-light: #E0E0E0;
-            --teal-bright: #F5F5F5;
-            
-            --green-primary: #B8B8B8;
-            --green-dark: #707070;
-            --green-light: #D0D0D0;
-            --green-bright: #E8E8E8;
-            
-            --purple-primary: #A0A0A0;
-            --purple-dark: #606060;
-            --purple-light: #C0C0C0;
-            --purple-bright: #DEDEDE;
-            
-            --orange-primary: #909090;
-            --orange-dark: #505050;
-            --orange-light: #B0B0B0;
-            --orange-bright: #D8D8D8;
-            
-            --red-primary: #808080;
-            --red-dark: #404040;
-            --red-light: #A0A0A0;
-            --red-bright: #C8C8C8;
-        }
+        /* Blue Family */
+        --blue-primary: #69d2e7;
+        --blue-dark: #4a9bb0;
+        --blue-light: #87e0f0;
+        --blue-bright: #a0f0ff;
 
-        /* Ku (Enhanced Terminal) Theme */
-        [data-theme="ku"] {
-            --bg-primary: #000F10;
-            --bg-secondary: #072842;
-            --bg-float: #283D5E;
-            --bg-highlight: #203047;
-            
-            --fg-primary: #839496;
-            --fg-secondary: #586E75;
-            --fg-muted: #93A1A1;
-            --fg-subtle: #657B83;
-            
-            --blue-primary: #00D7FF;
-            --blue-dark: #0099CC;
-            --blue-light: #33E0FF;
-            --blue-bright: #66E8FF;
-            
-            --teal-primary: #00CED1;
-            --teal-dark: #008B8B;
-            --teal-light: #40E0D0;
-            --teal-bright: #7FFFD4;
-            
-            --green-primary: #38E8AA;
-            --green-dark: #20B887;
-            --green-light: #52F0B8;
-            --green-bright: #6FFFC6;
-            
-            --purple-primary: #9D7CD8;
-            --purple-dark: #7B5CB5;
-            --purple-light: #B599E8;
-            --purple-bright: #D4B5FF;
-            
-            --orange-primary: #FF8C00;
-            --orange-dark: #CC6600;
-            --orange-light: #FFA533;
-            --orange-bright: #FFBF66;
-            
-            --red-primary: #DC322F;
-            --red-dark: #B21E1B;
-            --red-light: #E85D58;
-            --red-bright: #FF7A75;
-        }
+        /* Teal Family */
+        --teal-primary: #a7dbd8;
+        --teal-dark: #7bbab1;
+        --teal-light: #c8e6f5;
+        --teal-bright: #b5f0ed;
 
-        body {
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            background-color: var(--bg-primary);
-            color: var(--fg-primary);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
+        /* Green Family */
+        --green-primary: #52c489;
+        --green-dark: #3a8b5f;
+        --green-light: #6fd49f;
+        --green-bright: #7de8a8;
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        /* Purple Family */
+        --purple-primary: #1e9ee8;
+        --purple-dark: #1570a8;
+        --purple-light: #4bb8f0;
+        --purple-bright: #66c8ff;
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        /* Orange Family */
+        --orange-primary: #f38630;
+        --orange-dark: #b85e20;
+        --orange-light: #ff9d4d;
+        --orange-bright: #ffb366;
 
-        .header h1 {
-            font-size: 2.5rem;
-            color: var(--blue-primary);
-            margin-bottom: 8px;
-            font-weight: 300;
-        }
+        /* Red Family */
+        --red-primary: #e85a4f;
+        --red-dark: #b03e35;
+        --red-light: #f2776b;
+        --red-bright: #ff8a7f;
+      }
 
-        .header p {
-            color: var(--fg-muted);
-            font-size: 1.1rem;
-        }
+      /* Ki (Crystal Light) Theme */
+      [data-theme="ki"] {
+        --bg-primary: #fafcff;
+        --bg-secondary: #f0f9ff;
+        --bg-float: #e1f5fe;
+        --bg-highlight: #cbd5e1;
 
-        .theme-controls {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+        --fg-primary: #475569;
+        --fg-secondary: #64748b;
+        --fg-muted: #94a3b8;
+        --fg-subtle: #cbd5e1;
 
+        --blue-primary: #3b82f6;
+        --blue-dark: #1e40af;
+        --blue-light: #60a5fa;
+        --blue-bright: #93c5fd;
+
+        --teal-primary: #06b6d4;
+        --teal-dark: #0891b2;
+        --teal-light: #22d3ee;
+        --teal-bright: #67e8f9;
+
+        --green-primary: #10b981;
+        --green-dark: #059669;
+        --green-light: #34d399;
+        --green-bright: #6ee7b7;
+
+        --purple-primary: #8b5cf6;
+        --purple-dark: #7c3aed;
+        --purple-light: #a78bfa;
+        --purple-bright: #c4b5fd;
+
+        --orange-primary: #f97316;
+        --orange-dark: #ea580c;
+        --orange-light: #fb923c;
+        --orange-bright: #fdba74;
+
+        --red-primary: #e11d48;
+        --red-dark: #be123c;
+        --red-light: #f43f5e;
+        --red-bright: #fb7185;
+      }
+
+      /* Mu (WCAG Grayscale) Theme */
+      [data-theme="mu"] {
+        --bg-primary: #000000;
+        --bg-secondary: #1a1a1a;
+        --bg-float: #2d2d2d;
+        --bg-highlight: #404040;
+
+        --fg-primary: #ffffff;
+        --fg-secondary: #e6e6e6;
+        --fg-muted: #cccccc;
+        --fg-subtle: #808080;
+
+        --blue-primary: #d4d4d4;
+        --blue-dark: #808080;
+        --blue-light: #e6e6e6;
+        --blue-bright: #f0f0f0;
+
+        --teal-primary: #cccccc;
+        --teal-dark: #909090;
+        --teal-light: #e0e0e0;
+        --teal-bright: #f5f5f5;
+
+        --green-primary: #b8b8b8;
+        --green-dark: #707070;
+        --green-light: #d0d0d0;
+        --green-bright: #e8e8e8;
+
+        --purple-primary: #a0a0a0;
+        --purple-dark: #606060;
+        --purple-light: #c0c0c0;
+        --purple-bright: #dedede;
+
+        --orange-primary: #909090;
+        --orange-dark: #505050;
+        --orange-light: #b0b0b0;
+        --orange-bright: #d8d8d8;
+
+        --red-primary: #808080;
+        --red-dark: #404040;
+        --red-light: #a0a0a0;
+        --red-bright: #c8c8c8;
+      }
+
+      /* Ku (Enhanced Terminal) Theme */
+      [data-theme="ku"] {
+        --bg-primary: #000f10;
+        --bg-secondary: #072842;
+        --bg-float: #283d5e;
+        --bg-highlight: #203047;
+
+        --fg-primary: #839496;
+        --fg-secondary: #586e75;
+        --fg-muted: #93a1a1;
+        --fg-subtle: #657b83;
+
+        --blue-primary: #00d7ff;
+        --blue-dark: #0099cc;
+        --blue-light: #33e0ff;
+        --blue-bright: #66e8ff;
+
+        --teal-primary: #00ced1;
+        --teal-dark: #008b8b;
+        --teal-light: #40e0d0;
+        --teal-bright: #7fffd4;
+
+        --green-primary: #38e8aa;
+        --green-dark: #20b887;
+        --green-light: #52f0b8;
+        --green-bright: #6fffc6;
+
+        --purple-primary: #9d7cd8;
+        --purple-dark: #7b5cb5;
+        --purple-light: #b599e8;
+        --purple-bright: #d4b5ff;
+
+        --orange-primary: #ff8c00;
+        --orange-dark: #cc6600;
+        --orange-light: #ffa533;
+        --orange-bright: #ffbf66;
+
+        --red-primary: #dc322f;
+        --red-dark: #b21e1b;
+        --red-light: #e85d58;
+        --red-bright: #ff7a75;
+      }
+
+      body {
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono",
+          monospace;
+        background-color: var(--bg-primary);
+        color: var(--fg-primary);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        color: var(--blue-primary);
+        margin-bottom: 8px;
+        font-weight: 300;
+      }
+
+      .header p {
+        color: var(--fg-muted);
+        font-size: 1.1rem;
+      }
+
+      .theme-controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .main-content {
+        display: flex;
+        gap: 30px;
+        min-height: 80vh;
+      }
+
+      .color-section {
+        flex: 2;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid var(--bg-highlight);
+        overflow-y: auto;
+        max-height: 85vh;
+      }
+
+      .preview-section {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .theme-btn {
+        background: var(--bg-secondary);
+        color: var(--fg-primary);
+        border: 2px solid var(--bg-highlight);
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        font-weight: 500;
+      }
+
+      .theme-btn:hover {
+        background: var(--bg-highlight);
+        border-color: var(--blue-primary);
+        transform: translateY(-2px);
+      }
+
+      .theme-btn.active {
+        background: var(--blue-primary);
+        border-color: var(--blue-bright);
+        color: var(--bg-primary);
+      }
+
+      .color-families {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .color-family {
+        background: var(--bg-float);
+        border-radius: 8px;
+        padding: 15px;
+        border: 1px solid var(--bg-highlight);
+      }
+
+      .family-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--fg-primary);
+        text-align: center;
+      }
+
+      .color-variants {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .color-swatch {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        background: var(--bg-primary);
+        border-radius: 6px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+
+      .color-swatch:hover {
+        border-color: var(--blue-primary);
+        transform: scale(1.02);
+      }
+
+      .color-preview {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        border: 1px solid var(--bg-highlight);
+        flex-shrink: 0;
+      }
+
+      .color-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .color-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--fg-primary);
+        margin-bottom: 1px;
+      }
+
+      .color-hex {
+        font-size: 0.65rem;
+        color: var(--fg-muted);
+        font-family: "SF Mono", monospace;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .color-hex:hover {
+        color: var(--blue-primary);
+      }
+
+      .syntax-preview {
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid var(--bg-highlight);
+        flex: 1;
+      }
+
+      .syntax-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--fg-primary);
+        text-align: center;
+      }
+
+      .code-sample {
+        background: var(--bg-float);
+        padding: 20px;
+        border-radius: 8px;
+        font-family: "SF Mono", monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
+
+      .code-sample:last-child {
+        margin-bottom: 0;
+      }
+
+      .keyword {
+        color: var(--purple-primary);
+      }
+      .function {
+        color: var(--blue-primary);
+      }
+      .string {
+        color: var(--green-primary);
+      }
+      .type {
+        color: var(--teal-primary);
+      }
+      .constant {
+        color: var(--orange-primary);
+      }
+      .comment {
+        color: var(--fg-subtle);
+      }
+      .operator {
+        color: var(--teal-light);
+      }
+      .error {
+        color: var(--red-primary);
+      }
+
+      .theme-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .theme-description {
+        background: var(--bg-secondary);
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--bg-highlight);
+      }
+
+      .theme-description h3 {
+        color: var(--blue-primary);
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .theme-description p {
+        color: var(--fg-secondary);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 1023px) {
         .main-content {
-            display: flex;
-            gap: 30px;
-            min-height: 80vh;
+          flex-direction: column;
         }
 
         .color-section {
-            flex: 2;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid var(--bg-highlight);
-            overflow-y: auto;
-            max-height: 85vh;
-        }
-
-        .preview-section {
-            flex: 3;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .theme-btn {
-            background: var(--bg-secondary);
-            color: var(--fg-primary);
-            border: 2px solid var(--bg-highlight);
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            font-weight: 500;
-        }
-
-        .theme-btn:hover {
-            background: var(--bg-highlight);
-            border-color: var(--blue-primary);
-            transform: translateY(-2px);
-        }
-
-        .theme-btn.active {
-            background: var(--blue-primary);
-            border-color: var(--blue-bright);
-            color: var(--bg-primary);
-        }
-
-        .color-families {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .color-family {
-            background: var(--bg-float);
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid var(--bg-highlight);
-        }
-
-        .family-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--fg-primary);
-            text-align: center;
+          max-height: none;
+          overflow-y: visible;
         }
 
         .color-variants {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 15px;
         }
 
-        .color-swatch {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            background: var(--bg-primary);
-            border-radius: 6px;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
+        .header h1 {
+          font-size: 2rem;
         }
 
-        .color-swatch:hover {
-            border-color: var(--blue-primary);
-            transform: scale(1.02);
+        .color-variants {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .color-preview {
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-            border: 1px solid var(--bg-highlight);
-            flex-shrink: 0;
+        .theme-controls {
+          gap: 8px;
         }
 
-        .color-info {
-            flex: 1;
-            min-width: 0;
+        .theme-btn {
+          padding: 8px 16px;
+          font-size: 0.9rem;
         }
-
-        .color-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--fg-primary);
-            margin-bottom: 1px;
-        }
-
-        .color-hex {
-            font-size: 0.65rem;
-            color: var(--fg-muted);
-            font-family: 'SF Mono', monospace;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .color-hex:hover {
-            color: var(--blue-primary);
-        }
-
-        .syntax-preview {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid var(--bg-highlight);
-            flex: 1;
-        }
-
-        .syntax-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--fg-primary);
-            text-align: center;
-        }
-
-        .code-sample {
-            background: var(--bg-float);
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            overflow-x: auto;
-            margin-bottom: 20px;
-        }
-
-        .code-sample:last-child {
-            margin-bottom: 0;
-        }
-
-        .keyword { color: var(--purple-primary); }
-        .function { color: var(--blue-primary); }
-        .string { color: var(--green-primary); }
-        .type { color: var(--teal-primary); }
-        .constant { color: var(--orange-primary); }
-        .comment { color: var(--fg-subtle); }
-        .operator { color: var(--teal-light); }
-        .error { color: var(--red-primary); }
-
-        .theme-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .theme-description {
-            background: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--bg-highlight);
-        }
-
-        .theme-description h3 {
-            color: var(--blue-primary);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .theme-description p {
-            color: var(--fg-secondary);
-            line-height: 1.6;
-        }
-
-        @media (max-width: 1023px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .color-section {
-                max-height: none;
-                overflow-y: visible;
-            }
-
-            .color-variants {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .color-variants {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .theme-controls {
-                gap: 8px;
-            }
-
-            .theme-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-        }
+      }
     </style>
-</head>
-<body data-theme="sui">
+  </head>
+  <body data-theme="sui">
     <div class="container">
-        <div class="header">
-            <h1>Suikimuku.nvim</h1>
-            <p>Extended 32-Color System Preview (翠輝無空)</p>
-        </div>
+      <div class="header">
+        <h1>Suikimuku.nvim</h1>
+        <p>Extended 32-Color System Preview (翠輝無空)</p>
+      </div>
 
-        <div class="theme-controls">
-            <button class="theme-btn active" data-theme="sui">翠 Sui - Digital Aquarium</button>
-            <button class="theme-btn" data-theme="ki">輝 Ki - Crystal Light</button>
-            <button class="theme-btn" data-theme="mu">無 Mu - WCAG Grayscale</button>
-            <button class="theme-btn" data-theme="ku">空 Ku - Enhanced Terminal</button>
-        </div>
+      <div class="theme-controls">
+        <button class="theme-btn active" data-theme="sui">
+          翠 Sui - Digital Aquarium
+        </button>
+        <button class="theme-btn" data-theme="ki">輝 Ki - Crystal Light</button>
+        <button class="theme-btn" data-theme="mu">
+          無 Mu - WCAG Grayscale
+        </button>
+        <button class="theme-btn" data-theme="ku">
+          空 Ku - Enhanced Terminal
+        </button>
+      </div>
 
-        <div class="main-content">
-            <div class="color-section">
-                <div class="color-families">
-                    <div class="color-family">
-                        <div class="family-title">Background Family</div>
-                        <div class="color-variants">
-                            <div class="color-swatch">
-                                <div class="color-preview" style="background-color: var(--bg-primary);"></div>
-                                <div class="color-info">
-                                    <div class="color-name">Primary</div>
-                                    <div class="color-hex" data-color="bg-primary">Click to copy</div>
-                                </div>
-                            </div>
-                            <div class="color-swatch">
-                                <div class="color-preview" style="background-color: var(--bg-secondary);"></div>
-                                <div class="color-info">
-                                    <div class="color-name">Secondary</div>
-                                    <div class="color-hex" data-color="bg-secondary">Click to copy</div>
-                                </div>
-                            </div>
-                            <div class="color-swatch">
-                                <div class="color-preview" style="background-color: var(--bg-float);"></div>
-                                <div class="color-info">
-                                    <div class="color-name">Float</div>
-                                    <div class="color-hex" data-color="bg-float">Click to copy</div>
-                                </div>
-                            </div>
-                            <div class="color-swatch">
-                                <div class="color-preview" style="background-color: var(--bg-highlight);"></div>
-                                <div class="color-info">
-                                    <div class="color-name">Highlight</div>
-                                    <div class="color-hex" data-color="bg-highlight">Click to copy</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+      <div class="main-content">
+        <div class="color-section">
+          <div class="color-families">
             <div class="color-family">
-                <div class="family-title">Foreground Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--fg-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="fg-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Background Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--bg-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="bg-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--fg-secondary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Secondary</div>
-                            <div class="color-hex" data-color="fg-secondary">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--fg-muted);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Muted</div>
-                            <div class="color-hex" data-color="fg-muted">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--fg-subtle);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Subtle</div>
-                            <div class="color-hex" data-color="fg-subtle">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--bg-secondary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Secondary</div>
+                    <div class="color-hex" data-color="bg-secondary">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--bg-float)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Float</div>
+                    <div class="color-hex" data-color="bg-float">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--bg-highlight)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Highlight</div>
+                    <div class="color-hex" data-color="bg-highlight">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Blue Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--blue-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="blue-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Foreground Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--fg-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="fg-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--blue-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="blue-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--blue-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="blue-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--blue-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="blue-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--fg-secondary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Secondary</div>
+                    <div class="color-hex" data-color="fg-secondary">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--fg-muted)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Muted</div>
+                    <div class="color-hex" data-color="fg-muted">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--fg-subtle)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Subtle</div>
+                    <div class="color-hex" data-color="fg-subtle">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Teal Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--teal-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="teal-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Blue Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--blue-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="blue-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--teal-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="teal-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--teal-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="teal-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--teal-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="teal-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--blue-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="blue-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--blue-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="blue-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--blue-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="blue-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Green Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--green-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="green-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Teal Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--teal-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="teal-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--green-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="green-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--green-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="green-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--green-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="green-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--teal-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="teal-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--teal-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="teal-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--teal-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="teal-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Purple Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--purple-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="purple-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Green Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--green-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="green-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--purple-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="purple-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--purple-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="purple-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--purple-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="purple-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--green-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="green-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--green-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="green-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--green-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="green-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Orange Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--orange-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="orange-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Purple Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--purple-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="purple-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--orange-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="orange-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--orange-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="orange-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--orange-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="orange-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--purple-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="purple-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--purple-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="purple-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--purple-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="purple-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="color-family">
-                <div class="family-title">Red Family</div>
-                <div class="color-variants">
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--red-primary);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Primary</div>
-                            <div class="color-hex" data-color="red-primary">Click to copy</div>
-                        </div>
+              <div class="family-title">Orange Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--orange-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="orange-primary">
+                      Click to copy
                     </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--red-dark);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Dark</div>
-                            <div class="color-hex" data-color="red-dark">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--red-light);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Light</div>
-                            <div class="color-hex" data-color="red-light">Click to copy</div>
-                        </div>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-preview" style="background-color: var(--red-bright);"></div>
-                        <div class="color-info">
-                            <div class="color-name">Bright</div>
-                            <div class="color-hex" data-color="red-bright">Click to copy</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--orange-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="orange-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--orange-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="orange-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--orange-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="orange-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+
+            <div class="color-family">
+              <div class="family-title">Red Family</div>
+              <div class="color-variants">
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--red-primary)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-hex" data-color="red-primary">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--red-dark)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Dark</div>
+                    <div class="color-hex" data-color="red-dark">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--red-light)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Light</div>
+                    <div class="color-hex" data-color="red-light">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+                <div class="color-swatch">
+                  <div
+                    class="color-preview"
+                    style="background-color: var(--red-bright)"
+                  ></div>
+                  <div class="color-info">
+                    <div class="color-name">Bright</div>
+                    <div class="color-hex" data-color="red-bright">
+                      Click to copy
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="preview-section">
-            <div class="syntax-preview">
-                <div class="syntax-title">Syntax Highlighting Preview</div>
-                <div class="code-sample">
-<span class="keyword">function</span> <span class="function">calculateThemeColors</span>(<span class="type">ThemeConfig</span> <span class="constant">config</span>) {
-  <span class="comment">// Extended 32-color system demonstration</span>
-  <span class="keyword">const</span> <span class="constant">palette</span> = {
-    <span class="string">'backgrounds'</span>: [
-      <span class="string">'primary'</span>, <span class="string">'secondary'</span>, <span class="string">'float'</span>, <span class="string">'highlight'</span>
-    ],
-    <span class="string">'colors'</span>: <span class="function">generateColorFamilies</span>(),
-  }
+          <div class="syntax-preview">
+            <div class="syntax-title">Syntax Highlighting Preview</div>
+            <div class="code-sample">
+              <span class="keyword">function</span>
+              <span class="function">calculateThemeColors</span>(<span
+                class="type"
+                >ThemeConfig</span
+              >
+              <span class="constant">config</span>) {
+              <span class="comment"
+                >// Extended 32-color system demonstration</span
+              >
+              <span class="keyword">const</span>
+              <span class="constant">palette</span> = {
+              <span class="string">'backgrounds'</span>: [
+              <span class="string">'primary'</span>,
+              <span class="string">'secondary'</span>,
+              <span class="string">'float'</span>,
+              <span class="string">'highlight'</span>
+              ],
+              <span class="string">'colors'</span>:
+              <span class="function">generateColorFamilies</span>(), }
 
-  <span class="keyword">return</span> <span class="function">applyTheme</span>(palette.<span class="operator">colors</span>)
-}
+              <span class="keyword">return</span>
+              <span class="function">applyTheme</span>(palette.<span
+                class="operator"
+                >colors</span
+              >) }
 
-<span class="comment">// Each color family provides 4 variants for rich theming</span>
-<span class="keyword">const</span> <span class="constant">FAMILIES</span> = [<span class="string">'blue'</span>, <span class="string">'teal'</span>, <span class="string">'green'</span>, <span class="string">'purple'</span>, <span class="string">'orange'</span>, <span class="string">'red'</span>]
-                </div>
-                
-                <div class="code-sample">
-<span class="comment">// Python example showcasing color variety</span>
-<span class="keyword">class</span> <span class="type">ColorTheme</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="constant">self</span>, <span class="constant">name</span>: <span class="type">str</span>):
-        <span class="constant">self</span>.<span class="constant">name</span> = <span class="string">f"Theme: {name}"</span>
-        <span class="constant">self</span>.<span class="constant">colors</span> = <span class="function">self</span>.<span class="function">generate_palette</span>()
-        
-    <span class="keyword">def</span> <span class="function">generate_palette</span>(<span class="constant">self</span>) -> <span class="type">Dict</span>[<span class="type">str</span>, <span class="type">str</span>]:
-        <span class="keyword">return</span> {
-            <span class="string">'primary'</span>: <span class="string">'#69D2E7'</span>,
-            <span class="string">'secondary'</span>: <span class="string">'#A7DBD8'</span>,
-            <span class="string">'accent'</span>: <span class="string">'#F38630'</span>
-        }
-
-<span class="comment"># Usage example with error handling</span>
-<span class="keyword">try</span>:
-    <span class="constant">theme</span> = <span class="function">ColorTheme</span>(<span class="string">"Sui Digital Aquarium"</span>)
-    <span class="function">print</span>(<span class="constant">theme</span>.<span class="constant">colors</span>)
-<span class="keyword">except</span> <span class="error">ValueError</span> <span class="keyword">as</span> <span class="constant">e</span>:
-    <span class="function">print</span>(<span class="string">f"Error: {e}"</span>)
-                </div>
-
-                <div class="code-sample">
-<span class="comment">/* CSS showing theme integration */</span>
-<span class="function">.syntax-highlighter</span> {
-  <span class="constant">background-color</span>: <span class="operator">var</span>(<span class="string">--bg-primary</span>);
-  <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--fg-primary</span>);
-  <span class="constant">border-radius</span>: <span class="string">8px</span>;
-  <span class="constant">padding</span>: <span class="string">20px</span>;
-}
-
-<span class="function">.keyword</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--purple-primary</span>); }
-<span class="function">.function</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--blue-primary</span>); }
-<span class="function">.string</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--green-primary</span>); }
-<span class="function">.type</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--teal-primary</span>); }
-<span class="function">.constant</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--orange-primary</span>); }
-<span class="function">.error</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--red-primary</span>); }
-
-<span class="comment">/* Each family provides 4 variants for nuanced theming */</span>
-<span class="function">.info</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--blue-light</span>); }
-<span class="function">.warning</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--orange-light</span>); }
-<span class="function">.success</span> { <span class="constant">color</span>: <span class="operator">var</span>(<span class="string">--green-light</span>); }
-                </div>
+              <span class="comment"
+                >// Each color family provides 4 variants for rich theming</span
+              >
+              <span class="keyword">const</span>
+              <span class="constant">FAMILIES</span> = [<span class="string"
+                >'blue'</span
+              >, <span class="string">'teal'</span>,
+              <span class="string">'green'</span>,
+              <span class="string">'purple'</span>,
+              <span class="string">'orange'</span>,
+              <span class="string">'red'</span>]
             </div>
+
+            <div class="code-sample">
+              <span class="comment"
+                >// Python example showcasing color variety</span
+              >
+              <span class="keyword">class</span>
+              <span class="type">ColorTheme</span>:
+              <span class="keyword">def</span>
+              <span class="function">__init__</span>(<span class="constant"
+                >self</span
+              >, <span class="constant">name</span>:
+              <span class="type">str</span>):
+              <span class="constant">self</span>.<span class="constant"
+                >name</span
+              >
+              = <span class="string">f"Theme: {name}"</span>
+              <span class="constant">self</span>.<span class="constant"
+                >colors</span
+              >
+              = <span class="function">self</span>.<span class="function"
+                >generate_palette</span
+              >()
+
+              <span class="keyword">def</span>
+              <span class="function">generate_palette</span>(<span
+                class="constant"
+                >self</span
+              >) -> <span class="type">Dict</span>[<span class="type">str</span
+              >, <span class="type">str</span>]:
+              <span class="keyword">return</span> {
+              <span class="string">'primary'</span>:
+              <span class="string">'#69D2E7'</span>,
+              <span class="string">'secondary'</span>:
+              <span class="string">'#A7DBD8'</span>,
+              <span class="string">'accent'</span>:
+              <span class="string">'#F38630'</span>
+              }
+
+              <span class="comment"># Usage example with error handling</span>
+              <span class="keyword">try</span>:
+              <span class="constant">theme</span> =
+              <span class="function">ColorTheme</span>(<span class="string"
+                >"Sui Digital Aquarium"</span
+              >) <span class="function">print</span>(<span class="constant"
+                >theme</span
+              >.<span class="constant">colors</span>)
+              <span class="keyword">except</span>
+              <span class="error">ValueError</span>
+              <span class="keyword">as</span> <span class="constant">e</span>:
+              <span class="function">print</span>(<span class="string"
+                >f"Error: {e}"</span
+              >)
+            </div>
+
+            <div class="code-sample">
+              <span class="comment">/* CSS showing theme integration */</span>
+              <span class="function">.syntax-highlighter</span> {
+              <span class="constant">background-color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--bg-primary</span
+              >); <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--fg-primary</span
+              >); <span class="constant">border-radius</span>:
+              <span class="string">8px</span>;
+              <span class="constant">padding</span>:
+              <span class="string">20px</span>; }
+
+              <span class="function">.keyword</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--purple-primary</span
+              >); } <span class="function">.function</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--blue-primary</span
+              >); } <span class="function">.string</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--green-primary</span
+              >); } <span class="function">.type</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--teal-primary</span
+              >); } <span class="function">.constant</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--orange-primary</span
+              >); } <span class="function">.error</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--red-primary</span
+              >); }
+
+              <span class="comment"
+                >/* Each family provides 4 variants for nuanced theming */</span
+              >
+              <span class="function">.info</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--blue-light</span
+              >); } <span class="function">.warning</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--orange-light</span
+              >); } <span class="function">.success</span> {
+              <span class="constant">color</span>:
+              <span class="operator">var</span>(<span class="string"
+                >--green-light</span
+              >); }
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
 
     <script>
-        // Theme switching functionality
-        const themeButtons = document.querySelectorAll('.theme-btn')
-        const body = document.body
+      // Theme switching functionality
+      const themeButtons = document.querySelectorAll(".theme-btn");
+      const body = document.body;
 
-        // Color value mapping for each theme
-        const colorValues = {
-            sui: {
-                'bg-primary': '#0A1B1A', 'bg-secondary': '#0F2A28', 'bg-float': '#1A3E3B', 'bg-highlight': '#2A5651',
-                'fg-primary': '#A7DBD8', 'fg-secondary': '#7BBAB1', 'fg-muted': '#C8E6F5', 'fg-subtle': '#6B9F96',
-                'blue-primary': '#69D2E7', 'blue-dark': '#4A9BB0', 'blue-light': '#87E0F0', 'blue-bright': '#A0F0FF',
-                'teal-primary': '#A7DBD8', 'teal-dark': '#7BBAB1', 'teal-light': '#C8E6F5', 'teal-bright': '#B5F0ED',
-                'green-primary': '#52C489', 'green-dark': '#3A8B5F', 'green-light': '#6FD49F', 'green-bright': '#7DE8A8',
-                'purple-primary': '#1e9ee8', 'purple-dark': '#1570A8', 'purple-light': '#4BB8F0', 'purple-bright': '#66C8FF',
-                'orange-primary': '#F38630', 'orange-dark': '#B85E20', 'orange-light': '#FF9D4D', 'orange-bright': '#FFB366',
-                'red-primary': '#E85A4F', 'red-dark': '#B03E35', 'red-light': '#F2776B', 'red-bright': '#FF8A7F'
-            },
-            ki: {
-                'bg-primary': '#FAFCFF', 'bg-secondary': '#F0F9FF', 'bg-float': '#E1F5FE', 'bg-highlight': '#CBD5E1',
-                'fg-primary': '#475569', 'fg-secondary': '#64748B', 'fg-muted': '#94A3B8', 'fg-subtle': '#CBD5E1',
-                'blue-primary': '#3B82F6', 'blue-dark': '#1E40AF', 'blue-light': '#60A5FA', 'blue-bright': '#93C5FD',
-                'teal-primary': '#06B6D4', 'teal-dark': '#0891B2', 'teal-light': '#22D3EE', 'teal-bright': '#67E8F9',
-                'green-primary': '#10B981', 'green-dark': '#059669', 'green-light': '#34D399', 'green-bright': '#6EE7B7',
-                'purple-primary': '#8B5CF6', 'purple-dark': '#7C3AED', 'purple-light': '#A78BFA', 'purple-bright': '#C4B5FD',
-                'orange-primary': '#F97316', 'orange-dark': '#EA580C', 'orange-light': '#FB923C', 'orange-bright': '#FDBA74',
-                'red-primary': '#E11D48', 'red-dark': '#BE123C', 'red-light': '#F43F5E', 'red-bright': '#FB7185'
-            },
-            mu: {
-                'bg-primary': '#000000', 'bg-secondary': '#1A1A1A', 'bg-float': '#2D2D2D', 'bg-highlight': '#404040',
-                'fg-primary': '#FFFFFF', 'fg-secondary': '#E6E6E6', 'fg-muted': '#CCCCCC', 'fg-subtle': '#808080',
-                'blue-primary': '#D4D4D4', 'blue-dark': '#808080', 'blue-light': '#E6E6E6', 'blue-bright': '#F0F0F0',
-                'teal-primary': '#CCCCCC', 'teal-dark': '#909090', 'teal-light': '#E0E0E0', 'teal-bright': '#F5F5F5',
-                'green-primary': '#B8B8B8', 'green-dark': '#707070', 'green-light': '#D0D0D0', 'green-bright': '#E8E8E8',
-                'purple-primary': '#A0A0A0', 'purple-dark': '#606060', 'purple-light': '#C0C0C0', 'purple-bright': '#DEDEDE',
-                'orange-primary': '#909090', 'orange-dark': '#505050', 'orange-light': '#B0B0B0', 'orange-bright': '#D8D8D8',
-                'red-primary': '#808080', 'red-dark': '#404040', 'red-light': '#A0A0A0', 'red-bright': '#C8C8C8'
-            },
-            ku: {
-                'bg-primary': '#000F10', 'bg-secondary': '#072842', 'bg-float': '#283D5E', 'bg-highlight': '#203047',
-                'fg-primary': '#839496', 'fg-secondary': '#586E75', 'fg-muted': '#93A1A1', 'fg-subtle': '#657B83',
-                'blue-primary': '#00D7FF', 'blue-dark': '#0099CC', 'blue-light': '#33E0FF', 'blue-bright': '#66E8FF',
-                'teal-primary': '#00CED1', 'teal-dark': '#008B8B', 'teal-light': '#40E0D0', 'teal-bright': '#7FFFD4',
-                'green-primary': '#38E8AA', 'green-dark': '#20B887', 'green-light': '#52F0B8', 'green-bright': '#6FFFC6',
-                'purple-primary': '#9D7CD8', 'purple-dark': '#7B5CB5', 'purple-light': '#B599E8', 'purple-bright': '#D4B5FF',
-                'orange-primary': '#FF8C00', 'orange-dark': '#CC6600', 'orange-light': '#FFA533', 'orange-bright': '#FFBF66',
-                'red-primary': '#DC322F', 'red-dark': '#B21E1B', 'red-light': '#E85D58', 'red-bright': '#FF7A75'
-            }
-        }
+      // Color value mapping for each theme
+      const colorValues = {
+        sui: {
+          "bg-primary": "#0A1B1A",
+          "bg-secondary": "#0F2A28",
+          "bg-float": "#1A3E3B",
+          "bg-highlight": "#2A5651",
+          "fg-primary": "#A7DBD8",
+          "fg-secondary": "#7BBAB1",
+          "fg-muted": "#C8E6F5",
+          "fg-subtle": "#6B9F96",
+          "blue-primary": "#69D2E7",
+          "blue-dark": "#4A9BB0",
+          "blue-light": "#87E0F0",
+          "blue-bright": "#A0F0FF",
+          "teal-primary": "#A7DBD8",
+          "teal-dark": "#7BBAB1",
+          "teal-light": "#C8E6F5",
+          "teal-bright": "#B5F0ED",
+          "green-primary": "#52C489",
+          "green-dark": "#3A8B5F",
+          "green-light": "#6FD49F",
+          "green-bright": "#7DE8A8",
+          "purple-primary": "#1e9ee8",
+          "purple-dark": "#1570A8",
+          "purple-light": "#4BB8F0",
+          "purple-bright": "#66C8FF",
+          "orange-primary": "#F38630",
+          "orange-dark": "#B85E20",
+          "orange-light": "#FF9D4D",
+          "orange-bright": "#FFB366",
+          "red-primary": "#E85A4F",
+          "red-dark": "#B03E35",
+          "red-light": "#F2776B",
+          "red-bright": "#FF8A7F",
+        },
+        ki: {
+          "bg-primary": "#FAFCFF",
+          "bg-secondary": "#F0F9FF",
+          "bg-float": "#E1F5FE",
+          "bg-highlight": "#CBD5E1",
+          "fg-primary": "#475569",
+          "fg-secondary": "#64748B",
+          "fg-muted": "#94A3B8",
+          "fg-subtle": "#CBD5E1",
+          "blue-primary": "#3B82F6",
+          "blue-dark": "#1E40AF",
+          "blue-light": "#60A5FA",
+          "blue-bright": "#93C5FD",
+          "teal-primary": "#06B6D4",
+          "teal-dark": "#0891B2",
+          "teal-light": "#22D3EE",
+          "teal-bright": "#67E8F9",
+          "green-primary": "#10B981",
+          "green-dark": "#059669",
+          "green-light": "#34D399",
+          "green-bright": "#6EE7B7",
+          "purple-primary": "#8B5CF6",
+          "purple-dark": "#7C3AED",
+          "purple-light": "#A78BFA",
+          "purple-bright": "#C4B5FD",
+          "orange-primary": "#F97316",
+          "orange-dark": "#EA580C",
+          "orange-light": "#FB923C",
+          "orange-bright": "#FDBA74",
+          "red-primary": "#E11D48",
+          "red-dark": "#BE123C",
+          "red-light": "#F43F5E",
+          "red-bright": "#FB7185",
+        },
+        mu: {
+          "bg-primary": "#000000",
+          "bg-secondary": "#1A1A1A",
+          "bg-float": "#2D2D2D",
+          "bg-highlight": "#404040",
+          "fg-primary": "#FFFFFF",
+          "fg-secondary": "#E6E6E6",
+          "fg-muted": "#CCCCCC",
+          "fg-subtle": "#808080",
+          "blue-primary": "#D4D4D4",
+          "blue-dark": "#808080",
+          "blue-light": "#E6E6E6",
+          "blue-bright": "#F0F0F0",
+          "teal-primary": "#CCCCCC",
+          "teal-dark": "#909090",
+          "teal-light": "#E0E0E0",
+          "teal-bright": "#F5F5F5",
+          "green-primary": "#B8B8B8",
+          "green-dark": "#707070",
+          "green-light": "#D0D0D0",
+          "green-bright": "#E8E8E8",
+          "purple-primary": "#A0A0A0",
+          "purple-dark": "#606060",
+          "purple-light": "#C0C0C0",
+          "purple-bright": "#DEDEDE",
+          "orange-primary": "#909090",
+          "orange-dark": "#505050",
+          "orange-light": "#B0B0B0",
+          "orange-bright": "#D8D8D8",
+          "red-primary": "#808080",
+          "red-dark": "#404040",
+          "red-light": "#A0A0A0",
+          "red-bright": "#C8C8C8",
+        },
+        ku: {
+          "bg-primary": "#000F10",
+          "bg-secondary": "#072842",
+          "bg-float": "#283D5E",
+          "bg-highlight": "#203047",
+          "fg-primary": "#839496",
+          "fg-secondary": "#586E75",
+          "fg-muted": "#93A1A1",
+          "fg-subtle": "#657B83",
+          "blue-primary": "#00D7FF",
+          "blue-dark": "#0099CC",
+          "blue-light": "#33E0FF",
+          "blue-bright": "#66E8FF",
+          "teal-primary": "#00CED1",
+          "teal-dark": "#008B8B",
+          "teal-light": "#40E0D0",
+          "teal-bright": "#7FFFD4",
+          "green-primary": "#38E8AA",
+          "green-dark": "#20B887",
+          "green-light": "#52F0B8",
+          "green-bright": "#6FFFC6",
+          "purple-primary": "#9D7CD8",
+          "purple-dark": "#7B5CB5",
+          "purple-light": "#B599E8",
+          "purple-bright": "#D4B5FF",
+          "orange-primary": "#FF8C00",
+          "orange-dark": "#CC6600",
+          "orange-light": "#FFA533",
+          "orange-bright": "#FFBF66",
+          "red-primary": "#DC322F",
+          "red-dark": "#B21E1B",
+          "red-light": "#E85D58",
+          "red-bright": "#FF7A75",
+        },
+      };
 
-        themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.dataset.theme
-                
-                // Update active button
-                themeButtons.forEach(btn => btn.classList.remove('active'))
-                button.classList.add('active')
-                
-                // Switch theme
-                body.dataset.theme = theme
-            })
-        })
+      themeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const theme = button.dataset.theme;
 
-        // Color copying functionality
-        document.querySelectorAll('.color-hex').forEach(element => {
-            element.addEventListener('click', () => {
-                const colorVar = element.dataset.color
-                const currentTheme = body.dataset.theme
-                const colorValue = colorValues[currentTheme][colorVar]
-                
-                navigator.clipboard.writeText(colorValue).then(() => {
-                    element.textContent = 'Copied!'
-                    setTimeout(() => {
-                        element.textContent = colorValue
-                    }, 1000)
-                })
-            })
-        })
+          // Update active button
+          themeButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
 
-        // Initialize color hex displays
-        function updateColorHexDisplays() {
-            const currentTheme = body.dataset.theme
-            document.querySelectorAll('.color-hex').forEach(element => {
-                const colorVar = element.dataset.color
-                element.textContent = colorValues[currentTheme][colorVar]
-            })
-        }
+          // Switch theme
+          body.dataset.theme = theme;
+        });
+      });
 
-        // Update displays when theme changes
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-                    updateColorHexDisplays()
-                }
-            })
-        })
+      // Color copying functionality
+      document.querySelectorAll(".color-hex").forEach((element) => {
+        element.addEventListener("click", () => {
+          const colorVar = element.dataset.color;
+          const currentTheme = body.dataset.theme;
+          const colorValue = colorValues[currentTheme][colorVar];
 
-        observer.observe(body, { attributes: true })
-        updateColorHexDisplays() // Initial load
+          navigator.clipboard.writeText(colorValue).then(() => {
+            element.textContent = "Copied!";
+            setTimeout(() => {
+              element.textContent = colorValue;
+            }, 1000);
+          });
+        });
+      });
+
+      // Initialize color hex displays
+      function updateColorHexDisplays() {
+        const currentTheme = body.dataset.theme;
+        document.querySelectorAll(".color-hex").forEach((element) => {
+          const colorVar = element.dataset.color;
+          element.textContent = colorValues[currentTheme][colorVar];
+        });
+      }
+
+      // Update displays when theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "data-theme"
+          ) {
+            updateColorHexDisplays();
+          }
+        });
+      });
+
+      observer.observe(body, { attributes: true });
+      updateColorHexDisplays(); // Initial load
     </script>
-</body>
+  </body>
 </html>
+

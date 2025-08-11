@@ -1,235 +1,224 @@
--- 輝 (Ki) - Crystal Radiant Light Theme  
--- Pure crystal clarity with cool luminous highlights
+-- 輝 (Ki) - Crystal Light
+-- Clean, crisp light mode for focused work with radiant precision
+-- SOLID BACKGROUND: Crystal clarity requires pristine white foundation
 
-local colors = require("suikimuku.core.colors")
+local oklch = require('suikimuku.oklch')
+
 local M = {}
 
--- Theme metadata
-M.info = {
-    name = "輝 (Ki) - Crystal Radiant Light",
-    description = "Pure crystal clarity with cool luminous highlights",
-    philosophy = "Morning light through crystal, maximum clarity with gentle warmth",
-    aesthetic = "crystalline_light",
-    color_temperature = "cool_luminous",
-    contrast_level = "high",
-    ideal_time = "daytime",
-    ideal_environment = {"bright_rooms", "focused_work", "minimal_distractions"}
+-- Theme transparency philosophy
+M.default_transparent = false  -- Ki always needs solid background for crystal clarity
+
+-- OKLCH-based color palette for Crystal Light theme
+M.colors = {
+	-- Background colors - Crystal clarity
+	bg_primary = oklch.oklch(98, 5, 230),       -- Pure crystal white
+	bg_secondary = oklch.oklch(94, 8, 235),     -- Light crystal
+	bg_float = oklch.oklch(90, 10, 240),        -- Floating crystal
+	bg_highlight = oklch.oklch(85, 15, 245),    -- Selection crystal
+	
+	-- Foreground colors - Sharp definition
+	fg_primary = oklch.oklch(40, 15, 250),      -- Deep slate primary
+	fg_secondary = oklch.oklch(50, 20, 245),    -- Slate secondary
+	fg_muted = oklch.oklch(30, 10, 240),        -- Dark muted
+	fg_subtle = oklch.oklch(60, 12, 240),       -- Subtle gray
+	
+	-- Syntax colors - Radiant spectrum
+	func = oklch.oklch(55, 70, 260),            -- Bright blue functions
+	keyword = oklch.oklch(50, 80, 300),         -- Purple keywords
+	string = oklch.oklch(45, 70, 140),          -- Emerald strings
+	type = oklch.oklch(50, 60, 190),            -- Cyan types
+	const = oklch.oklch(55, 90, 40),            -- Orange constants
+	special = oklch.oklch(45, 20, 250),         -- Cool gray operators
+	
+	-- Diagnostic colors - Clear warnings
+	error = oklch.oklch(50, 80, 20),            -- Rose red
+	warn = oklch.oklch(55, 90, 40),             -- Orange
+	info = oklch.oklch(55, 70, 260),            -- Bright blue
+	hint = oklch.oklch(45, 70, 140),            -- Emerald
 }
 
--- Theme-specific color palette
-function M.get_colors()
-    return colors.get('ki', 'legacy')
+-- Smart transparency resolution
+local function resolve_transparency(config)
+	-- User explicit choice overrides theme default
+	if config.transparent ~= nil then
+		return config.transparent
+	else
+		return M.default_transparent
+	end
 end
 
--- Extended color families for plugin support
-function M.get_extended_colors()
-    return colors.get('ki', 'family')
-end
-
--- Theme-specific highlight group overrides
-function M.get_highlights(theme_colors, config)
-    local highlights = {}
-    
-    -- Enhanced highlights for Crystal Light theme
-    highlights.Normal = { fg = theme_colors.fg.primary, bg = theme_colors.bg.primary }
-    highlights.NormalFloat = { fg = theme_colors.fg.primary, bg = theme_colors.bg.float }
-    
-    -- Cursor and selection - crystal clarity
-    highlights.Cursor = { fg = theme_colors.bg.primary, bg = theme_colors.syntax.func }
-    highlights.CursorLine = { bg = theme_colors.bg.secondary }
-    highlights.CursorColumn = { bg = theme_colors.bg.secondary }
-    highlights.Visual = { bg = theme_colors.bg.highlight }
-    highlights.VisualNOS = { bg = theme_colors.bg.highlight }
-    
-    -- Line numbers with crystal precision
-    highlights.LineNr = { fg = theme_colors.fg.subtle }
-    highlights.CursorLineNr = { fg = theme_colors.syntax.func, bold = true }
-    highlights.SignColumn = { fg = theme_colors.fg.subtle, bg = theme_colors.bg.primary }
-    
-    -- Search with luminous highlights
-    highlights.Search = { fg = theme_colors.bg.primary, bg = theme_colors.syntax.const }
-    highlights.IncSearch = { fg = theme_colors.bg.primary, bg = theme_colors.syntax.func }
-    highlights.Substitute = { fg = theme_colors.bg.primary, bg = theme_colors.syntax.special }
-    
-    -- Syntax highlighting - crystal elements
-    highlights.Comment = { fg = theme_colors.fg.subtle, italic = true }
-    highlights.Constant = { fg = theme_colors.syntax.const } -- Crystal orange
-    highlights.String = { fg = theme_colors.syntax.string } -- Crystal green
-    highlights.Character = { fg = theme_colors.syntax.string }
-    highlights.Number = { fg = theme_colors.syntax.const }
-    highlights.Boolean = { fg = theme_colors.syntax.const }
-    highlights.Float = { fg = theme_colors.syntax.const }
-    
-    highlights.Identifier = { fg = theme_colors.fg.primary }
-    highlights.Function = { fg = theme_colors.syntax.func } -- Crystal blue
-    
-    highlights.Statement = { fg = theme_colors.syntax.keyword } -- Crystal purple
-    highlights.Conditional = { fg = theme_colors.syntax.keyword }
-    highlights.Repeat = { fg = theme_colors.syntax.keyword }
-    highlights.Label = { fg = theme_colors.syntax.keyword }
-    highlights.Operator = { fg = theme_colors.syntax.special }
-    highlights.Keyword = { fg = theme_colors.syntax.keyword }
-    highlights.Exception = { fg = theme_colors.syntax.keyword }
-    
-    highlights.PreProc = { fg = theme_colors.syntax.special }
-    highlights.Include = { fg = theme_colors.syntax.func }
-    highlights.Define = { fg = theme_colors.syntax.keyword }
-    highlights.Macro = { fg = theme_colors.syntax.special }
-    highlights.PreCondit = { fg = theme_colors.syntax.keyword }
-    
-    highlights.Type = { fg = theme_colors.syntax.type } -- Crystal teal
-    highlights.StorageClass = { fg = theme_colors.syntax.keyword }
-    highlights.Structure = { fg = theme_colors.syntax.type }
-    highlights.Typedef = { fg = theme_colors.syntax.type }
-    
-    highlights.Special = { fg = theme_colors.syntax.special }
-    highlights.SpecialChar = { fg = theme_colors.syntax.special }
-    highlights.Tag = { fg = theme_colors.syntax.func }
-    highlights.Delimiter = { fg = theme_colors.fg.secondary }
-    highlights.SpecialComment = { fg = theme_colors.syntax.special, italic = true }
-    highlights.Debug = { fg = theme_colors.diag.warn }
-    
-    -- UI Elements - crystal interface
-    highlights.StatusLine = { fg = theme_colors.fg.primary, bg = theme_colors.bg.secondary }
-    highlights.StatusLineNC = { fg = theme_colors.fg.subtle, bg = theme_colors.bg.secondary }
-    highlights.TabLine = { fg = theme_colors.fg.secondary, bg = theme_colors.bg.secondary }
-    highlights.TabLineFill = { bg = theme_colors.bg.secondary }
-    highlights.TabLineSel = { fg = theme_colors.fg.primary, bg = theme_colors.bg.primary, bold = true }
-    
-    -- Popup menus - crystalline clarity
-    highlights.Pmenu = { fg = theme_colors.fg.primary, bg = theme_colors.bg.float }
-    highlights.PmenuSel = { fg = theme_colors.bg.primary, bg = theme_colors.syntax.func }
-    highlights.PmenuSbar = { bg = theme_colors.bg.highlight }
-    highlights.PmenuThumb = { bg = theme_colors.syntax.func }
-    
-    -- Diffs - crystal changes
-    highlights.DiffAdd = { fg = theme_colors.syntax.string, bg = colors.manipulate('ki', 'green_primary', 'lighten', 30) }
-    highlights.DiffChange = { fg = theme_colors.syntax.func, bg = colors.manipulate('ki', 'blue_primary', 'lighten', 30) }
-    highlights.DiffDelete = { fg = theme_colors.diag.error, bg = colors.manipulate('ki', 'red_primary', 'lighten', 30) }
-    highlights.DiffText = { fg = theme_colors.syntax.func, bg = colors.manipulate('ki', 'blue_primary', 'lighten', 20) }
-    
-    -- Diagnostics - crystal warnings
-    highlights.DiagnosticError = { fg = theme_colors.diag.error }
-    highlights.DiagnosticWarn = { fg = theme_colors.diag.warn }
-    highlights.DiagnosticInfo = { fg = theme_colors.diag.info }
-    highlights.DiagnosticHint = { fg = theme_colors.diag.hint }
-    
-    -- LSP highlights with crystalline clarity
-    highlights.LspReferenceText = { bg = theme_colors.bg.highlight }
-    highlights.LspReferenceRead = { bg = theme_colors.bg.highlight }
-    highlights.LspReferenceWrite = { bg = theme_colors.bg.highlight, underline = true }
-    
-    return highlights
-end
-
--- Theme-specific TreeSitter highlights
-function M.get_treesitter_highlights(theme_colors, config)
-    local highlights = {}
-    
-    -- TreeSitter with crystal semantics
-    highlights["@variable"] = { fg = theme_colors.fg.primary }
-    highlights["@variable.builtin"] = { fg = theme_colors.syntax.keyword, bold = true }
-    highlights["@variable.parameter"] = { fg = theme_colors.fg.secondary }
-    highlights["@variable.member"] = { fg = theme_colors.syntax.type }
-    
-    highlights["@constant"] = { fg = theme_colors.syntax.const }
-    highlights["@constant.builtin"] = { fg = theme_colors.syntax.const, bold = true }
-    highlights["@constant.macro"] = { fg = theme_colors.syntax.special }
-    
-    highlights["@module"] = { fg = theme_colors.syntax.type }
-    highlights["@module.builtin"] = { fg = theme_colors.syntax.keyword }
-    
-    highlights["@label"] = { fg = theme_colors.syntax.keyword }
-    
-    highlights["@string"] = { fg = theme_colors.syntax.string }
-    highlights["@string.documentation"] = { fg = theme_colors.syntax.string, italic = true }
-    highlights["@string.regexp"] = { fg = theme_colors.syntax.special }
-    highlights["@string.escape"] = { fg = theme_colors.syntax.special, bold = true }
-    highlights["@string.special"] = { fg = theme_colors.syntax.special }
-    highlights["@string.special.symbol"] = { fg = theme_colors.syntax.special }
-    highlights["@string.special.url"] = { fg = theme_colors.syntax.func, underline = true }
-    highlights["@string.special.path"] = { fg = theme_colors.syntax.string }
-    
-    highlights["@character"] = { fg = theme_colors.syntax.string }
-    highlights["@character.special"] = { fg = theme_colors.syntax.special }
-    
-    highlights["@boolean"] = { fg = theme_colors.syntax.const, bold = true }
-    highlights["@number"] = { fg = theme_colors.syntax.const }
-    highlights["@number.float"] = { fg = theme_colors.syntax.const }
-    
-    highlights["@type"] = { fg = theme_colors.syntax.type }
-    highlights["@type.builtin"] = { fg = theme_colors.syntax.keyword, bold = true }
-    highlights["@type.definition"] = { fg = theme_colors.syntax.type, bold = true }
-    
-    highlights["@attribute"] = { fg = theme_colors.syntax.special }
-    highlights["@attribute.builtin"] = { fg = theme_colors.syntax.keyword }
-    highlights["@property"] = { fg = theme_colors.syntax.type }
-    
-    highlights["@function"] = { fg = theme_colors.syntax.func }
-    highlights["@function.builtin"] = { fg = theme_colors.syntax.keyword, bold = true }
-    highlights["@function.call"] = { fg = theme_colors.syntax.func }
-    highlights["@function.macro"] = { fg = theme_colors.syntax.special }
-    
-    highlights["@function.method"] = { fg = theme_colors.syntax.func }
-    highlights["@function.method.call"] = { fg = theme_colors.syntax.func }
-    
-    highlights["@constructor"] = { fg = theme_colors.syntax.type, bold = true }
-    
-    highlights["@operator"] = { fg = theme_colors.syntax.special }
-    
-    highlights["@keyword"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.coroutine"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.function"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.operator"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.import"] = { fg = theme_colors.syntax.func }
-    highlights["@keyword.repeat"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.return"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.debug"] = { fg = theme_colors.diag.warn }
-    highlights["@keyword.exception"] = { fg = theme_colors.diag.error }
-    
-    highlights["@keyword.conditional"] = { fg = theme_colors.syntax.keyword }
-    highlights["@keyword.conditional.ternary"] = { fg = theme_colors.syntax.keyword }
-    
-    highlights["@keyword.directive"] = { fg = theme_colors.syntax.special }
-    highlights["@keyword.directive.define"] = { fg = theme_colors.syntax.keyword }
-    
-    highlights["@punctuation.delimiter"] = { fg = theme_colors.fg.secondary }
-    highlights["@punctuation.bracket"] = { fg = theme_colors.fg.secondary }
-    highlights["@punctuation.special"] = { fg = theme_colors.syntax.special }
-    
-    highlights["@comment"] = { fg = theme_colors.fg.subtle, italic = true }
-    highlights["@comment.documentation"] = { fg = theme_colors.fg.subtle, italic = true }
-    
-    highlights["@comment.error"] = { fg = theme_colors.diag.error, bold = true }
-    highlights["@comment.warning"] = { fg = theme_colors.diag.warn, bold = true }
-    highlights["@comment.todo"] = { fg = theme_colors.syntax.func, bold = true }
-    highlights["@comment.note"] = { fg = theme_colors.diag.info, bold = true }
-    
-    return highlights
-end
-
--- Theme-specific customization hooks
-function M.on_colors(colors_table)
-    -- Users can override this to customize Ki theme colors
-end
-
-function M.on_highlights(highlights, colors_table)
-    -- Users can override this to customize Ki theme highlights
-end
-
--- Theme validation
-function M.validate()
-    local issues = {}
-    
-    -- Check if all required colors are available
-    local required_colors = {'bg_primary', 'fg_primary', 'blue_primary', 'green_primary'}
-    for _, color_name in ipairs(required_colors) do
-        if not colors.get('ki', 'hex', color_name) then
-            table.insert(issues, "Missing required color: " .. color_name)
-        end
-    end
-    
-    return issues
+-- Highlight groups with crystal clarity
+function M.highlights(colors, config)
+	-- Resolve transparency (Ki philosophy: always solid for crystal clarity)
+	local use_transparent = resolve_transparency(config)
+	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
+	local transparent_float = use_transparent and 'NONE' or colors.bg_float
+	
+	return {
+		-- Editor base
+		Normal = { fg = colors.fg_primary, bg = transparent_bg },
+		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
+		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
+		
+		-- Cursor and selection - radiant precision
+		Cursor = { fg = colors.bg_primary, bg = colors.func },
+		CursorLine = { bg = colors.bg_secondary },
+		CursorColumn = { bg = colors.bg_secondary },
+		CursorLineNr = { fg = colors.func, bold = true },
+		LineNr = { fg = colors.fg_subtle },
+		SignColumn = { bg = transparent_bg },
+		ColorColumn = { bg = colors.bg_secondary },
+		
+		-- Visual selection
+		Visual = { bg = colors.bg_highlight },
+		VisualNOS = { bg = colors.bg_highlight },
+		
+		-- Search - crystal highlights
+		Search = { fg = colors.bg_primary, bg = colors.const },
+		IncSearch = { fg = colors.bg_primary, bg = colors.func },
+		Substitute = { fg = colors.bg_primary, bg = colors.special },
+		
+		-- Window elements
+		StatusLine = { fg = colors.fg_primary, bg = colors.bg_secondary },
+		StatusLineNC = { fg = colors.fg_subtle, bg = colors.bg_secondary },
+		TabLine = { fg = colors.fg_secondary, bg = colors.bg_secondary },
+		TabLineFill = { bg = colors.bg_primary },
+		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
+		WinSeparator = { fg = colors.bg_highlight },
+		
+		-- Popups - floating crystals
+		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
+		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
+		PmenuSbar = { bg = colors.bg_highlight },
+		PmenuThumb = { bg = colors.func },
+		
+		-- Syntax highlighting - radiant spectrum
+		Comment = { fg = colors.fg_subtle, italic = true },
+		
+		-- Constants - crystalline
+		Constant = { fg = colors.const },
+		String = { fg = colors.string },
+		Character = { fg = colors.string },
+		Number = { fg = colors.const },
+		Boolean = { fg = colors.const },
+		Float = { fg = colors.const },
+		
+		-- Identifiers
+		Identifier = { fg = colors.fg_primary },
+		Function = { fg = colors.func },
+		
+		-- Statements - structured light
+		Statement = { fg = colors.keyword },
+		Conditional = { fg = colors.keyword },
+		Repeat = { fg = colors.keyword },
+		Label = { fg = colors.keyword },
+		Operator = { fg = colors.special },
+		Keyword = { fg = colors.keyword },
+		Exception = { fg = colors.keyword },
+		
+		-- PreProcessor
+		PreProc = { fg = colors.special },
+		Include = { fg = colors.func },
+		Define = { fg = colors.keyword },
+		Macro = { fg = colors.special },
+		PreCondit = { fg = colors.keyword },
+		
+		-- Types - crystal formations
+		Type = { fg = colors.type },
+		StorageClass = { fg = colors.keyword },
+		Structure = { fg = colors.type },
+		Typedef = { fg = colors.type },
+		
+		-- Special elements
+		Special = { fg = colors.special },
+		SpecialChar = { fg = colors.special },
+		Tag = { fg = colors.func },
+		Delimiter = { fg = colors.fg_secondary },
+		SpecialComment = { fg = colors.special, italic = true },
+		Debug = { fg = colors.warn },
+		
+		-- Diffs - crystal changes
+		DiffAdd = { fg = colors.string, bg = oklch.oklch(92, 20, 140) },
+		DiffChange = { fg = colors.func, bg = oklch.oklch(92, 20, 260) },
+		DiffDelete = { fg = colors.error, bg = oklch.oklch(92, 20, 20) },
+		DiffText = { fg = colors.func, bg = oklch.oklch(88, 30, 260) },
+		
+		-- Diagnostics - clear indicators
+		DiagnosticError = { fg = colors.error },
+		DiagnosticWarn = { fg = colors.warn },
+		DiagnosticInfo = { fg = colors.info },
+		DiagnosticHint = { fg = colors.hint },
+		
+		-- TreeSitter highlights - crystal semantics
+		['@variable'] = { fg = colors.fg_primary },
+		['@variable.builtin'] = { fg = colors.keyword },
+		['@variable.parameter'] = { fg = colors.fg_secondary },
+		['@variable.member'] = { fg = colors.type },
+		
+		['@constant'] = { fg = colors.const },
+		['@constant.builtin'] = { fg = colors.const },
+		['@constant.macro'] = { fg = colors.special },
+		
+		['@string'] = { fg = colors.string },
+		['@string.escape'] = { fg = colors.special },
+		['@string.special'] = { fg = colors.special },
+		
+		['@character'] = { fg = colors.string },
+		['@number'] = { fg = colors.const },
+		['@boolean'] = { fg = colors.const },
+		['@float'] = { fg = colors.const },
+		
+		['@function'] = { fg = colors.func },
+		['@function.builtin'] = { fg = colors.keyword },
+		['@function.call'] = { fg = colors.func },
+		['@function.macro'] = { fg = colors.special },
+		['@method'] = { fg = colors.func },
+		['@method.call'] = { fg = colors.func },
+		
+		['@constructor'] = { fg = colors.type },
+		['@parameter'] = { fg = colors.fg_secondary },
+		
+		['@keyword'] = { fg = colors.keyword },
+		['@keyword.function'] = { fg = colors.keyword },
+		['@keyword.operator'] = { fg = colors.keyword },
+		['@keyword.return'] = { fg = colors.keyword },
+		['@keyword.import'] = { fg = colors.func },
+		
+		['@type'] = { fg = colors.type },
+		['@type.builtin'] = { fg = colors.keyword },
+		
+		['@property'] = { fg = colors.type },
+		['@field'] = { fg = colors.type },
+		
+		['@operator'] = { fg = colors.special },
+		['@punctuation.delimiter'] = { fg = colors.fg_secondary },
+		['@punctuation.bracket'] = { fg = colors.fg_secondary },
+		['@punctuation.special'] = { fg = colors.special },
+		
+		['@comment'] = { fg = colors.fg_subtle, italic = true },
+		['@comment.todo'] = { fg = colors.func, bold = true },
+		['@comment.note'] = { fg = colors.info, bold = true },
+		['@comment.warning'] = { fg = colors.warn, bold = true },
+		['@comment.error'] = { fg = colors.error, bold = true },
+		
+		-- Markup elements
+		['@markup.heading'] = { fg = colors.func, bold = true },
+		['@markup.strong'] = { bold = true },
+		['@markup.italic'] = { italic = true },
+		['@markup.underline'] = { underline = true },
+		['@markup.strikethrough'] = { strikethrough = true },
+		['@markup.link'] = { fg = colors.func, underline = true },
+		['@markup.link.url'] = { fg = colors.type, underline = true },
+		['@markup.raw'] = { fg = colors.string },
+		['@markup.quote'] = { fg = colors.fg_muted, italic = true },
+		['@markup.list'] = { fg = colors.special },
+		
+		-- Tags (HTML/XML)
+		['@tag'] = { fg = colors.func },
+		['@tag.attribute'] = { fg = colors.type },
+		['@tag.delimiter'] = { fg = colors.fg_secondary },
+	}
 end
 
 return M

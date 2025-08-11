@@ -1,10 +1,7 @@
--- SuiKimuku (翠輝無空) Traditional Colorscheme Entry Point
--- This file enables :colorscheme suikimuku command compatibility
--- For advanced configuration, use require('suikimuku').setup({...})
+-- SuiKimuku (翠輝無空) v3.0 - Simple OKLCH Architecture
+-- Traditional colorscheme entry point for :colorscheme suikimuku
 
--- Load the suikimuku module with default settings
 require('suikimuku').setup({
-  style = 'ku',           -- Default to Terminal Solarized Dark
-  transparent = true,     -- Match typical transparent preference
-  opacity = 0.64,         -- Standard transparency level
+  style = 'ku',           -- Default to Enhanced Terminal
+  transparent = true,     -- Default transparent
 })
