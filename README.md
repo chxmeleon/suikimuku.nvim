@@ -13,13 +13,13 @@ A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by Ea
 
 ## The Four Themes
 
-### 翠 (Sui) - Garden Sage
-*Light green coding environment with natural harmony*
+### 翠 (Sui) - Taiwan Mountain Jade
+*Sophisticated jade green environment with muted gray undertones*
 
-- **Philosophy**: Natural tranquility with forest green harmony in bright daylight
-- **Palette**: Light sage backgrounds, forest green text, natural teal and purple accents
-- **Use Case**: Bright environments, natural daylight coding, gentle on eyes
-- **Aesthetic**: Fresh garden workspace with organic sage and forest color harmony
+- **Philosophy**: Taiwan mountain tranquility with sophisticated jade harmony and natural depth
+- **Palette**: Muted jade backgrounds with gray undertones, Taiwan jade text, earthy accents
+- **Use Case**: Bright environments, mountain contemplation, sophisticated natural coding
+- **Aesthetic**: Taiwan mountain jade workspace with sophisticated gray-green harmony
 
 ### 輝 (Ki) - Arctic Sunset Radiance
 *Maximum brightness with ethereal arctic sunset gradients*
@@ -178,7 +178,7 @@ end
 
 Drawing from Japanese, Taiwanese, and broader East Asian design philosophy:
 
-- **翠 (Sui)**: Emerald tranquility - from Japanese jade concepts (翠 - midori/sui) and Taiwanese mountain forest aesthetics (翠綠), representing natural harmony, growth, and the feng shui wood element of vitality
+- **翠 (Sui)**: Taiwan mountain jade - from Japanese jade concepts (翠 - midori/sui) and Taiwanese mountain jade aesthetics (翠玉), representing sophisticated natural harmony, mountain wisdom, and the feng shui earth-wood element with muted gray undertones
 - **輝 (Ki)**: Radiant illumination - combining Japanese kagayaki (輝 - radiance) with Taiwanese arctic sunset mystique (光輝), symbolizing ethereal enlightenment, aurora brilliance, and celestial yang energy in yin-yang philosophy
 - **無 (Mu)**: Profound emptiness - rooted in Zen Buddhism (無 - mu) and Taiwanese minimalist aesthetics (無色), embracing wabi-sabi simplicity, focused potential, and Taoist wu wei (effortless action)
 - **空 (Ku)**: Boundless sky - merging Japanese cosmic void (空 - kuu/sora) with Taiwanese Pacific vistas (天空), representing infinite possibility, celestial harmony, and connection to heaven

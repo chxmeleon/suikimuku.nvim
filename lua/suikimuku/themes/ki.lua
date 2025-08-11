@@ -12,10 +12,10 @@ M.default_transparent = false  -- Arctic radiance needs solid backgrounds for au
 -- Direct hex color palette for Arctic Sunset theme
 M.colors = {
 	-- Background colors - Arctic radiance with aurora tints
-	bg_primary = '#FAFAFF',        -- Cool arctic white with subtle lavender
+	bg_primary = '#F5F0FF',        -- Cool arctic white with subtle lavender
 	bg_secondary = '#FFFFFF',      -- Pure radiant white - maximum brightness
 	bg_float = '#F8F6FF',          -- Soft aurora glow for floating elements
-	bg_highlight = '#F5F0FF',      -- Cool radiant selection with purple highlight
+	bg_highlight = '#FAFAFF',      -- Cool radiant selection with purple highlight
 	
 	-- Foreground colors - High contrast for arctic clarity
 	fg_primary = '#1A1A1A',        -- Deep charcoal - maximum contrast for radiance

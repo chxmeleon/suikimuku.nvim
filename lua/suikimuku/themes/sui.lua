@@ -1,41 +1,41 @@
--- 翠 (Sui) - Garden Sage
--- Light green coding environment with natural harmony
--- LIGHT THEME: Works beautifully with transparency for a fresh, airy feel
+-- 翠 (Sui) - Taiwan Mountain Jade
+-- Sophisticated jade green environment with muted gray undertones
+-- LIGHT THEME: Taiwan mountain aesthetics with natural jade sophistication
 
--- Direct hex color palette for Garden Sage light theme inspired by green gradient website
+-- Direct hex color palette for Taiwan Mountain Jade theme inspired by Taiwan mountain jade
 
 local M = {}
 
 -- Theme transparency philosophy
 M.default_transparent = false  -- Light themes work well with transparency
 
--- Direct hex color palette for Garden Sage theme
+-- Direct hex color palette for Taiwan Mountain Jade theme
 M.colors = {
-	-- Background colors - Light sage green harmony
-	bg_primary = '#E8F4E8',        -- Light sage background
-	bg_secondary = '#D4ECD4',      -- Sage green highlight
-	bg_float = '#DEF0DE',          -- Medium sage float
-	bg_highlight = '#F2F8F2',      -- Very light sage white
+	-- Background colors - Taiwan mountain jade with sophisticated gray undertones
+	bg_primary = '#26715F' ,       -- Muted jade with sophisticated gray undertones '#E6ECE6' 
+	bg_secondary = '#D8E2D8',      -- Deeper jade with natural gray
+	bg_float = '#DCE6DC',          -- Sophisticated muted jade float
+	bg_highlight = '#EDF2ED',      -- Subtle jade highlight
 	
-	-- Foreground colors - Forest green text
-	fg_primary = '#2D5A2D',        -- Dark forest green primary text
-	fg_secondary = '#3A6B3A',      -- Medium forest green secondary text
-	fg_muted = '#5C8A5C',          -- Muted forest green
-	fg_subtle = '#7A9A7A',         -- Light forest green subtle
+	-- Foreground colors - Taiwan jade mountain text with natural depth
+	fg_primary = '#2A5A2A',        -- Deep Taiwan jade primary text
+	fg_secondary = '#3A6A3A',      -- Medium Taiwan jade secondary text
+	fg_muted = '#5A8A5A',          -- Muted Taiwan jade with gray undertones
+	fg_subtle = '#789678',         -- Light Taiwan jade subtle
 	
-	-- Syntax colors - Natural coding palette
-	func = '#1E6B7A',              -- Deep teal blue for functions
-	keyword = '#5A4FCF',           -- Purple for keywords
-	string = '#2E7D32',            -- Forest green for strings
-	type = '#1565C0',              -- Royal blue for types
-	const = '#E65100',             -- Orange for constants
-	special = '#388E3C',           -- Fresh green for operators
+	-- Syntax colors - Taiwan mountain jade palette with sophisticated undertones
+	func = '#1A6B6B',              -- Muted jade-teal for functions
+	keyword = '#5A4FCF',           -- Deep purple for keywords
+	string = '#2A7D2A',            -- Taiwan jade green for strings
+	type = '#1A65C0',              -- Muted royal blue for types
+	const = '#C65100',             -- Earthy orange for constants
+	special = '#358A35',           -- Sophisticated jade for operators
 	
-	-- Diagnostic colors - Natural warnings
+	-- Diagnostic colors - Natural Taiwan mountain warnings
 	error = '#C62828',             -- Deep red for errors
-	warn = '#F57C00',              -- Orange for warnings
+	warn = '#E6A000',              -- Muted amber for warnings
 	info = '#1976D2',              -- Blue for info
-	hint = '#388E3C',              -- Green for hints
+	hint = '#358A35',              -- Taiwan jade for hints
 }
 
 -- Smart transparency resolution
@@ -48,9 +48,9 @@ local function resolve_transparency(config)
 	end
 end
 
--- Highlight groups with natural garden semantics  
+-- Highlight groups with Taiwan mountain jade semantics  
 function M.highlights(colors, config)
-	-- Resolve transparency (Garden Sage philosophy: transparency enhances the airy feel)
+	-- Resolve transparency (Taiwan Mountain Jade philosophy: transparency enhances natural depth)
 	local use_transparent = resolve_transparency(config)
 	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
 	local transparent_float = use_transparent and 'NONE' or colors.bg_float
@@ -61,7 +61,7 @@ function M.highlights(colors, config)
 		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
 		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
 		
-		-- Cursor and selection - natural highlights
+		-- Cursor and selection - Taiwan jade highlights
 		Cursor = { fg = colors.bg_primary, bg = colors.func },
 		CursorLine = { bg = colors.bg_secondary },
 		CursorColumn = { bg = colors.bg_secondary },
@@ -74,7 +74,7 @@ function M.highlights(colors, config)
 		Visual = { bg = colors.bg_highlight },
 		VisualNOS = { bg = colors.bg_highlight },
 		
-		-- Search - bright highlights
+		-- Search - Taiwan jade highlights
 		Search = { fg = colors.bg_primary, bg = colors.const },
 		IncSearch = { fg = colors.bg_primary, bg = colors.func },
 		Substitute = { fg = colors.bg_primary, bg = colors.special },
@@ -87,16 +87,16 @@ function M.highlights(colors, config)
 		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
 		WinSeparator = { fg = colors.bg_highlight },
 		
-		-- Popups - floating elements
+		-- Popups - Taiwan jade floating elements
 		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
 		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
 		PmenuSbar = { bg = colors.bg_highlight },
 		PmenuThumb = { bg = colors.func },
 		
-		-- Syntax highlighting - natural elements
+		-- Syntax highlighting - Taiwan mountain elements
 		Comment = { fg = colors.fg_subtle, italic = true },
 		
-		-- Constants - vibrant elements
+		-- Constants - Taiwan jade elements
 		Constant = { fg = colors.const },
 		String = { fg = colors.string },
 		Character = { fg = colors.string },
@@ -108,7 +108,7 @@ function M.highlights(colors, config)
 		Identifier = { fg = colors.fg_primary },
 		Function = { fg = colors.func },
 		
-		-- Statements - flow control
+		-- Statements - Taiwan jade flow control
 		Statement = { fg = colors.keyword },
 		Conditional = { fg = colors.keyword },
 		Repeat = { fg = colors.keyword },
@@ -124,7 +124,7 @@ function M.highlights(colors, config)
 		Macro = { fg = colors.special },
 		PreCondit = { fg = colors.keyword },
 		
-		-- Types - structural elements
+		-- Types - Taiwan jade structural elements
 		Type = { fg = colors.type },
 		StorageClass = { fg = colors.keyword },
 		Structure = { fg = colors.type },
@@ -138,19 +138,19 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - change indicators (using light backgrounds for light theme)
-		DiffAdd = { fg = colors.string, bg = '#E8F5E8' },     -- Light green addition
-		DiffChange = { fg = colors.func, bg = '#E8F0F5' },   -- Light blue change
-		DiffDelete = { fg = colors.error, bg = '#F5E8E8' },  -- Light red deletion
-		DiffText = { fg = colors.func, bg = '#F0F5FA' },     -- Highlighted blue text
+		-- Diffs - change indicators (using Taiwan jade backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#E8F2E8' },     -- Taiwan jade addition
+		DiffChange = { fg = colors.func, bg = '#E8F0F2' },   -- Muted jade-blue change
+		DiffDelete = { fg = colors.error, bg = '#F2E8E8' },  -- Light red deletion
+		DiffText = { fg = colors.func, bg = '#F0F2F5' },     -- Taiwan jade highlighted text
 		
-		-- Diagnostics - code feedback
+		-- Diagnostics - Taiwan mountain feedback
 		DiagnosticError = { fg = colors.error },
 		DiagnosticWarn = { fg = colors.warn },
 		DiagnosticInfo = { fg = colors.info },
 		DiagnosticHint = { fg = colors.hint },
 		
-		-- TreeSitter highlights - natural semantics
+		-- TreeSitter highlights - Taiwan jade semantics
 		['@variable'] = { fg = colors.fg_primary },
 		['@variable.builtin'] = { fg = colors.keyword },
 		['@variable.parameter'] = { fg = colors.fg_secondary },
