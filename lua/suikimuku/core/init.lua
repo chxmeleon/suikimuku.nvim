@@ -31,7 +31,7 @@ function M.load(style)
     vim.g.colors_name = 'suikimuku'
     
     -- Get colors for the active style
-    local colors = colors_module.get(active_style, 'extended')
+    local colors = colors_module.get(active_style, 'legacy')
     
     -- Generate base highlights
     local highlights = M.generate_base_highlights(colors, config)
