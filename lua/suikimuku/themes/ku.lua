@@ -26,7 +26,7 @@ M.colors = {
 	-- Syntax colors - Professional spectrum with blue harmony
 	func = '#22D3EE',              -- Electric cyan functions
 	keyword = '#C4B5FD',           -- Professional purple keywords
-	string = '#10B981',            -- Clean emerald strings
+	string = '#26D0CE',            -- Clean emerald strings
 	type = '#06B6D4',              -- Professional cyan types
 	const = '#F59E0B',             -- Warm amber constants
 	special = '#26D0CE',           -- Professional teal operators
