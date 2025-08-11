@@ -12,8 +12,8 @@ M.default_transparent = false  -- Light themes work well with transparency
 -- Direct hex color palette for Garden Sage theme
 M.colors = {
 	-- Background colors - Light sage green harmony
-	bg_primary = '#F2F8F2',        -- Very light sage white
-	bg_secondary = '#E8F4E8',      -- Light sage background
+	bg_primary = '#E8F4E8',        -- Light sage background
+	bg_secondary = '#F2F8F2',      -- Very light sage white
 	bg_float = '#DEF0DE',          -- Medium sage float
 	bg_highlight = '#D4ECD4',      -- Sage green highlight
 	

@@ -12,8 +12,8 @@ M.default_transparent = false  -- Crystal radiance needs solid backgrounds for m
 -- Direct hex color palette for Crystal Radiance theme
 M.colors = {
 	-- Background colors - Pure crystal radiance with golden warmth
-	bg_primary = '#FFFFFF',        -- Pure radiant white - maximum brightness
-	bg_secondary = '#FFFCF9',      -- Warm crystal tint with golden undertone
+	bg_primary = '#FFFCF9',        -- Warm crystal tint with golden undertone
+	bg_secondary = '#FFFFFF',      -- Pure radiant white - maximum brightness
 	bg_float = '#FFF9F0',          -- Soft golden glow for floating elements
 	bg_highlight = '#FFF5E6',      -- Warm radiant selection with golden highlight
 	
