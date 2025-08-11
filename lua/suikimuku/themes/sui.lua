@@ -11,31 +11,31 @@ M.default_transparent = false  -- Sui always needs solid background for oceanic 
 
 -- OKLCH-based color palette for Digital Aquarium theme
 M.colors = {
-	-- Background colors - Deep ocean depths
-	bg_primary = oklch.oklch(12, 15, 180),      -- Deep sea
-	bg_secondary = oklch.oklch(18, 12, 175),    -- Ocean depths  
-	bg_float = oklch.oklch(25, 10, 170),        -- Kelp forest
-	bg_highlight = oklch.oklch(35, 8, 165),     -- Bioluminescent selection
+	-- Background colors - Deep ocean depths (adjusted for better visibility)
+	bg_primary = oklch.oklch(15, 8, 200),       -- Deep sea teal
+	bg_secondary = oklch.oklch(22, 10, 195),    -- Ocean depths  
+	bg_float = oklch.oklch(30, 12, 190),        -- Kelp forest
+	bg_highlight = oklch.oklch(35, 15, 185),    -- Bioluminescent selection
 	
-	-- Foreground colors - Aquatic life
-	fg_primary = oklch.oklch(75, 25, 180),      -- Aqua mint primary text
-	fg_secondary = oklch.oklch(65, 30, 185),    -- Teal secondary text
-	fg_muted = oklch.oklch(85, 20, 175),        -- Light aqua muted
-	fg_subtle = oklch.oklch(55, 20, 180),       -- Subtle teal
+	-- Foreground colors - Aquatic life (more readable)
+	fg_primary = oklch.oklch(78, 18, 180),      -- Aqua mint primary text
+	fg_secondary = oklch.oklch(68, 20, 185),    -- Teal secondary text
+	fg_muted = oklch.oklch(85, 15, 175),        -- Light aqua muted
+	fg_subtle = oklch.oklch(58, 16, 180),       -- Subtle teal
 	
-	-- Syntax colors - Marine ecosystem
-	func = oklch.oklch(80, 50, 200),            -- Electric jellyfish blue
-	keyword = oklch.oklch(60, 40, 220),         -- Ocean mystery blue
-	string = oklch.oklch(70, 60, 140),          -- Kelp green
-	type = oklch.oklch(75, 25, 180),            -- Aqua mint types
-	const = oklch.oklch(75, 80, 50),            -- Coral orange
-	special = oklch.oklch(80, 40, 120),         -- Light green operators
+	-- Syntax colors - Marine ecosystem (more vibrant but themed)
+	func = oklch.oklch(75, 35, 210),            -- Electric jellyfish cyan
+	keyword = oklch.oklch(65, 30, 240),         -- Ocean mystery blue  
+	string = oklch.oklch(70, 40, 150),          -- Kelp emerald green
+	type = oklch.oklch(72, 20, 180),            -- Aqua mint types
+	const = oklch.oklch(75, 45, 45),            -- Coral orange (warmer)
+	special = oklch.oklch(75, 25, 130),         -- Sea foam green operators
 	
-	-- Diagnostic colors - Ocean warnings
-	error = oklch.oklch(65, 80, 25),            -- Coral red
-	warn = oklch.oklch(80, 90, 65),             -- Bright orange
-	info = oklch.oklch(80, 50, 200),            -- Electric blue
-	hint = oklch.oklch(70, 60, 140),            -- Sea green
+	-- Diagnostic colors - Ocean warnings (more appropriate)
+	error = oklch.oklch(70, 50, 25),            -- Coral red (softer)
+	warn = oklch.oklch(80, 55, 55),             -- Warm orange
+	info = oklch.oklch(75, 30, 210),            -- Electric blue (softer)
+	hint = oklch.oklch(72, 35, 145),            -- Sea green
 }
 
 -- Smart transparency resolution

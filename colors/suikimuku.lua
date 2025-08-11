@@ -3,5 +3,5 @@
 
 require('suikimuku').setup({
   style = 'ku',           -- Default to Enhanced Terminal
-  transparent = true,     -- Default transparent
+  -- transparent = nil,   -- Let themes decide their own transparency philosophy
 })

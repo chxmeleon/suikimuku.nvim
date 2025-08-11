@@ -11,7 +11,7 @@ local M = {}
 -- Configuration with defaults
 M.config = {
 	style = 'ku', -- Default theme
-	transparent = false,
+	transparent = nil, -- Let themes decide their own transparency philosophy
 	opacity = 0.64,
 }
 
