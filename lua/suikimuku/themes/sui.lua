@@ -1,41 +1,41 @@
--- 翠 (Sui) - Digital Aquarium
--- Deep oceanic coding with bioluminescent syntax highlighting
--- SOLID BACKGROUND: Requires depth for underwater immersion
+-- 翠 (Sui) - Garden Sage
+-- Light green coding environment with natural harmony
+-- LIGHT THEME: Works beautifully with transparency for a fresh, airy feel
 
--- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
+-- Direct hex color palette for Garden Sage light theme inspired by green gradient website
 
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = false  -- Sui always needs solid background for oceanic depth
+M.default_transparent = true  -- Light themes work well with transparency
 
--- Direct hex color palette for Digital Aquarium theme (from extended-preview.html Sui theme)
+-- Direct hex color palette for Garden Sage theme
 M.colors = {
-	-- Background colors - Deep ocean depths (exact colors from extended-preview.html)
-	bg_primary = '#0A1B1A',        -- Deep sea teal
-	bg_secondary = '#0F2A28',      -- Ocean depths  
-	bg_float = '#1A3E3B',          -- Kelp forest
-	bg_highlight = '#2A5651',      -- Bioluminescent selection
+	-- Background colors - Light sage green harmony
+	bg_primary = '#F2F8F2',        -- Very light sage white
+	bg_secondary = '#E8F4E8',      -- Light sage background
+	bg_float = '#DEF0DE',          -- Medium sage float
+	bg_highlight = '#D4ECD4',      -- Sage green highlight
 	
-	-- Foreground colors - Aquatic life (exact colors from extended-preview.html)
-	fg_primary = '#A7DBD8',        -- Aqua mint primary text
-	fg_secondary = '#7BBAB1',      -- Teal secondary text
-	fg_muted = '#C8E6F5',          -- Light aqua muted
-	fg_subtle = '#6B9F96',         -- Subtle teal
+	-- Foreground colors - Forest green text
+	fg_primary = '#2D5A2D',        -- Dark forest green primary text
+	fg_secondary = '#3A6B3A',      -- Medium forest green secondary text
+	fg_muted = '#5C8A5C',          -- Muted forest green
+	fg_subtle = '#7A9A7A',         -- Light forest green subtle
 	
-	-- Syntax colors - Marine ecosystem (exact colors from extended-preview.html)
-	func = '#69D2E7',              -- Electric jellyfish cyan (blue-primary)
-	keyword = '#1e9ee8',           -- Ocean mystery blue (purple-primary)
-	string = '#52C489',            -- Kelp emerald green (green-primary)
-	type = '#A7DBD8',              -- Aqua mint types (teal-primary)
-	const = '#F38630',             -- Coral orange (orange-primary)
-	special = '#bce089',           -- Sea foam green operators (green-bright)
+	-- Syntax colors - Natural coding palette
+	func = '#1E6B7A',              -- Deep teal blue for functions
+	keyword = '#5A4FCF',           -- Purple for keywords
+	string = '#2E7D32',            -- Forest green for strings
+	type = '#1565C0',              -- Royal blue for types
+	const = '#E65100',             -- Orange for constants
+	special = '#388E3C',           -- Fresh green for operators
 	
-	-- Diagnostic colors - Ocean warnings (exact colors from extended-preview.html)
-	error = '#E85A4F',             -- Coral red (red-primary)
-	warn = '#FA6900',              -- Warm orange (orange-dark)
-	info = '#69D2E7',              -- Electric blue (blue-primary, same as func)
-	hint = '#52C489',              -- Sea green (green-primary, same as string)
+	-- Diagnostic colors - Natural warnings
+	error = '#C62828',             -- Deep red for errors
+	warn = '#F57C00',              -- Orange for warnings
+	info = '#1976D2',              -- Blue for info
+	hint = '#388E3C',              -- Green for hints
 }
 
 -- Smart transparency resolution
@@ -48,9 +48,9 @@ local function resolve_transparency(config)
 	end
 end
 
--- Highlight groups with oceanic semantics  
+-- Highlight groups with natural garden semantics  
 function M.highlights(colors, config)
-	-- Resolve transparency (Sui philosophy: always solid for oceanic depth)
+	-- Resolve transparency (Garden Sage philosophy: transparency enhances the airy feel)
 	local use_transparent = resolve_transparency(config)
 	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
 	local transparent_float = use_transparent and 'NONE' or colors.bg_float
@@ -61,7 +61,7 @@ function M.highlights(colors, config)
 		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
 		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
 		
-		-- Cursor and selection - bioluminescent effects
+		-- Cursor and selection - natural highlights
 		Cursor = { fg = colors.bg_primary, bg = colors.func },
 		CursorLine = { bg = colors.bg_secondary },
 		CursorColumn = { bg = colors.bg_secondary },
@@ -74,7 +74,7 @@ function M.highlights(colors, config)
 		Visual = { bg = colors.bg_highlight },
 		VisualNOS = { bg = colors.bg_highlight },
 		
-		-- Search - electric highlights
+		-- Search - bright highlights
 		Search = { fg = colors.bg_primary, bg = colors.const },
 		IncSearch = { fg = colors.bg_primary, bg = colors.func },
 		Substitute = { fg = colors.bg_primary, bg = colors.special },
@@ -87,16 +87,16 @@ function M.highlights(colors, config)
 		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
 		WinSeparator = { fg = colors.bg_highlight },
 		
-		-- Popups - floating kelp
+		-- Popups - floating elements
 		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
 		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
 		PmenuSbar = { bg = colors.bg_highlight },
 		PmenuThumb = { bg = colors.func },
 		
-		-- Syntax highlighting - aquatic life
+		-- Syntax highlighting - natural elements
 		Comment = { fg = colors.fg_subtle, italic = true },
 		
-		-- Constants - coral reef
+		-- Constants - vibrant elements
 		Constant = { fg = colors.const },
 		String = { fg = colors.string },
 		Character = { fg = colors.string },
@@ -108,7 +108,7 @@ function M.highlights(colors, config)
 		Identifier = { fg = colors.fg_primary },
 		Function = { fg = colors.func },
 		
-		-- Statements - ocean currents
+		-- Statements - flow control
 		Statement = { fg = colors.keyword },
 		Conditional = { fg = colors.keyword },
 		Repeat = { fg = colors.keyword },
@@ -124,7 +124,7 @@ function M.highlights(colors, config)
 		Macro = { fg = colors.special },
 		PreCondit = { fg = colors.keyword },
 		
-		-- Types - aquatic structures
+		-- Types - structural elements
 		Type = { fg = colors.type },
 		StorageClass = { fg = colors.keyword },
 		Structure = { fg = colors.type },
@@ -138,19 +138,19 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - underwater changes (using direct hex colors for backgrounds)
-		DiffAdd = { fg = colors.string, bg = '#1A3F2A' },     -- Dark green underwater
-		DiffChange = { fg = colors.func, bg = '#1A2F3F' },   -- Dark blue depths
-		DiffDelete = { fg = colors.error, bg = '#3F1A2A' },  -- Dark red coral
-		DiffText = { fg = colors.func, bg = '#2A3F4F' },     -- Highlighted blue depths
+		-- Diffs - change indicators (using light backgrounds for light theme)
+		DiffAdd = { fg = colors.string, bg = '#E8F5E8' },     -- Light green addition
+		DiffChange = { fg = colors.func, bg = '#E8F0F5' },   -- Light blue change
+		DiffDelete = { fg = colors.error, bg = '#F5E8E8' },  -- Light red deletion
+		DiffText = { fg = colors.func, bg = '#F0F5FA' },     -- Highlighted blue text
 		
-		-- Diagnostics - ocean warnings
+		-- Diagnostics - code feedback
 		DiagnosticError = { fg = colors.error },
 		DiagnosticWarn = { fg = colors.warn },
 		DiagnosticInfo = { fg = colors.info },
 		DiagnosticHint = { fg = colors.hint },
 		
-		-- TreeSitter highlights - underwater semantics
+		-- TreeSitter highlights - natural semantics
 		['@variable'] = { fg = colors.fg_primary },
 		['@variable.builtin'] = { fg = colors.keyword },
 		['@variable.parameter'] = { fg = colors.fg_secondary },
