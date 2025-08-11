@@ -3,12 +3,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Neovim-0.8%2B-57A143?style=flat-square&logo=neovim&logoColor=white" alt="Neovim" />
   <img src="https://img.shields.io/badge/Lua-5.1%2B-2C2D72?style=flat-square&logo=lua&logoColor=white" alt="Lua" />
-  <img src="https://img.shields.io/badge/WCAG-AAA-00A0B0?style=flat-square" alt="WCAG AAA" />
+  <img src="https://img.shields.io/badge/Version-v3.0-blueviolet?style=flat-square" alt="Version v3.0" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="MIT License" />
 </p>
 
 <p align="center">
-A comprehensive four-theme color scheme (翠輝無空) for Neovim inspired by Japanese aesthetic philosophy. Each theme represents a different aspect of nature and consciousness, designed for modern vibrant coding and various environments.
+A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by Japanese aesthetic philosophy. Direct hex architecture with professional color precision for modern coding environments.
 </p>
 
 ## The Four Themes
@@ -57,10 +57,9 @@ A comprehensive four-theme color scheme (翠輝無空) for Neovim inspired by Ja
   priority = 1000,
   config = function()
     require('suikimuku').setup({
-      style = 'ku',           -- 'sui', 'ki', 'mu', 'ku'
-      transparent = false,    -- Enable transparent backgrounds
-      opacity = 0.64,         -- Background opacity (0.0-1.0)
-      monochrome = false,     -- Force grayscale mode
+      style = 'ku',          -- 'sui', 'ki', 'mu', 'ku'
+      transparent = nil,     -- Let theme decide (recommended)
+      opacity = 0.64,        -- Background opacity (0.0-1.0)
     })
   end,
 }
@@ -95,18 +94,17 @@ EOF
 ```lua
 -- Apply a theme
 require('suikimuku').setup({
-  style = 'sui'  -- Options: 'sui', 'ki', 'mu', 'ku'
+  style = 'ku'  -- Options: 'sui', 'ki', 'mu', 'ku'
 })
 ```
 
-### Advanced Configuration
+### Configuration Options
 
 ```lua
 require('suikimuku').setup({
-  style = 'sui',              -- Theme variant
-  transparent = true,         -- Transparent background
-  opacity = 0.64,             -- Background opacity when transparent
-  monochrome = false,         -- Force grayscale (overrides style)
+  style = 'ku',           -- Theme variant: 'sui', 'ki', 'mu', 'ku'
+  transparent = nil,      -- Let theme decide transparency (recommended)
+  opacity = 0.64,         -- Background opacity when transparent (0.0-1.0)
 })
 ```
 
@@ -114,43 +112,43 @@ require('suikimuku').setup({
 
 ```lua
 -- Switch themes on the fly
-require('suikimuku').setup({ style = 'sui' })   -- Digital aquarium with bioluminescent syntax
-require('suikimuku').setup({ style = 'ki' })    -- Crystal radiant light
-require('suikimuku').setup({ style = 'mu' })    -- High-contrast grayscale  
-require('suikimuku').setup({ style = 'ku' })    -- Enhanced vibrant terminal
+require('suikimuku').load('sui')   -- Digital aquarium
+require('suikimuku').load('ki')    -- Crystal light  
+require('suikimuku').load('mu')    -- WCAG grayscale
+require('suikimuku').load('ku')    -- Professional navy
+
+-- Or use the command
+:SuikimukyLoad sui
 ```
 
-### Transparency Support
+### Theme Commands
 
-All themes support transparency with configurable opacity:
-
-```lua
-require('suikimuku').setup({
-  style = 'sui',
-  transparent = true,    -- Enable transparency
-  opacity = 0.64,        -- Match terminal transparency
-})
+```vim
+" Load specific themes
+:SuikimukyLoad sui     " Digital aquarium
+:SuikimukyLoad ki      " Crystal light
+:SuikimukyLoad mu      " WCAG grayscale
+:SuikimukyLoad ku      " Professional navy
 ```
 
 ## Features
 
-- **Four Distinct Themes**: Each with unique philosophy and modern vibrant colors
-- **Dynamic Switching**: Change themes on-the-fly without restart
-- **Accessibility**: WCAG AAA compliant contrast ratios
-- **Transparency Support**: Configurable background opacity
-- **Modern Syntax Highlighting**: Vibrant colors for enhanced code readability
-- **Rich TreeSitter Support**: Modern TreeSitter and LSP integration
-- **Highly Configurable**: Extensive customization options
-- **Responsive Design**: Works in GUI and terminal Neovim
+- **Four Distinct Themes**: Each with unique philosophy and professional color precision
+- **Direct Hex Architecture**: Clean, focused implementation with exact color control
+- **Dynamic Switching**: Change themes instantly with `:SuikimukyLoad` command
+- **Theme-Smart Transparency**: Each theme has optimized transparency settings
+- **Modern Syntax Highlighting**: Professional colors for enhanced code readability  
+- **TreeSitter Support**: Full TreeSitter and LSP integration
+- **Terminal Optimized**: Works beautifully in both GUI and terminal Neovim
+- **Japanese Aesthetic**: Inspired by traditional Japanese design philosophy
 
 ## Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `style` | string | `'ku'` | Theme variant: `'sui'`, `'ki'`, `'mu'`, `'ku'` |
-| `transparent` | boolean | `false` | Enable transparent backgrounds |
+| `transparent` | boolean/nil | `nil` | Let theme decide transparency (recommended) |
 | `opacity` | number | `0.64` | Background opacity (0.0-1.0) when transparent |
-| `monochrome` | boolean | `false` | Force grayscale mode (overrides style) |
 
 ## Complete Color Specifications
 
@@ -254,37 +252,28 @@ require('suikimuku').setup({
 - **Aesthetic**: Deep ocean depths with electric neon highlights, cyberpunk-inspired coding environment
 - **Terminal Integration**: Maintains terminal harmony while enhancing visual distinction
 
-### Advanced Configuration
-
-All configuration options with their defaults:
+### Advanced Usage
 
 ```lua
-{
-  style = 'ku',           -- 'sui', 'ki', 'mu', 'ku'
-  transparent = true,     -- Enable transparent backgrounds
-  opacity = 0.64,         -- Background opacity (0.0-1.0)
-  monochrome = false,     -- Force grayscale (overrides style)
-  italic_comments = true, -- Italicize comments
-  bold_keywords = true,   -- Bold keywords
-}
+-- Get current theme colors for external integrations
+local colors = require('suikimuku').get_colors()
+print(colors.bg_primary)  -- Current background color
+
+-- Theme-specific setups
+if vim.o.background == 'light' then
+  require('suikimuku').setup({ style = 'ki' })   -- Crystal light for light mode
+else
+  require('suikimuku').setup({ style = 'ku' })   -- Professional navy for dark mode
+end
 ```
 
 ### Implementation Notes
 
-1. **Base32 Organization**: Colors follow Base16 extended to 32 colors for richer syntax highlighting
-2. **Semantic Consistency**: Same semantic meanings across all themes (red=error, etc.)
-3. **Modern Vibrancy**: Enhanced contrast and saturation for improved code readability
-4. **Accessibility**: All themes meet WCAG contrast requirements
-5. **Terminal Compatibility**: Colors chosen to work well in both GUI and terminal Neovim
-6. **Transparency Ready**: Background colors designed to work with various transparency levels
-
-### Transparency Support
-
-All themes support transparency with the following alpha levels:
-- **Primary Background**: Configurable opacity (default: 0.64 to match terminal)
-- **Secondary Elements**: Maintain relative opacity relationships
-- **Text**: Always fully opaque for readability
-- **Diagnostics**: Full opacity for visibility
+1. **Direct Hex Colors**: Each theme uses carefully chosen hex values for precision
+2. **Theme Philosophy**: Each theme has its own transparency and aesthetic approach
+3. **Professional Polish**: Clean implementation focused on code readability
+4. **Terminal First**: Optimized for terminal Neovim with GUI compatibility
+5. **Japanese Aesthetics**: Color relationships inspired by traditional Japanese design
 
 ## Testing Themes
 
@@ -307,17 +296,20 @@ This will cycle through all four themes with a 2-second delay between each, demo
 
 Each theme embodies these philosophical concepts through carefully chosen colors and modern contrast relationships, balancing traditional Japanese aesthetics with contemporary coding needs.
 
-## Plugin Integration
+## API
 
-Suikimuku.nvim works seamlessly with popular Neovim plugins:
+### Available Functions
 
-- **TreeSitter**: Full vibrant syntax highlighting support
-- **LSP**: Enhanced diagnostic and semantic token highlighting
-- **Git Signs**: Version control indicators with theme-appropriate colors
-- **Telescope**: Fuzzy finder integration
-- **NvimTree/Neo-tree**: File explorer theming
-- **Lualine**: Status line integration
-- **Which-key**: Key mapping popups
+```lua
+-- Main setup function
+require('suikimuku').setup({ style = 'ku' })
+
+-- Load theme directly
+require('suikimuku').load('sui')
+
+-- Get current theme colors
+local colors = require('suikimuku').get_colors()
+```
 
 ## Development
 
@@ -325,20 +317,21 @@ Suikimuku.nvim works seamlessly with popular Neovim plugins:
 ```
 suikimuku.nvim/
 ├── lua/suikimuku/
-│   ├── init.lua      # Main plugin logic with vibrant color definitions
-│   └── themes.lua    # Raw color definitions and palettes
-├── test-themes.lua   # Theme testing script
-├── theme-preview.html # Web preview with all themes
-└── README.md        # Complete documentation and specifications
+│   ├── init.lua         # Main plugin logic and setup
+│   └── themes/          # Individual theme modules
+│       ├── sui.lua      # Digital aquarium theme
+│       ├── ki.lua       # Crystal light theme  
+│       ├── mu.lua       # WCAG grayscale theme
+│       └── ku.lua       # Professional navy theme
+└── README.md           # Documentation
 ```
 
 ### Contributing
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch  
 3. Test your changes with all four themes
-4. Ensure accessibility standards are maintained
-5. Test vibrant syntax highlighting in various code contexts
-6. Submit a pull request
+4. Ensure themes maintain their philosophical consistency
+5. Submit a pull request
 
 ## License
 
@@ -346,14 +339,14 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-- Inspired by Japanese aesthetic philosophy and natural color harmonies
-- Enhanced with modern vibrant color theory for optimal code readability
-- Built on the Base16/Base32 color system for consistency
-- Influenced by terminal color schemes while pushing beyond traditional constraints
-- Designed with modern Neovim features and high-resolution displays in mind
+- Inspired by Japanese aesthetic philosophy and natural design principles
+- Built with direct hex precision for professional color accuracy  
+- Designed for modern terminal workflows and high-resolution displays
+- Each theme represents a different aspect of nature and consciousness
 
 ---
 
 <p align="center">
-  <em>翠輝無空 - Where digital oceans meet code, tradition meets innovation, and tranquil depths meet modern clarity</em>
+  <em>翠輝無空 (SuiKiMuKu) - Four themes, one philosophy</em><br>
+  <em>Where Japanese aesthetics meet modern coding precision</em>
 </p>
