@@ -8,26 +8,26 @@
 </p>
 
 <p align="center">
-A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by Japanese aesthetic philosophy. Direct hex architecture with professional color precision for modern coding environments.
+A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by East Asian aesthetic philosophy, drawing from Japanese, Taiwanese, and regional design traditions. Direct hex architecture with professional color precision for modern coding environments.
 </p>
 
 ## The Four Themes
 
-### 翠 (Sui) - Digital Aquarium
-*Serene underwater coding with bioluminescent syntax*
+### 翠 (Sui) - Garden Sage
+*Light green coding environment with natural harmony*
 
-- **Philosophy**: Deep sea tranquility meets modern digital workspace with electric blue accents
-- **Palette**: Ocean depths, aqua mint clarity, bioluminescent blues, coral orange highlights
-- **Use Case**: Calm immersive coding, natural depth with digital precision, contemplative development
-- **Aesthetic**: Underwater coding environment with glowing syntax like deep-sea bioluminescence
+- **Philosophy**: Natural tranquility with forest green harmony in bright daylight
+- **Palette**: Light sage backgrounds, forest green text, natural teal and purple accents
+- **Use Case**: Bright environments, natural daylight coding, gentle on eyes
+- **Aesthetic**: Fresh garden workspace with organic sage and forest color harmony
 
-### 輝 (Ki) - Crystal Radiant Light  
-*Clean, crisp light mode for focused work*
+### 輝 (Ki) - Crystal Radiance
+*Maximum brightness with warm golden crystal clarity*
 
-- **Philosophy**: Pure radiant light concept - luminous like crystal clarity
-- **Palette**: Cool whites, light blues, and crystalline highlights
-- **Use Case**: Bright environments, focused work sessions, minimal visual noise
-- **Aesthetic**: Morning light through crystal, maximum clarity with gentle warmth
+- **Philosophy**: Pure radiant light with warm energy colors for ultimate brightness
+- **Palette**: Warm crystal whites with golden undertones, radiant warm spectrum
+- **Use Case**: Maximum brightness environments, warm light preference, intense focus
+- **Aesthetic**: Crystal radiance with warm golden energy and brilliant luminosity
 
 ### 無 (Mu) - WCAG AAA Grayscale
 *High-contrast monochrome for distraction-free coding*
@@ -37,13 +37,13 @@ A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by Ja
 - **Use Case**: Deep focus sessions, accessibility needs, colorblind-friendly
 - **Aesthetic**: High-contrast newspaper clarity, maximum legibility
 
-### 空 (Ku) - Enhanced Vibrant Terminal
-*Modern high-contrast coding with electric vibrancy*
+### 空 (Ku) - Infinite Sky
+*Deep cosmic blue representing boundless space and terminal harmony*
 
-- **Philosophy**: Perfect terminal integration with enhanced vibrant syntax highlighting
-- **Palette**: Deep ocean backgrounds with electric cyan, gold, magenta, and turquoise accents
-- **Use Case**: Modern terminal workflows, high-contrast coding, vibrant syntax distinction
-- **Aesthetic**: Deep space with electric neon highlights, cyberpunk-inspired terminal harmony
+- **Philosophy**: Infinite sky and cosmic depth with serene blue tranquility
+- **Palette**: Deep sky backgrounds, celestial blue spectrum, cosmic accents  
+- **Use Case**: Night coding, cosmic contemplation, terminal harmony
+- **Aesthetic**: Boundless night sky with cosmic depth and celestial serenity
 
 ## Installation
 
@@ -112,10 +112,10 @@ require('suikimuku').setup({
 
 ```lua
 -- Switch themes on the fly
-require('suikimuku').load('sui')   -- Digital aquarium
-require('suikimuku').load('ki')    -- Crystal light  
+require('suikimuku').load('sui')   -- Garden sage
+require('suikimuku').load('ki')    -- Crystal radiance  
 require('suikimuku').load('mu')    -- WCAG grayscale
-require('suikimuku').load('ku')    -- Professional navy
+require('suikimuku').load('ku')    -- Infinite sky
 
 -- Or use the command
 :SuikimukyLoad sui
@@ -125,10 +125,10 @@ require('suikimuku').load('ku')    -- Professional navy
 
 ```vim
 " Load specific themes
-:SuikimukyLoad sui     " Digital aquarium
-:SuikimukyLoad ki      " Crystal light
+:SuikimukyLoad sui     " Garden sage
+:SuikimukyLoad ki      " Crystal radiance
 :SuikimukyLoad mu      " WCAG grayscale
-:SuikimukyLoad ku      " Professional navy
+:SuikimukyLoad ku      " Infinite sky
 ```
 
 ## Features
@@ -140,7 +140,7 @@ require('suikimuku').load('ku')    -- Professional navy
 - **Modern Syntax Highlighting**: Professional colors for enhanced code readability  
 - **TreeSitter Support**: Full TreeSitter and LSP integration
 - **Terminal Optimized**: Works beautifully in both GUI and terminal Neovim
-- **Japanese Aesthetic**: Inspired by traditional Japanese design philosophy
+- **East Asian Aesthetic**: Inspired by Japanese, Taiwanese, and regional design philosophy
 
 ## Configuration Options
 
@@ -261,9 +261,9 @@ print(colors.bg_primary)  -- Current background color
 
 -- Theme-specific setups
 if vim.o.background == 'light' then
-  require('suikimuku').setup({ style = 'ki' })   -- Crystal light for light mode
+  require('suikimuku').setup({ style = 'sui' })  -- Garden sage for light mode
 else
-  require('suikimuku').setup({ style = 'ku' })   -- Professional navy for dark mode
+  require('suikimuku').setup({ style = 'ku' })   -- Infinite sky for dark mode
 end
 ```
 
@@ -288,13 +288,16 @@ This will cycle through all four themes with a 2-second delay between each, demo
 
 ## Theme Philosophy
 
-### Japanese Aesthetic Principles
-- **翠 (Sui)**: The jade-green tranquility of underwater depths, enhanced with bioluminescent digital clarity representing serene innovation
-- **輝 (Ki)**: Radiant light that illuminates, symbolizing clarity and focus  
-- **無 (Mu)**: The void or emptiness, embracing minimalism and pure functionality
-- **空 (Ku)**: Sky or infinite space, representing harmony and boundless possibility with electric vibrancy
+### East Asian Aesthetic Principles
 
-Each theme embodies these philosophical concepts through carefully chosen colors and modern contrast relationships, balancing traditional Japanese aesthetics with contemporary coding needs.
+Drawing from Japanese, Taiwanese, and broader East Asian design philosophy:
+
+- **翠 (Sui)**: Emerald tranquility - from Japanese jade concepts (翠 - midori/sui) and Taiwanese mountain forest aesthetics (翠綠), representing natural harmony, growth, and the feng shui wood element of vitality
+- **輝 (Ki)**: Radiant illumination - combining Japanese kagayaki (輝 - radiance) with Taiwanese sunrise clarity (光輝), symbolizing enlightenment, brilliance, and yang energy in yin-yang philosophy
+- **無 (Mu)**: Profound emptiness - rooted in Zen Buddhism (無 - mu) and Taiwanese minimalist aesthetics (無色), embracing wabi-sabi simplicity, focused potential, and Taoist wu wei (effortless action)
+- **空 (Ku)**: Boundless sky - merging Japanese cosmic void (空 - kuu/sora) with Taiwanese Pacific vistas (天空), representing infinite possibility, celestial harmony, and connection to heaven
+
+Each theme embodies these cross-cultural East Asian concepts through carefully chosen colors that honor both traditional aesthetics and contemporary coding environments, creating a bridge between ancient wisdom and modern digital craftsmanship.
 
 ## API
 
@@ -319,10 +322,10 @@ suikimuku.nvim/
 ├── lua/suikimuku/
 │   ├── init.lua         # Main plugin logic and setup
 │   └── themes/          # Individual theme modules
-│       ├── sui.lua      # Digital aquarium theme
-│       ├── ki.lua       # Crystal light theme  
+│       ├── sui.lua      # Garden sage theme
+│       ├── ki.lua       # Crystal radiance theme  
 │       ├── mu.lua       # WCAG grayscale theme
-│       └── ku.lua       # Professional navy theme
+│       └── ku.lua       # Infinite sky theme
 └── README.md           # Documentation
 ```
 
@@ -339,14 +342,15 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-- Inspired by Japanese aesthetic philosophy and natural design principles
-- Built with direct hex precision for professional color accuracy  
-- Designed for modern terminal workflows and high-resolution displays
-- Each theme represents a different aspect of nature and consciousness
+- Inspired by East Asian aesthetic philosophy, drawing from Japanese, Taiwanese, and broader regional design principles
+- Built with direct hex precision for professional color accuracy
+- Designed for modern terminal workflows and high-resolution displays  
+- Each theme represents a different aspect of nature and consciousness across East Asian cultures
+- Honors traditional concepts: Japanese wabi-sabi, Taiwanese mountain aesthetics, feng shui elements, and Taoist philosophy
 
 ---
 
 <p align="center">
   <em>翠輝無空 (SuiKiMuKu) - Four themes, one philosophy</em><br>
-  <em>Where Japanese aesthetics meet modern coding precision</em>
+  <em>Where East Asian aesthetics meet modern coding precision</em>
 </p>
