@@ -212,7 +212,7 @@ function M.set_nested_value(table, path, value)
 end
 
 -- Migration helpers
-function M.migration = {}
+M.migration = {}
 
 -- Check if user is using legacy configuration
 function M.migration.needs_migration(config)
@@ -340,26 +340,10 @@ M.commands = {}
 
 -- Legacy colorscheme command support
 function M.commands.setup_legacy_commands()
-    -- Support old :colorscheme suikimuku-* commands
-    local legacy_schemes = {
-        "suikimuku-sui",
-        "suikimuku-ki", 
-        "suikimuku-mu",
-        "suikimuku-ku"
-    }
-    
-    for _, scheme in ipairs(legacy_schemes) do
-        local style = M.legacy_config_map.style_map[scheme]
-        if style then
-            vim.api.nvim_create_user_command(
-                "colorscheme " .. scheme,
-                function()
-                    M.legacy_api.load(style)
-                end,
-                { desc = "Load " .. scheme .. " colorscheme (legacy)" }
-            )
-        end
-    end
+    -- Note: Legacy colorscheme support (:colorscheme suikimuku-*) would need 
+    -- separate colorscheme files in colors/ directory. For now, users should
+    -- use :colorscheme suikimuku and configure style via setup() call.
+    -- This is a design decision to maintain clean architecture.
 end
 
 -- Deprecation warnings

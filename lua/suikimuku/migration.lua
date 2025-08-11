@@ -303,7 +303,7 @@ function M.run_migration(current_config, options)
                     name = step.name,
                     result = "skipped"
                 })
-                continue
+                goto continue_loop
             end
         end
         
@@ -333,6 +333,8 @@ function M.run_migration(current_config, options)
                 break
             end
         end
+        
+        ::continue_loop::
     end
     
     -- Generate migration report

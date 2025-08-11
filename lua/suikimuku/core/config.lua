@@ -339,7 +339,7 @@ end
 
 -- Apply theme-specific defaults
 function M.apply_theme_defaults(config, theme_name)
-    local themes = require("suikimuku.themes")
+    local themes = require("suikimuku.themes.init")
     local theme_info = themes.get_theme_info(theme_name)
     local theme_defaults = themes.get_defaults(theme_name)
     
