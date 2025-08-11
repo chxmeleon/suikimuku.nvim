@@ -2,40 +2,40 @@
 -- Maximum contrast monochrome for accessibility and distraction-free coding  
 -- TRANSPARENT BY DEFAULT: Pure focus without visual distractions
 
-local oklch = require('suikimuku.oklch')
+-- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
 
 local M = {}
 
 -- Theme transparency philosophy
 M.default_transparent = true  -- Mu is transparent by default for pure focus
 
--- OKLCH-based color palette for WCAG AAA Grayscale theme
+-- Direct hex color palette for WCAG AAA Grayscale theme (from extended-preview.html Mu theme)
 M.colors = {
-	-- Background colors - Pure monochrome
-	bg_primary = oklch.oklch(0, 0, 0),         -- Pure black
-	bg_secondary = oklch.oklch(10, 0, 0),      -- Dark gray
-	bg_float = oklch.oklch(18, 0, 0),          -- Medium dark
-	bg_highlight = oklch.oklch(25, 0, 0),      -- Selection gray
+	-- Background colors - Pure monochrome (exact colors from extended-preview.html)
+	bg_primary = '#000000',        -- Pure black
+	bg_secondary = '#1A1A1A',      -- Dark gray
+	bg_float = '#2D2D2D',          -- Medium dark
+	bg_highlight = '#404040',      -- Selection gray
 	
-	-- Foreground colors - High contrast
-	fg_primary = oklch.oklch(80, 0, 0),        -- Light gray text
-	fg_secondary = oklch.oklch(50, 0, 0),      -- Medium gray
-	fg_muted = oklch.oklch(90, 0, 0),          -- Very light gray
-	fg_subtle = oklch.oklch(50, 0, 0),         -- Subtle gray
+	-- Foreground colors - High contrast (exact colors from extended-preview.html)
+	fg_primary = '#FFFFFF',        -- Pure white text
+	fg_secondary = '#E6E6E6',      -- Very light gray
+	fg_muted = '#CCCCCC',          -- Light gray
+	fg_subtle = '#808080',         -- Medium gray
 	
-	-- Syntax colors - Monochrome hierarchy
-	func = oklch.oklch(100, 0, 0),             -- Pure white functions
-	keyword = oklch.oklch(88, 0, 0),           -- Near white keywords
-	string = oklch.oklch(70, 0, 0),            -- Light gray strings
-	type = oklch.oklch(82, 0, 0),              -- Very light types
-	const = oklch.oklch(63, 0, 0),             -- Medium light constants
-	special = oklch.oklch(56, 0, 0),           -- Medium gray operators
+	-- Syntax colors - Monochrome hierarchy (exact colors from extended-preview.html)
+	func = '#D4D4D4',              -- Light gray functions (blue-primary in grayscale)
+	keyword = '#A0A0A0',           -- Medium-light keywords (purple-primary in grayscale)
+	string = '#B8B8B8',            -- Light gray strings (green-primary in grayscale)
+	type = '#CCCCCC',              -- Very light types (teal-primary in grayscale)
+	const = '#909090',             -- Medium constants (orange-primary in grayscale)
+	special = '#909090',           -- Medium operators (same as const)
 	
-	-- Diagnostic colors - Grayscale warnings
-	error = oklch.oklch(100, 0, 0),            -- Maximum visibility white
-	warn = oklch.oklch(88, 0, 0),              -- Near white
-	info = oklch.oklch(70, 0, 0),              -- Light gray
-	hint = oklch.oklch(63, 0, 0),              -- Medium light
+	-- Diagnostic colors - Grayscale warnings (exact colors from extended-preview.html)
+	error = '#FFFFFF',             -- Maximum visibility white (red-primary)
+	warn = '#E0E0E0',              -- Very light gray (orange-primary)
+	info = '#B8B8B8',              -- Light gray (blue-primary)
+	hint = '#A0A0A0',              -- Medium light (green-primary)
 }
 
 -- Smart transparency resolution
@@ -138,11 +138,11 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - monochrome changes
-		DiffAdd = { fg = colors.string, bg = oklch.oklch(15, 0, 0) },
-		DiffChange = { fg = colors.func, bg = oklch.oklch(15, 0, 0) },
-		DiffDelete = { fg = colors.error, bg = oklch.oklch(15, 0, 0) },
-		DiffText = { fg = colors.func, bg = oklch.oklch(20, 0, 0) },
+		-- Diffs - monochrome changes (using direct hex colors for backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#2A2A2A' },     -- Dark gray for add
+		DiffChange = { fg = colors.func, bg = '#2A2A2A' },   -- Dark gray for change
+		DiffDelete = { fg = colors.error, bg = '#2A2A2A' },  -- Dark gray for delete
+		DiffText = { fg = colors.func, bg = '#353535' },     -- Slightly lighter gray for text
 		
 		-- Diagnostics - maximum visibility
 		DiagnosticError = { fg = colors.error },

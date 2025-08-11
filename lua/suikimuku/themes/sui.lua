@@ -2,40 +2,40 @@
 -- Deep oceanic coding with bioluminescent syntax highlighting
 -- SOLID BACKGROUND: Requires depth for underwater immersion
 
-local oklch = require('suikimuku.oklch')
+-- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
 
 local M = {}
 
 -- Theme transparency philosophy
 M.default_transparent = false  -- Sui always needs solid background for oceanic depth
 
--- OKLCH-based color palette for Digital Aquarium theme
+-- Direct hex color palette for Digital Aquarium theme (from extended-preview.html Sui theme)
 M.colors = {
-	-- Background colors - Deep ocean depths (adjusted for better visibility)
-	bg_primary = oklch.oklch(15, 8, 200),       -- Deep sea teal
-	bg_secondary = oklch.oklch(22, 10, 195),    -- Ocean depths  
-	bg_float = oklch.oklch(30, 12, 190),        -- Kelp forest
-	bg_highlight = oklch.oklch(35, 15, 185),    -- Bioluminescent selection
+	-- Background colors - Deep ocean depths (exact colors from extended-preview.html)
+	bg_primary = '#0A1B1A',        -- Deep sea teal
+	bg_secondary = '#0F2A28',      -- Ocean depths  
+	bg_float = '#1A3E3B',          -- Kelp forest
+	bg_highlight = '#2A5651',      -- Bioluminescent selection
 	
-	-- Foreground colors - Aquatic life (more readable)
-	fg_primary = oklch.oklch(78, 18, 180),      -- Aqua mint primary text
-	fg_secondary = oklch.oklch(68, 20, 185),    -- Teal secondary text
-	fg_muted = oklch.oklch(85, 15, 175),        -- Light aqua muted
-	fg_subtle = oklch.oklch(58, 16, 180),       -- Subtle teal
+	-- Foreground colors - Aquatic life (exact colors from extended-preview.html)
+	fg_primary = '#A7DBD8',        -- Aqua mint primary text
+	fg_secondary = '#7BBAB1',      -- Teal secondary text
+	fg_muted = '#C8E6F5',          -- Light aqua muted
+	fg_subtle = '#6B9F96',         -- Subtle teal
 	
-	-- Syntax colors - Marine ecosystem (more vibrant but themed)
-	func = oklch.oklch(75, 35, 210),            -- Electric jellyfish cyan
-	keyword = oklch.oklch(65, 30, 240),         -- Ocean mystery blue  
-	string = oklch.oklch(70, 40, 150),          -- Kelp emerald green
-	type = oklch.oklch(72, 20, 180),            -- Aqua mint types
-	const = oklch.oklch(75, 45, 45),            -- Coral orange (warmer)
-	special = oklch.oklch(75, 25, 130),         -- Sea foam green operators
+	-- Syntax colors - Marine ecosystem (exact colors from extended-preview.html)
+	func = '#69D2E7',              -- Electric jellyfish cyan (blue-primary)
+	keyword = '#1e9ee8',           -- Ocean mystery blue (purple-primary)
+	string = '#52C489',            -- Kelp emerald green (green-primary)
+	type = '#A7DBD8',              -- Aqua mint types (teal-primary)
+	const = '#F38630',             -- Coral orange (orange-primary)
+	special = '#bce089',           -- Sea foam green operators (green-bright)
 	
-	-- Diagnostic colors - Ocean warnings (more appropriate)
-	error = oklch.oklch(70, 50, 25),            -- Coral red (softer)
-	warn = oklch.oklch(80, 55, 55),             -- Warm orange
-	info = oklch.oklch(75, 30, 210),            -- Electric blue (softer)
-	hint = oklch.oklch(72, 35, 145),            -- Sea green
+	-- Diagnostic colors - Ocean warnings (exact colors from extended-preview.html)
+	error = '#E85A4F',             -- Coral red (red-primary)
+	warn = '#FA6900',              -- Warm orange (orange-dark)
+	info = '#69D2E7',              -- Electric blue (blue-primary, same as func)
+	hint = '#52C489',              -- Sea green (green-primary, same as string)
 }
 
 -- Smart transparency resolution
@@ -138,11 +138,11 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - underwater changes
-		DiffAdd = { fg = colors.string, bg = oklch.oklch(25, 30, 140) },
-		DiffChange = { fg = colors.func, bg = oklch.oklch(25, 30, 200) },
-		DiffDelete = { fg = colors.error, bg = oklch.oklch(25, 30, 25) },
-		DiffText = { fg = colors.func, bg = oklch.oklch(35, 40, 200) },
+		-- Diffs - underwater changes (using direct hex colors for backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#1A3F2A' },     -- Dark green underwater
+		DiffChange = { fg = colors.func, bg = '#1A2F3F' },   -- Dark blue depths
+		DiffDelete = { fg = colors.error, bg = '#3F1A2A' },  -- Dark red coral
+		DiffText = { fg = colors.func, bg = '#2A3F4F' },     -- Highlighted blue depths
 		
 		-- Diagnostics - ocean warnings
 		DiagnosticError = { fg = colors.error },

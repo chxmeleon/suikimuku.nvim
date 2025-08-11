@@ -1,4 +1,4 @@
--- SuiKimuku (翠輝無空) v3.0 - Simple OKLCH Architecture
+-- SuiKimuku (翠輝無空) v3.0 - Direct Hex Architecture
 -- Traditional colorscheme entry point for :colorscheme suikimuku
 
 require('suikimuku').setup({

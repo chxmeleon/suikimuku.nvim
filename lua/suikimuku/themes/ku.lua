@@ -2,40 +2,40 @@
 -- Electric vibrancy in cosmic void with terminal-perfect harmony
 -- TRANSPARENT BY DEFAULT: Harmony with terminal background
 
-local oklch = require('suikimuku.oklch')
+-- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
 
 local M = {}
 
 -- Theme transparency philosophy
 M.default_transparent = true  -- Ku is transparent by default for terminal harmony
 
--- OKLCH-based color palette for Enhanced Terminal theme
+-- Direct hex color palette for Enhanced Terminal theme (from extended-preview.html Ku theme)
 M.colors = {
-	-- Background colors - Cosmic void
-	bg_primary = oklch.oklch(7, 12, 200),       -- Deep space background
-	bg_secondary = oklch.oklch(15, 20, 220),    -- Space depths
-	bg_float = oklch.oklch(25, 25, 240),        -- Floating cosmos
-	bg_highlight = oklch.oklch(20, 15, 210),    -- Selection void
+	-- Background colors - Cosmic void (exact colors from extended-preview.html)
+	bg_primary = '#000F10',        -- Deep space background
+	bg_secondary = '#072842',      -- Space depths
+	bg_float = '#283D5E',          -- Floating cosmos
+	bg_highlight = '#203047',      -- Selection void
 	
-	-- Foreground colors - Terminal precision
-	fg_primary = oklch.oklch(65, 15, 200),      -- Solarized base foreground
-	fg_secondary = oklch.oklch(55, 20, 210),    -- Secondary terminal text
-	fg_muted = oklch.oklch(75, 12, 195),        -- Muted terminal
-	fg_subtle = oklch.oklch(55, 20, 200),       -- Subtle terminal
+	-- Foreground colors - Terminal precision (exact colors from extended-preview.html)
+	fg_primary = '#839496',        -- Solarized base foreground
+	fg_secondary = '#586E75',      -- Secondary terminal text
+	fg_muted = '#93A1A1',          -- Muted terminal
+	fg_subtle = '#657B83',         -- Subtle terminal
 	
-	-- Syntax colors - Electric spectrum
-	func = oklch.oklch(80, 100, 200),           -- Bright cyan functions
-	keyword = oklch.oklch(70, 100, 320),        -- Vibrant magenta keywords
-	string = oklch.oklch(75, 80, 160),          -- Turquoise green strings
-	type = oklch.oklch(80, 60, 220),            -- Sky blue types
-	const = oklch.oklch(75, 100, 40),           -- Bright orange constants
-	special = oklch.oklch(75, 80, 180),         -- Dark turquoise operators
+	-- Syntax colors - Electric spectrum (exact colors from extended-preview.html)
+	func = '#00D7FF',              -- Electric cyan functions (blue-primary)
+	keyword = '#9D7CD8',           -- Vibrant purple keywords (purple-primary)
+	string = '#38E8AA',            -- Turquoise green strings (green-primary)
+	type = '#00CED1',              -- Dark turquoise types (teal-primary)
+	const = '#FF8C00',             -- Dark orange constants (orange-primary)
+	special = '#40E0D0',           -- Turquoise operators (teal-light)
 	
-	-- Diagnostic colors - Terminal warnings
-	error = oklch.oklch(60, 80, 15),            -- Solarized red
-	warn = oklch.oklch(85, 90, 85),             -- Bright yellow
-	info = oklch.oklch(70, 80, 250),            -- Solarized blue
-	hint = oklch.oklch(65, 70, 120),            -- Solarized green
+	-- Diagnostic colors - Terminal warnings (exact colors from extended-preview.html)
+	error = '#DC322F',             -- Solarized red (red-primary)
+	warn = '#FFA533',              -- Orange warning (orange-light)
+	info = '#00D7FF',              -- Electric blue info (blue-primary, same as func)
+	hint = '#38E8AA',              -- Green hint (green-primary, same as string)
 }
 
 -- Smart transparency resolution
@@ -138,11 +138,11 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - cosmic changes
-		DiffAdd = { fg = colors.string, bg = oklch.oklch(20, 40, 160) },
-		DiffChange = { fg = colors.func, bg = oklch.oklch(20, 40, 200) },
-		DiffDelete = { fg = colors.error, bg = oklch.oklch(20, 40, 15) },
-		DiffText = { fg = colors.func, bg = oklch.oklch(30, 50, 200) },
+		-- Diffs - cosmic changes (using direct hex colors for backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#0A2F1A' },     -- Dark green background
+		DiffChange = { fg = colors.func, bg = '#1A2F42' },   -- Dark blue background
+		DiffDelete = { fg = colors.error, bg = '#2F1A1A' },  -- Dark red background
+		DiffText = { fg = colors.func, bg = '#2A3F52' },     -- Highlighted blue background
 		
 		-- Diagnostics - terminal precision
 		DiagnosticError = { fg = colors.error },

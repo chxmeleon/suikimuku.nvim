@@ -1,5 +1,5 @@
--- SuiKimuku (翠輝無空) v3.0 - Simple OKLCH Architecture
--- Four themes with mathematical color precision and Japanese aesthetic philosophy
+-- SuiKimuku (翠輝無空) v3.0 - Direct Hex Architecture  
+-- Four themes with exact color precision and Japanese aesthetic philosophy
 --
 -- 翠 (Sui) - Digital Aquarium: oceanic depth with teal luminescence
 -- 輝 (Ki) - Crystal Light: pristine clarity with radiant precision

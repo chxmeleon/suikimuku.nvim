@@ -2,40 +2,40 @@
 -- Clean, crisp light mode for focused work with radiant precision
 -- SOLID BACKGROUND: Crystal clarity requires pristine white foundation
 
-local oklch = require('suikimuku.oklch')
+-- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
 
 local M = {}
 
 -- Theme transparency philosophy
 M.default_transparent = false  -- Ki always needs solid background for crystal clarity
 
--- OKLCH-based color palette for Crystal Light theme
+-- Direct hex color palette for Crystal Light theme (from extended-preview.html Ki theme)
 M.colors = {
-	-- Background colors - Crystal clarity
-	bg_primary = oklch.oklch(98, 5, 230),       -- Pure crystal white
-	bg_secondary = oklch.oklch(94, 8, 235),     -- Light crystal
-	bg_float = oklch.oklch(90, 10, 240),        -- Floating crystal
-	bg_highlight = oklch.oklch(85, 15, 245),    -- Selection crystal
+	-- Background colors - Crystal clarity (exact colors from extended-preview.html)
+	bg_primary = '#FAFCFF',        -- Pure crystal white
+	bg_secondary = '#F0F9FF',      -- Light crystal
+	bg_float = '#E1F5FE',          -- Floating crystal
+	bg_highlight = '#CBD5E1',      -- Selection crystal
 	
-	-- Foreground colors - Sharp definition
-	fg_primary = oklch.oklch(40, 15, 250),      -- Deep slate primary
-	fg_secondary = oklch.oklch(50, 20, 245),    -- Slate secondary
-	fg_muted = oklch.oklch(30, 10, 240),        -- Dark muted
-	fg_subtle = oklch.oklch(60, 12, 240),       -- Subtle gray
+	-- Foreground colors - Sharp definition (exact colors from extended-preview.html)
+	fg_primary = '#475569',        -- Deep slate primary
+	fg_secondary = '#64748B',      -- Slate secondary
+	fg_muted = '#94A3B8',          -- Light muted
+	fg_subtle = '#CBD5E1',         -- Subtle gray
 	
-	-- Syntax colors - Radiant spectrum
-	func = oklch.oklch(55, 70, 260),            -- Bright blue functions
-	keyword = oklch.oklch(50, 80, 300),         -- Purple keywords
-	string = oklch.oklch(45, 70, 140),          -- Emerald strings
-	type = oklch.oklch(50, 60, 190),            -- Cyan types
-	const = oklch.oklch(55, 90, 40),            -- Orange constants
-	special = oklch.oklch(45, 20, 250),         -- Cool gray operators
+	-- Syntax colors - Radiant spectrum (exact colors from extended-preview.html)
+	func = '#3B82F6',              -- Bright blue functions (blue-primary)
+	keyword = '#8B5CF6',           -- Purple keywords (purple-primary)
+	string = '#10B981',            -- Emerald strings (green-primary)
+	type = '#06B6D4',              -- Cyan types (teal-primary)
+	const = '#F97316',             -- Orange constants (orange-primary)
+	special = '#475569',           -- Cool gray operators (fg-primary)
 	
-	-- Diagnostic colors - Clear warnings
-	error = oklch.oklch(50, 80, 20),            -- Rose red
-	warn = oklch.oklch(55, 90, 40),             -- Orange
-	info = oklch.oklch(55, 70, 260),            -- Bright blue
-	hint = oklch.oklch(45, 70, 140),            -- Emerald
+	-- Diagnostic colors - Clear warnings (exact colors from extended-preview.html)
+	error = '#E11D48',             -- Rose red (red-primary)
+	warn = '#F97316',              -- Orange (orange-primary)
+	info = '#3B82F6',              -- Bright blue (blue-primary, same as func)
+	hint = '#10B981',              -- Emerald (green-primary, same as string)
 }
 
 -- Smart transparency resolution
@@ -138,11 +138,11 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - crystal changes
-		DiffAdd = { fg = colors.string, bg = oklch.oklch(92, 20, 140) },
-		DiffChange = { fg = colors.func, bg = oklch.oklch(92, 20, 260) },
-		DiffDelete = { fg = colors.error, bg = oklch.oklch(92, 20, 20) },
-		DiffText = { fg = colors.func, bg = oklch.oklch(88, 30, 260) },
+		-- Diffs - crystal changes (using direct hex colors for backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#E0F2F1' },     -- Light green crystal
+		DiffChange = { fg = colors.func, bg = '#E3F2FD' },   -- Light blue crystal
+		DiffDelete = { fg = colors.error, bg = '#FFEBEE' },  -- Light red crystal
+		DiffText = { fg = colors.func, bg = '#BBDEFB' },     -- Highlighted blue crystal
 		
 		-- Diagnostics - clear indicators
 		DiagnosticError = { fg = colors.error },
