@@ -7,7 +7,7 @@
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = true  -- Light themes work well with transparency
+M.default_transparent = false  -- Light themes work well with transparency
 
 -- Direct hex color palette for Garden Sage theme
 M.colors = {

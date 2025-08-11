@@ -7,7 +7,7 @@
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = true  -- Radiant themes work beautifully with transparency
+M.default_transparent = false  -- Radiant themes work beautifully with transparency
 
 -- Direct hex color palette for Radiant Dawn theme
 M.colors = {

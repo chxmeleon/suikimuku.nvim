@@ -1,41 +1,41 @@
--- 空 (Ku) - Enhanced Terminal 
--- Electric vibrancy in cosmic void with terminal-perfect harmony
--- TRANSPARENT BY DEFAULT: Harmony with terminal background
+-- 空 (Ku) - Professional Navy
+-- Deep blue cosmos with professional elegance and terminal harmony
+-- TRANSPARENT BY DEFAULT: Perfect harmony with terminal backgrounds
 
--- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
+-- Direct hex color palette for Professional Navy theme inspired by blue gradient websites
 
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = true  -- Ku is transparent by default for terminal harmony
+M.default_transparent = true  -- Transparent by default for terminal harmony
 
--- Direct hex color palette for Enhanced Terminal theme (from extended-preview.html Ku theme)
+-- Direct hex color palette for Professional Navy theme
 M.colors = {
-	-- Background colors - Cosmic void (exact colors from extended-preview.html)
-	bg_primary = '#000F10',        -- Deep space background
-	bg_secondary = '#072842',      -- Space depths
-	bg_float = '#283D5E',          -- Floating cosmos
-	bg_highlight = '#203047',      -- Selection void
+	-- Background colors - Professional blue cosmos
+	bg_primary = '#1A1F3A',        -- Deep corporate navy
+	bg_secondary = '#233A5E',      -- Professional blue depths
+	bg_float = '#2A4365',          -- Business blue floating
+	bg_highlight = '#2B5A87',      -- Professional selection
 	
-	-- Foreground colors - Terminal precision (exact colors from extended-preview.html)
-	fg_primary = '#839496',        -- Solarized base foreground
-	fg_secondary = '#586E75',      -- Secondary terminal text
-	fg_muted = '#93A1A1',          -- Muted terminal
-	fg_subtle = '#657B83',         -- Subtle terminal
+	-- Foreground colors - Clean professional hierarchy
+	fg_primary = '#E2E8F0',        -- Clean white primary text
+	fg_secondary = '#CBD5E1',      -- Light blue-gray secondary
+	fg_muted = '#94A3B8',          -- Medium blue-gray muted
+	fg_subtle = '#64748B',         -- Subtle blue-gray
 	
-	-- Syntax colors - Electric spectrum (exact colors from extended-preview.html)
-	func = '#00D7FF',              -- Electric cyan functions (blue-primary)
-	keyword = '#9D7CD8',           -- Vibrant purple keywords (purple-primary)
-	string = '#38E8AA',            -- Turquoise green strings (green-primary)
-	type = '#00CED1',              -- Dark turquoise types (teal-primary)
-	const = '#FF8C00',             -- Dark orange constants (orange-primary)
-	special = '#40E0D0',           -- Turquoise operators (teal-light)
+	-- Syntax colors - Professional spectrum with blue harmony
+	func = '#00D7FF',              -- Electric cyan functions
+	keyword = '#8B5CF6',           -- Professional purple keywords
+	string = '#10B981',            -- Clean emerald strings
+	type = '#06B6D4',              -- Professional cyan types
+	const = '#F59E0B',             -- Warm amber constants
+	special = '#26D0CE',           -- Professional teal operators
 	
-	-- Diagnostic colors - Terminal warnings (exact colors from extended-preview.html)
-	error = '#DC322F',             -- Solarized red (red-primary)
-	warn = '#FFA533',              -- Orange warning (orange-light)
-	info = '#00D7FF',              -- Electric blue info (blue-primary, same as func)
-	hint = '#38E8AA',              -- Green hint (green-primary, same as string)
+	-- Diagnostic colors - Clear professional indicators
+	error = '#EF4444',             -- Clear red for errors
+	warn = '#F59E0B',              -- Professional amber warnings
+	info = '#3B82F6',              -- Professional blue info
+	hint = '#10B981',              -- Professional green hints
 }
 
 -- Smart transparency resolution
@@ -48,9 +48,9 @@ local function resolve_transparency(config)
 	end
 end
 
--- Highlight groups with electric vibrancy
+-- Highlight groups with professional elegance
 function M.highlights(colors, config)
-	-- Resolve transparency (Ku philosophy: transparent by default for terminal harmony)
+	-- Resolve transparency (Professional Navy philosophy: transparent harmony with terminals)
 	local use_transparent = resolve_transparency(config)
 	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
 	local transparent_float = use_transparent and 'NONE' or colors.bg_float
@@ -61,7 +61,7 @@ function M.highlights(colors, config)
 		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
 		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
 		
-		-- Cursor and selection - electric precision
+		-- Cursor and selection - professional precision
 		Cursor = { fg = colors.bg_primary, bg = colors.func },
 		CursorLine = { bg = colors.bg_secondary },
 		CursorColumn = { bg = colors.bg_secondary },
@@ -74,7 +74,7 @@ function M.highlights(colors, config)
 		Visual = { bg = colors.bg_highlight },
 		VisualNOS = { bg = colors.bg_highlight },
 		
-		-- Search - electric highlights
+		-- Search - professional highlights
 		Search = { fg = colors.bg_primary, bg = colors.const },
 		IncSearch = { fg = colors.bg_primary, bg = colors.func },
 		Substitute = { fg = colors.bg_primary, bg = colors.special },
@@ -87,16 +87,16 @@ function M.highlights(colors, config)
 		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
 		WinSeparator = { fg = colors.bg_highlight },
 		
-		-- Popups - cosmic interface
+		-- Popups - professional interface
 		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
 		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
 		PmenuSbar = { bg = colors.bg_highlight },
 		PmenuThumb = { bg = colors.func },
 		
-		-- Syntax highlighting - electric spectrum
+		-- Syntax highlighting - professional spectrum
 		Comment = { fg = colors.fg_subtle, italic = true },
 		
-		-- Constants - vibrant energy
+		-- Constants - professional clarity
 		Constant = { fg = colors.const },
 		String = { fg = colors.string },
 		Character = { fg = colors.string },
@@ -108,7 +108,7 @@ function M.highlights(colors, config)
 		Identifier = { fg = colors.fg_primary },
 		Function = { fg = colors.func },
 		
-		-- Statements - electric flow
+		-- Statements - professional flow
 		Statement = { fg = colors.keyword },
 		Conditional = { fg = colors.keyword },
 		Repeat = { fg = colors.keyword },
@@ -124,7 +124,7 @@ function M.highlights(colors, config)
 		Macro = { fg = colors.special },
 		PreCondit = { fg = colors.keyword },
 		
-		-- Types - cosmic structures
+		-- Types - professional structures
 		Type = { fg = colors.type },
 		StorageClass = { fg = colors.keyword },
 		Structure = { fg = colors.type },
@@ -138,19 +138,19 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - cosmic changes (using direct hex colors for backgrounds)
-		DiffAdd = { fg = colors.string, bg = '#0A2F1A' },     -- Dark green background
-		DiffChange = { fg = colors.func, bg = '#1A2F42' },   -- Dark blue background
-		DiffDelete = { fg = colors.error, bg = '#2F1A1A' },  -- Dark red background
-		DiffText = { fg = colors.func, bg = '#2A3F52' },     -- Highlighted blue background
+		-- Diffs - professional changes (using professional navy backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#1B3A2F' },     -- Professional green background
+		DiffChange = { fg = colors.func, bg = '#1E3A5A' },   -- Professional blue background  
+		DiffDelete = { fg = colors.error, bg = '#3A1F2F' },  -- Professional red background
+		DiffText = { fg = colors.func, bg = '#2A4A6A' },     -- Professional highlighted background
 		
-		-- Diagnostics - terminal precision
+		-- Diagnostics - professional clarity
 		DiagnosticError = { fg = colors.error },
 		DiagnosticWarn = { fg = colors.warn },
 		DiagnosticInfo = { fg = colors.info },
 		DiagnosticHint = { fg = colors.hint },
 		
-		-- TreeSitter highlights - electric semantics
+		-- TreeSitter highlights - professional semantics
 		['@variable'] = { fg = colors.fg_primary },
 		['@variable.builtin'] = { fg = colors.keyword },
 		['@variable.parameter'] = { fg = colors.fg_secondary },
