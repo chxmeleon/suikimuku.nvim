@@ -1,302 +1,350 @@
--- suikimuku (翠輝無空) Theme System
--- Sui (翠) - Atmospheric Teal Garden: Multi-palette fusion with cinematic depth
--- Ki (輝) - Crystal Radiant Light: Cool, crisp, luminous radiance
--- Mu (無) - WCAG AAA Grayscale: Maximum contrast monochrome
--- Ku (空) - Terminal Solarized: Perfect harmony with terminal colors
+-- Suikimuku (翠輝無空) - Unified 4-Theme Architecture v2.0
+-- Professional-grade Neovim theming platform with Japanese aesthetic philosophy
+-- 
+-- Four Themes Representing Natural Elements:
+-- • Sui (翠) - Digital Aquarium: oceanic depth with teal luminescence  
+-- • Ki (輝) - Crystal Light: pristine clarity with radiant precision
+-- • Mu (無) - WCAG Grayscale: maximum contrast monochrome accessibility  
+-- • Ku (空) - Enhanced Terminal: electric vibrancy in cosmic void
+--
+-- Features:
+-- • Unified color system with mathematical OKLCH precision
+-- • Comprehensive plugin ecosystem support (20+ plugins)  
+-- • Advanced configuration with schema validation
+-- • Backward compatibility with legacy configurations
+-- • Plugin auto-detection and priority-based loading
+-- • Theme-specific customization and user hooks
+-- • Migration utilities and health checks
 
 local M = {}
 
--- Configuration with defaults
-M.config = {
-	style = "ku", -- 'sui', 'ki', 'mu', or 'ku'
-	transparent = false, -- Enable transparent background
-	opacity = 0.64, -- Background opacity when transparent (0.0-1.0)
-	monochrome = false, -- Force grayscale mode (overrides style)
-}
+-- Version information
+M.version = "2.0.0"
+M.architecture = "unified"
 
--- Color Palettes
-M.palettes = {
-	-- Sui (翠) - Atmospheric Teal Garden
-	sui = {
-		default_transparent = false, -- Solid bg for atmospheric depth
-		bg = {
-			primary = "#0A1B1A",
-			secondary = "#0F2A28",
-			float = "#1A3E3B",
-			highlight = "#2A5651",
-		},
-		fg = {
-			primary = "#A7DBD8",
-			secondary = "#7BBAB1",
-			muted = "#C8E6F5",
-			subtle = "#7BBAB1",
-		},
-		syntax = {
-			func = "#69D2E7", -- Ethereal light blue
-			keyword = "#1e9ee8", -- Ocean blue keywords
-			string = "#52C489", -- Emerald growth
-			type = "#A7DBD8", -- Aqua mint
-			const = "#F38630", -- Warm orange
-			special = "#bce089", -- Light green for operators
-		},
-		diag = {
-			error = "#F38630",
-			warn = "#FA6900",
-			info = "#69D2E7",
-			hint = "#52C489",
-		},
-	},
+-- Legacy compatibility flag
+local has_legacy_config = false
+local legacy_config = nil
 
-	-- Ki (輝) - Crystal Radiant Light
-	ki = {
-		default_transparent = false, -- Solid bg for crystal clarity
-		bg = {
-			primary = "#FAFCFF",
-			secondary = "#F0F9FF",
-			float = "#E1F5FE",
-			highlight = "#CBD5E1",
-		},
-		fg = {
-			primary = "#64748B",
-			secondary = "#475569",
-			muted = "#334155",
-			subtle = "#64748B",
-		},
-		syntax = {
-			func = "#3B82F6", -- Bright blue
-			keyword = "#8B5CF6", -- Purple
-			string = "#10B981", -- Emerald green
-			type = "#06B6D4", -- Cyan
-			const = "#F97316", -- Orange
-			special = "#475569", -- Cool gray
-		},
-		diag = {
-			error = "#E11D48",
-			warn = "#F97316",
-			info = "#3B82F6",
-			hint = "#10B981",
-		},
-	},
-
-	-- Mu (無) - WCAG AAA High-Contrast Grayscale
-	mu = {
-		default_transparent = true, -- Transparent for pure focus
-		bg = {
-			primary = "#000000",
-			secondary = "#1A1A1A",
-			float = "#2D2D2D",
-			highlight = "#404040",
-		},
-		fg = {
-			primary = "#CCCCCC",
-			secondary = "#808080",
-			muted = "#E6E6E6",
-			subtle = "#808080",
-		},
-		syntax = {
-			func = "#FFFFFF", -- Pure white for maximum contrast
-			keyword = "#E0E0E0", -- Near white
-			string = "#B8B8B8", -- Light gray
-			type = "#D4D4D4", -- Very light gray
-			const = "#A0A0A0", -- Medium light gray
-			special = "#909090", -- Medium gray
-		},
-		diag = {
-			error = "#FFFFFF", -- Maximum visibility
-			warn = "#E0E0E0",
-			info = "#B8B8B8",
-			hint = "#A0A0A0",
-		},
-	},
-
-	-- Ku (空) - Terminal Solarized Dark
-	ku = {
-		default_transparent = true, -- Transparent for terminal harmony
-		bg = {
-			primary = "#000F10",
-			secondary = "#072842",
-			float = "#283d5e",
-			highlight = "#203047",
-		},
-		fg = {
-			primary = "#839496",
-			secondary = "#586E75",
-			muted = "#93A1A1",
-			subtle = "#586E75",
-		},
-		syntax = {
-			func = "#00D7FF", -- Bright cyan for functions/imports
-			keyword = "#9D7CD8", -- Purple for keywords
-			string = "#38e8aa", -- Turquoise green for strings
-			type = "#87CEEB", -- Sky blue for types
-			const = "#FF8C00", -- Bright orange for constants
-			special = "#00CED1", -- Dark turquoise for operators
-		},
-		diag = {
-			error = "#DC322F", -- Solarized red
-			warn = "#DDD389", -- Bright yellow
-			info = "#268BD2", -- Solarized blue
-			hint = "#859900", -- Solarized green
-		},
-	},
-}
-
--- Convert colors to grayscale
-local function to_grayscale(color)
-	local r = tonumber(color:sub(2, 3), 16)
-	local g = tonumber(color:sub(4, 5), 16)
-	local b = tonumber(color:sub(6, 7), 16)
-	local gray = math.floor((r * 0.299 + g * 0.587 + b * 0.114))
-	return string.format("#%02x%02x%02x", gray, gray, gray)
+-- Initialize core modules
+local function init_core_modules()
+    -- Initialize compatibility layer first
+    local compat = require('suikimuku.core.compat')
+    compat.init()
+    
+    -- Core systems
+    M.core = require('suikimuku.core')
+    M.config = require('suikimuku.core.config')
+    M.colors = require('suikimuku.core.colors')
+    M.plugins = require('suikimuku.plugins')
+    
+    -- Utilities
+    M.migration = require('suikimuku.migration')
 end
 
--- Get active color palette based on configuration
-function M.get_colors()
-	local palette = M.palettes[M.config.style]
-	local colors = vim.deepcopy(palette)
-
-	-- Apply monochrome if enabled
-	if M.config.monochrome then
-		for category, values in pairs(colors) do
-			if type(values) == "table" then
-				for name, color in pairs(values) do
-					colors[category][name] = to_grayscale(color)
-				end
-			end
-		end
-	end
-
-	return colors
+-- Legacy configuration detection and mapping
+local function detect_legacy_config(user_config)
+    if not user_config then return false, nil end
+    
+    local compat = require('suikimuku.core.compat')
+    
+    -- Check if this is a legacy configuration
+    has_legacy_config = compat.migration.needs_migration(user_config)
+    
+    if has_legacy_config then
+        -- Convert legacy configuration to new format
+        legacy_config = user_config
+        local converted = compat.migration.auto_migrate(user_config, {
+            show_guide = false,
+            warn = true
+        })
+        return true, converted
+    end
+    
+    return false, user_config
 end
 
--- Generate highlight groups
-function M.get_highlights(colors)
-	-- Use theme default unless explicitly overridden by user
-	local use_transparent = M.config.transparent ~= nil and M.config.transparent or colors.default_transparent
-
-	local transparent_bg = use_transparent and "NONE" or colors.bg.primary
-	local transparent_float = use_transparent and "NONE" or colors.bg.float
-
-	return {
-		-- Editor
-		Normal = { fg = colors.fg.primary, bg = transparent_bg },
-		NormalFloat = { fg = colors.fg.primary, bg = transparent_float },
-		NormalNC = { fg = colors.fg.secondary, bg = transparent_bg },
-		SignColumn = { bg = transparent_bg },
-		LineNr = { fg = colors.fg.subtle },
-		CursorLine = { bg = colors.bg.secondary },
-		CursorLineNr = { fg = colors.syntax.func, bold = true },
-		ColorColumn = { bg = colors.bg.secondary },
-		Visual = { bg = colors.bg.highlight },
-		VisualNOS = { bg = colors.bg.highlight },
-
-		-- Window elements
-		StatusLine = { fg = colors.fg.primary, bg = colors.bg.secondary },
-		StatusLineNC = { fg = colors.fg.subtle, bg = colors.bg.secondary },
-		TabLine = { fg = colors.fg.subtle, bg = colors.bg.secondary },
-		TabLineFill = { bg = colors.bg.primary },
-		TabLineSel = { fg = colors.fg.primary, bg = colors.bg.highlight },
-		WinSeparator = { fg = colors.bg.highlight },
-
-		-- Syntax highlighting
-		Function = { fg = colors.syntax.func },
-		["@function"] = { fg = colors.syntax.func },
-		["@function.call"] = { fg = colors.syntax.func },
-		["@method"] = { fg = colors.syntax.func },
-		["@method.call"] = { fg = colors.syntax.func },
-
-		Keyword = { fg = colors.syntax.keyword },
-		["@keyword"] = { fg = colors.syntax.keyword },
-		["@keyword.function"] = { fg = colors.syntax.keyword },
-		["@keyword.operator"] = { fg = colors.syntax.keyword },
-
-		String = { fg = colors.syntax.string },
-		["@string"] = { fg = colors.syntax.string },
-		["@string.escape"] = { fg = colors.syntax.special },
-
-		Type = { fg = colors.syntax.type },
-		["@type"] = { fg = colors.syntax.type },
-		["@type.builtin"] = { fg = colors.syntax.type },
-
-		Constant = { fg = colors.syntax.const },
-		["@constant"] = { fg = colors.syntax.const },
-		["@constant.builtin"] = { fg = colors.syntax.const },
-		Number = { fg = colors.syntax.const },
-		Boolean = { fg = colors.syntax.const },
-
-		Special = { fg = colors.syntax.special },
-		["@punctuation"] = { fg = colors.syntax.special },
-		["@operator"] = { fg = colors.syntax.special },
-
-		Comment = { fg = colors.fg.subtle, italic = true },
-		["@comment"] = { fg = colors.fg.subtle, italic = true },
-
-		-- Variables
-		Identifier = { fg = colors.fg.primary },
-		["@variable"] = { fg = colors.fg.primary },
-		["@parameter"] = { fg = colors.fg.muted },
-
-		-- Diagnostics
-		DiagnosticError = { fg = colors.diag.error },
-		DiagnosticWarn = { fg = colors.diag.warn },
-		DiagnosticInfo = { fg = colors.diag.info },
-		DiagnosticHint = { fg = colors.diag.hint },
-
-		-- Git signs
-		GitSignsAdd = { fg = colors.syntax.string },
-		GitSignsChange = { fg = colors.diag.warn },
-		GitSignsDelete = { fg = colors.diag.error },
-
-		-- Search
-		Search = { fg = colors.bg.primary, bg = colors.syntax.func },
-		IncSearch = { fg = colors.bg.primary, bg = colors.syntax.const },
-
-		-- Popups
-		Pmenu = { fg = colors.fg.primary, bg = colors.bg.float },
-		PmenuSel = { fg = colors.bg.primary, bg = colors.syntax.func },
-		PmenuSbar = { bg = colors.bg.highlight },
-		PmenuThumb = { bg = colors.fg.subtle },
-
-		-- Markdown
-		Title = { fg = colors.fg.muted, bold = true },
-		["@markup.heading"] = { fg = colors.fg.muted, bold = true },
-		["@markup.heading.1"] = { fg = colors.fg.primary, bold = true },
-		["@markup.heading.2"] = { fg = colors.fg.muted, bold = true },
-		["@markup.heading.3"] = { fg = colors.fg.muted },
-		["@markup.heading.4"] = { fg = colors.fg.secondary },
-		["@markup.heading.5"] = { fg = colors.fg.secondary },
-		["@markup.heading.6"] = { fg = colors.fg.secondary },
-		["@markup.link"] = { fg = colors.syntax.func, underline = true },
-		["@markup.link.url"] = { fg = colors.syntax.type },
-		["@markup.emphasis"] = { italic = true },
-		["@markup.strong"] = { bold = true },
-	}
-end
-
--- Setup function
+-- Main setup function - Entry point for the unified architecture
 function M.setup(user_config)
-	-- Merge user config with defaults
-	if user_config then
-		M.config = vim.tbl_deep_extend("force", M.config, user_config)
-	end
-
-	-- Clear existing highlights
-	vim.cmd("highlight clear")
-	if vim.fn.exists("syntax_on") then
-		vim.cmd("syntax reset")
-	end
-
-	-- Set colorscheme name
-	vim.g.colors_name = "suikimuku"
-
-	-- Get colors and highlights
-	local colors = M.get_colors()
-	local highlights = M.get_highlights(colors)
-
-	-- Apply highlights
-	for group, settings in pairs(highlights) do
-		vim.api.nvim_set_hl(0, group, settings)
-	end
+    -- Initialize core modules if not already done
+    if not M.core then
+        init_core_modules()
+    end
+    
+    -- Handle legacy configuration detection and conversion
+    local is_legacy, processed_config = detect_legacy_config(user_config)
+    
+    if is_legacy then
+        -- Show migration information to user
+        if processed_config.show_migration_guide then
+            local migration_suggestions = M.migration.get_migration_suggestions(legacy_config)
+            M.migration.print_migration_guide(legacy_config)
+        end
+    end
+    
+    -- Setup configuration system with processed config
+    M.config.setup(processed_config)
+    
+    -- Load the colorscheme
+    M.load()
 end
+
+-- Load colorscheme with specified style (optional)
+function M.load(style)
+    -- Initialize core modules if not already done
+    if not M.core then
+        init_core_modules()
+    end
+    
+    -- Use core loading system
+    M.core.load(style)
+end
+
+-- Get colors using the new unified system
+function M.get_colors(style, format)
+    if not M.colors then
+        init_core_modules()
+    end
+    
+    return M.colors.get(style, format)
+end
+
+-- Get configuration
+function M.get_config()
+    if not M.config then
+        init_core_modules()
+    end
+    
+    return M.config.get_config()
+end
+
+-- Get plugin information
+function M.get_plugins_info()
+    if not M.plugins then
+        init_core_modules()
+    end
+    
+    local config = M.get_config()
+    return M.plugins.create_status_report(config)
+end
+
+-- Health check function
+function M.health()
+    local health = {
+        status = "ok",
+        version = M.version,
+        architecture = M.architecture,
+        issues = {},
+        warnings = {},
+        info = {}
+    }
+    
+    -- Initialize modules if needed
+    if not M.core then
+        init_core_modules()
+    end
+    
+    -- Core health checks
+    table.insert(health.info, string.format("Suikimuku v%s (%s architecture)", M.version, M.architecture))
+    
+    -- Configuration health
+    local config_health = M.config.health_check()
+    for _, issue in ipairs(config_health.issues) do
+        table.insert(health.issues, "Config: " .. issue)
+        health.status = "error"
+    end
+    for _, warning in ipairs(config_health.warnings) do
+        table.insert(health.warnings, "Config: " .. warning)
+        if health.status == "ok" then health.status = "warning" end
+    end
+    
+    -- Compatibility health
+    local compat = require('suikimuku.core.compat')
+    local compat_health = compat.health_check()
+    for _, issue in ipairs(compat_health.issues) do
+        table.insert(health.issues, "Compatibility: " .. issue)
+        health.status = "error"
+    end
+    for _, warning in ipairs(compat_health.warnings) do
+        table.insert(health.warnings, "Compatibility: " .. warning)
+        if health.status == "ok" then health.status = "warning" end
+    end
+    
+    -- Migration health
+    local migration_health = M.migration.health_check()
+    for _, issue in ipairs(migration_health.issues) do
+        table.insert(health.issues, "Migration: " .. issue)
+        health.status = "error"
+    end
+    for _, warning in ipairs(migration_health.warnings) do
+        table.insert(health.warnings, "Migration: " .. warning)
+        if health.status == "ok" then health.status = "warning" end  
+    end
+    
+    -- Plugin detection health
+    local plugin_report = M.get_plugins_info()
+    table.insert(health.info, string.format("Detected plugins: %d/%d", plugin_report.total_detected, plugin_report.total_registered))
+    table.insert(health.info, string.format("Enabled plugins: %d", plugin_report.total_enabled))
+    
+    return health
+end
+
+-- Development and debugging utilities
+M.debug = {}
+
+function M.debug.inspect_config()
+    local config = M.get_config()
+    print("Current Configuration:")
+    print(vim.inspect(config))
+end
+
+function M.debug.inspect_colors(style)
+    local colors = M.get_colors(style)
+    print(string.format("Colors for style '%s':", style or "current"))
+    print(vim.inspect(colors))
+end
+
+function M.debug.test_plugin(plugin_key, style)
+    if not M.plugins then
+        init_core_modules()
+    end
+    
+    local result = M.plugins.test_plugin_highlights(plugin_key, style)
+    print("Plugin Test Results:")
+    print(vim.inspect(result))
+    return result
+end
+
+function M.debug.validate_plugins()
+    if not M.plugins then
+        init_core_modules()
+    end
+    
+    local results = {}
+    for plugin_key, _ in pairs(M.plugins.registry) do
+        local valid, error, warnings = M.plugins.validate_plugin_module(plugin_key)
+        results[plugin_key] = {
+            valid = valid,
+            error = error,
+            warnings = warnings or {}
+        }
+    end
+    
+    print("Plugin Validation Results:")
+    print(vim.inspect(results))
+    return results
+end
+
+-- Migration utilities exposed at top level
+function M.migrate(config)
+    return M.migration.run_migration(config, { interactive = false })
+end
+
+function M.migration_wizard()
+    return M.migration.migration_wizard()
+end
+
+-- Legacy API compatibility (deprecated but functional)
+function M.get_theme_colors(style)
+    M.deprecation = M.deprecation or require('suikimuku.core.compat').deprecation
+    M.deprecation.warn("M.get_theme_colors()", "M.get_colors()", "v2.1")
+    M.deprecation.log_usage("get_theme_colors")
+    
+    local compat = require('suikimuku.core.compat')
+    return compat.legacy_api.get_colors(style)
+end
+
+-- Legacy setup (deprecated but functional)  
+function M.load_legacy(style)
+    M.deprecation = M.deprecation or require('suikimuku.core.compat').deprecation
+    M.deprecation.warn("M.load_legacy()", "M.load()", "v2.1")
+    M.deprecation.log_usage("load_legacy")
+    
+    local compat = require('suikimuku.core.compat')
+    return compat.legacy_api.load(style)
+end
+
+-- Expose core modules for advanced usage
+M.modules = {
+    core = function() return M.core end,
+    config = function() return M.config end,
+    colors = function() return M.colors end,
+    plugins = function() return M.plugins end,
+    migration = function() return M.migration end,
+}
+
+-- User commands setup
+local function setup_user_commands()
+    -- Main colorscheme command
+    vim.api.nvim_create_user_command('SuikimukuLoad', function(opts)
+        local style = opts.args ~= '' and opts.args or nil
+        M.load(style)
+    end, {
+        nargs = '?',
+        complete = function()
+            return {'sui', 'ki', 'mu', 'ku'}
+        end,
+        desc = 'Load Suikimuku colorscheme with optional style'
+    })
+    
+    -- Health check command
+    vim.api.nvim_create_user_command('SuikimukuHealth', function()
+        local health = M.health()
+        print("🎨 Suikimuku Health Check")
+        print("========================")
+        print(string.format("Status: %s", health.status))
+        print(string.format("Version: %s", health.version))
+        print()
+        
+        if #health.issues > 0 then
+            print("Issues:")
+            for _, issue in ipairs(health.issues) do
+                print("  ❌ " .. issue)
+            end
+            print()
+        end
+        
+        if #health.warnings > 0 then
+            print("Warnings:")
+            for _, warning in ipairs(health.warnings) do
+                print("  ⚠️  " .. warning)
+            end
+            print()
+        end
+        
+        if #health.info > 0 then
+            print("Info:")
+            for _, info in ipairs(health.info) do
+                print("  ℹ️  " .. info)
+            end
+        end
+    end, { desc = 'Run Suikimuku health check' })
+    
+    -- Migration wizard command
+    vim.api.nvim_create_user_command('SuikimukuMigrate', function()
+        M.migration_wizard()
+    end, { desc = 'Run Suikimuku migration wizard' })
+    
+    -- Plugin info command  
+    vim.api.nvim_create_user_command('SuikimukuPlugins', function()
+        local info = M.get_plugins_info()
+        print("🔌 Suikimuku Plugin Status")
+        print("=========================")
+        print(string.format("Total registered: %d", info.total_registered))
+        print(string.format("Total detected: %d", info.total_detected))
+        print(string.format("Total enabled: %d", info.total_enabled))
+        print()
+        
+        for plugin_key, plugin_info in pairs(info.plugins) do
+            local status_icon = plugin_info.status == "active" and "✅" or 
+                               plugin_info.status == "disabled" and "⚠️" or "❌"
+            local module_icon = plugin_info.module_available and "📦" or "📋"
+            print(string.format("%s %s %s - %s", status_icon, module_icon, plugin_key, plugin_info.name))
+        end
+    end, { desc = 'Show Suikimuku plugin status' })
+end
+
+-- Auto-setup user commands when module loads
+setup_user_commands()
 
 return M
