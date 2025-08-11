@@ -11,31 +11,31 @@ M.default_transparent = false  -- Light themes work well with transparency
 
 -- Direct hex color palette for Taiwan Mountain Jade theme
 M.colors = {
-	-- Background colors - Taiwan mountain jade with sophisticated gray undertones
-	bg_primary = '#26715F' ,       -- Muted jade with sophisticated gray undertones '#E6ECE6' 
-	bg_secondary = '#D8E2D8',      -- Deeper jade with natural gray
-	bg_float = '#DCE6DC',          -- Sophisticated muted jade float
-	bg_highlight = '#EDF2ED',      -- Subtle jade highlight
+	-- Background colors - Taiwan mountain jade with sophisticated natural tones
+	bg_primary = '#8CC49F',        -- Deep Taiwan jade primary background
+	bg_secondary = '#B1C090',      -- Sage olive secondary background
+	bg_float = '#A7D2B5',          -- Medium jade float background
+	bg_highlight = '#9ECDAA',      -- Light jade highlight background
 	
-	-- Foreground colors - Taiwan jade mountain text with natural depth
-	fg_primary = '#2A5A2A',        -- Deep Taiwan jade primary text
-	fg_secondary = '#3A6A3A',      -- Medium Taiwan jade secondary text
-	fg_muted = '#5A8A5A',          -- Muted Taiwan jade with gray undertones
-	fg_subtle = '#789678',         -- Light Taiwan jade subtle
+	-- Foreground colors - High contrast Taiwan jade mountain text
+	fg_primary = '#0D2418',        -- Very deep forest green for maximum contrast
+	fg_secondary = '#1A3629',      -- Rich dark jade secondary text
+	fg_muted = '#2D4A3D',          -- Medium depth muted text
+	fg_subtle = '#4A6B5C',         -- Subtle text with good readability
 	
-	-- Syntax colors - Taiwan mountain jade palette with sophisticated undertones
-	func = '#1A6B6B',              -- Muted jade-teal for functions
-	keyword = '#5A4FCF',           -- Deep purple for keywords
-	string = '#2A7D2A',            -- Taiwan jade green for strings
-	type = '#1A65C0',              -- Muted royal blue for types
-	const = '#C65100',             -- Earthy orange for constants
-	special = '#358A35',           -- Sophisticated jade for operators
+	-- Syntax colors - High contrast Taiwan mountain jade palette
+	func = '#1A4D66',              -- Deep ocean blue for functions
+	keyword = '#4A3366',           -- Rich purple for keywords
+	string = '#1A4D1A',            -- Deep forest green for strings
+	type = '#1A5555',              -- Rich jade-teal for types
+	const = '#B8601A',             -- Rich amber orange for constants
+	special = '#2D7373',           -- Sophisticated jade-teal for operators
 	
-	-- Diagnostic colors - Natural Taiwan mountain warnings
-	error = '#C62828',             -- Deep red for errors
-	warn = '#E6A000',              -- Muted amber for warnings
-	info = '#1976D2',              -- Blue for info
-	hint = '#358A35',              -- Taiwan jade for hints
+	-- Diagnostic colors - High contrast Taiwan mountain diagnostics
+	error = '#B33333',             -- Deep rose red for errors
+	warn = '#B8601A',              -- Rich amber for warnings
+	info = '#1A4D66',              -- Deep ocean blue for info
+	hint = '#1A4D1A',              -- Deep forest green for hints
 }
 
 -- Smart transparency resolution
