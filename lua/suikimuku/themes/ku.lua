@@ -24,8 +24,8 @@ M.colors = {
 	fg_subtle = '#64748B',         -- Subtle blue-gray
 	
 	-- Syntax colors - Professional spectrum with blue harmony
-	func = '#00D7FF',              -- Electric cyan functions
-	keyword = '#8B5CF6',           -- Professional purple keywords
+	func = '#22D3EE',              -- Electric cyan functions
+	keyword = '#C4B5FD',           -- Professional purple keywords
 	string = '#10B981',            -- Clean emerald strings
 	type = '#06B6D4',              -- Professional cyan types
 	const = '#F59E0B',             -- Warm amber constants
