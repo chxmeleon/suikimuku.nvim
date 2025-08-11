@@ -40,7 +40,7 @@ M.themes = {
         default_transparent = true,
         color_temperature = "varied_electric", 
         primary_colors = {"cyan", "purple", "green", "orange"},
-        ideal_for = {"terminal workflows", "vibrant aesthetics", "high contrast"]
+        ideal_for = {"terminal workflows", "vibrant aesthetics", "high contrast"}
     }
 }
 
