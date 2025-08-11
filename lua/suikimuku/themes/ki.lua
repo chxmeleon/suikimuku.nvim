@@ -1,41 +1,41 @@
--- 輝 (Ki) - Crystal Radiance
--- Maximum brightness and crystal clarity with warm radiant spectrum for true 輝 (radiance)
--- CRYSTAL BRIGHT: Pure radiant white with warm energy colors for ultimate brightness
+-- 輝 (Ki) - Arctic Sunset Radiance
+-- Maximum brightness with arctic sunset purple-pink-blue gradients for ethereal 輝 (radiance)
+-- ARCTIC ILLUMINATION: Pure radiant light with aurora-inspired sunset spectrum
 
--- Direct hex color palette for Crystal Radiance theme with warm-dominant spectrum
+-- Direct hex color palette for Arctic Sunset theme with purple-pink-blue gradients
 
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = false  -- Crystal radiance needs solid backgrounds for maximum impact
+M.default_transparent = false  -- Arctic radiance needs solid backgrounds for aurora visibility
 
--- Direct hex color palette for Crystal Radiance theme
+-- Direct hex color palette for Arctic Sunset theme
 M.colors = {
-	-- Background colors - Pure crystal radiance with golden warmth
-	bg_primary = '#FFFCF9',        -- Warm crystal tint with golden undertone
+	-- Background colors - Arctic radiance with aurora tints
+	bg_primary = '#FAFAFF',        -- Cool arctic white with subtle lavender
 	bg_secondary = '#FFFFFF',      -- Pure radiant white - maximum brightness
-	bg_float = '#FFF9F0',          -- Soft golden glow for floating elements
-	bg_highlight = '#FFF5E6',      -- Warm radiant selection with golden highlight
+	bg_float = '#F8F6FF',          -- Soft aurora glow for floating elements
+	bg_highlight = '#F5F0FF',      -- Cool radiant selection with purple highlight
 	
-	-- Foreground colors - High contrast for crystal clarity
+	-- Foreground colors - High contrast for arctic clarity
 	fg_primary = '#1A1A1A',        -- Deep charcoal - maximum contrast for radiance
-	fg_secondary = '#3D3A36',      -- Dark warm gray with subtle undertone
-	fg_muted = '#6B6560',          -- Medium warm gray - muted but warm
-	fg_subtle = '#A39A8F',         -- Light warm gray - warm subtle tones
+	fg_secondary = '#3A3A42',      -- Dark cool gray with subtle undertone
+	fg_muted = '#65606B',          -- Medium cool gray - muted arctic tone
+	fg_subtle = '#9A8FA3',         -- Light cool gray - arctic subtle tones
 	
-	-- Syntax colors - Warm-dominant radiant spectrum (80% warm, 20% cool)
-	func = '#8B5CF6',              -- Vibrant purple functions - radiant energy
-	keyword = '#E91E63',           -- Bright magenta keywords - radiant power
-	string = '#FF8F00',            -- Golden amber strings - warm radiance
-	type = '#FF6B9D',              -- Warm pink types - radiant structure
-	const = '#FF5722',             -- Bright orange constants - energetic warmth
-	special = '#FFC107',           -- Yellow gold operators - radiant brilliance
+	-- Syntax colors - Arctic sunset gradient spectrum
+	func = '#8B5CF6',              -- Deep aurora purple functions - ethereal energy
+	keyword = '#E91E63',           -- Sunset magenta keywords - radiant power
+	string = '#0891B2',            -- Arctic teal strings - crystal clarity
+	type = '#C084FC',              -- Aurora lavender types - ethereal structure
+	const = '#BE185D',             -- Sunset pink constants - passionate radiance
+	special = '#7C3AED',           -- Arctic violet operators - mystical brilliance
 	
-	-- Diagnostic colors - Crystal clear with warm energy
+	-- Diagnostic colors - Arctic clear with cool energy
 	error = '#F44336',             -- Bright red for errors
-	warn = '#FF9800',              -- Orange amber for warnings
-	info = '#00E5FF',              -- Bright cyan for info (20% cool accent)
-	hint = '#2196F3',              -- Light blue for hints (20% cool accent)
+	warn = '#F59E0B',              -- Arctic amber for warnings
+	info = '#0EA5E9',              -- Arctic cyan for info
+	hint = '#8B5CF6',              -- Aurora purple for hints
 }
 
 -- Smart transparency resolution
@@ -50,7 +50,7 @@ end
 
 -- Highlight groups with crystal radiance
 function M.highlights(colors, config)
-	-- Resolve transparency (Crystal Radiance philosophy: solid backgrounds for maximum brightness impact)
+	-- Resolve transparency (Arctic Radiance philosophy: solid backgrounds for aurora visibility)
 	local use_transparent = resolve_transparency(config)
 	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
 	local transparent_float = use_transparent and 'NONE' or colors.bg_float
@@ -61,7 +61,7 @@ function M.highlights(colors, config)
 		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
 		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
 		
-		-- Cursor and selection - crystal radiance
+		-- Cursor and selection - arctic radiance
 		Cursor = { fg = colors.bg_primary, bg = colors.func },
 		CursorLine = { bg = colors.bg_secondary },
 		CursorColumn = { bg = colors.bg_secondary },
@@ -74,7 +74,7 @@ function M.highlights(colors, config)
 		Visual = { bg = colors.bg_highlight },
 		VisualNOS = { bg = colors.bg_highlight },
 		
-		-- Search - crystal highlights
+		-- Search - arctic highlights
 		Search = { fg = colors.bg_primary, bg = colors.const },
 		IncSearch = { fg = colors.bg_primary, bg = colors.func },
 		Substitute = { fg = colors.bg_primary, bg = colors.special },
@@ -87,16 +87,16 @@ function M.highlights(colors, config)
 		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
 		WinSeparator = { fg = colors.bg_highlight },
 		
-		-- Popups - crystal interface
+		-- Popups - arctic interface
 		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
 		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
 		PmenuSbar = { bg = colors.bg_highlight },
 		PmenuThumb = { bg = colors.func },
 		
-		-- Syntax highlighting - radiant warm spectrum
+		-- Syntax highlighting - arctic sunset spectrum
 		Comment = { fg = colors.fg_subtle, italic = true },
 		
-		-- Constants - radiant energy
+		-- Constants - arctic energy
 		Constant = { fg = colors.const },
 		String = { fg = colors.string },
 		Character = { fg = colors.string },
@@ -108,7 +108,7 @@ function M.highlights(colors, config)
 		Identifier = { fg = colors.fg_primary },
 		Function = { fg = colors.func },
 		
-		-- Statements - crystal energy flow
+		-- Statements - arctic energy flow
 		Statement = { fg = colors.keyword },
 		Conditional = { fg = colors.keyword },
 		Repeat = { fg = colors.keyword },
@@ -124,7 +124,7 @@ function M.highlights(colors, config)
 		Macro = { fg = colors.special },
 		PreCondit = { fg = colors.keyword },
 		
-		-- Types - radiant crystal structures
+		-- Types - arctic crystal structures
 		Type = { fg = colors.type },
 		StorageClass = { fg = colors.keyword },
 		Structure = { fg = colors.type },
@@ -138,19 +138,19 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - crystal radiant changes (using crystal bright backgrounds)
-		DiffAdd = { fg = colors.string, bg = '#FFF8E1' },     -- Crystal golden green
-		DiffChange = { fg = colors.func, bg = '#F3E5F5' },   -- Crystal purple tint
-		DiffDelete = { fg = colors.error, bg = '#FFEBEE' },  -- Crystal light red
-		DiffText = { fg = colors.func, bg = '#EDE7F6' },     -- Crystal highlighted purple
+		-- Diffs - arctic radiant changes (using arctic bright backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#E1F8FF' },     -- Arctic teal background
+		DiffChange = { fg = colors.func, bg = '#F3E5F5' },   -- Arctic purple tint
+		DiffDelete = { fg = colors.error, bg = '#FFEBEE' },  -- Arctic light red
+		DiffText = { fg = colors.func, bg = '#EDE7F6' },     -- Arctic highlighted purple
 		
-		-- Diagnostics - crystal clarity
+		-- Diagnostics - arctic clarity
 		DiagnosticError = { fg = colors.error },
 		DiagnosticWarn = { fg = colors.warn },
 		DiagnosticInfo = { fg = colors.info },
 		DiagnosticHint = { fg = colors.hint },
 		
-		-- TreeSitter highlights - crystal radiant semantics
+		-- TreeSitter highlights - arctic radiant semantics
 		['@variable'] = { fg = colors.fg_primary },
 		['@variable.builtin'] = { fg = colors.keyword },
 		['@variable.parameter'] = { fg = colors.fg_secondary },

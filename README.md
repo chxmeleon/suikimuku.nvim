@@ -21,13 +21,13 @@ A clean, focused four-theme colorscheme (翠輝無空) for Neovim inspired by Ea
 - **Use Case**: Bright environments, natural daylight coding, gentle on eyes
 - **Aesthetic**: Fresh garden workspace with organic sage and forest color harmony
 
-### 輝 (Ki) - Crystal Radiance
-*Maximum brightness with warm golden crystal clarity*
+### 輝 (Ki) - Arctic Sunset Radiance
+*Maximum brightness with ethereal arctic sunset gradients*
 
-- **Philosophy**: Pure radiant light with warm energy colors for ultimate brightness
-- **Palette**: Warm crystal whites with golden undertones, radiant warm spectrum
-- **Use Case**: Maximum brightness environments, warm light preference, intense focus
-- **Aesthetic**: Crystal radiance with warm golden energy and brilliant luminosity
+- **Philosophy**: Pure radiant illumination with aurora-inspired purple-pink-blue spectrum
+- **Palette**: Cool arctic whites with lavender tints, sunset gradient colors
+- **Use Case**: Maximum brightness environments, ethereal aesthetics, mystical focus
+- **Aesthetic**: Arctic sunset radiance with aurora gradients and celestial luminosity
 
 ### 無 (Mu) - WCAG AAA Grayscale
 *High-contrast monochrome for distraction-free coding*
@@ -179,7 +179,7 @@ end
 Drawing from Japanese, Taiwanese, and broader East Asian design philosophy:
 
 - **翠 (Sui)**: Emerald tranquility - from Japanese jade concepts (翠 - midori/sui) and Taiwanese mountain forest aesthetics (翠綠), representing natural harmony, growth, and the feng shui wood element of vitality
-- **輝 (Ki)**: Radiant illumination - combining Japanese kagayaki (輝 - radiance) with Taiwanese sunrise clarity (光輝), symbolizing enlightenment, brilliance, and yang energy in yin-yang philosophy
+- **輝 (Ki)**: Radiant illumination - combining Japanese kagayaki (輝 - radiance) with Taiwanese arctic sunset mystique (光輝), symbolizing ethereal enlightenment, aurora brilliance, and celestial yang energy in yin-yang philosophy
 - **無 (Mu)**: Profound emptiness - rooted in Zen Buddhism (無 - mu) and Taiwanese minimalist aesthetics (無色), embracing wabi-sabi simplicity, focused potential, and Taoist wu wei (effortless action)
 - **空 (Ku)**: Boundless sky - merging Japanese cosmic void (空 - kuu/sora) with Taiwanese Pacific vistas (天空), representing infinite possibility, celestial harmony, and connection to heaven
 
