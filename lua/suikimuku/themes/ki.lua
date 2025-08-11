@@ -25,7 +25,7 @@ M.colors = {
 	
 	-- Syntax colors - Radiant spectrum with warmth
 	func = '#6366F1',              -- Radiant indigo functions
-	keyword = '#8B5CF6',           -- Bright purple keywords
+	keyword = '#A855F7',           -- Bright purple keywords
 	string = '#059669',            -- Emerald strings
 	type = '#0891B2',              -- Teal types
 	const = '#EA580C',             -- Warm orange constants
