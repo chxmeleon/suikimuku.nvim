@@ -12,9 +12,9 @@ M.default_transparent = false  -- Light themes work well with transparency
 -- Direct hex color palette for Taiwan Mountain Jade theme
 M.colors = {
 	-- Background colors - Taiwan mountain jade with sophisticated natural tones
-	bg_primary = '#8CC49F',        -- Deep Taiwan jade primary background
+	bg_primary = '#A7D2B5',        -- Medium jade primary background
 	bg_secondary = '#B1C090',      -- Sage olive secondary background
-	bg_float = '#A7D2B5',          -- Medium jade float background
+	bg_float = '#8CC49F',          -- Deep Taiwan jade float background
 	bg_highlight = '#9ECDAA',      -- Light jade highlight background
 	
 	-- Foreground colors - High contrast Taiwan jade mountain text
