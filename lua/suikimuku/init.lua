@@ -126,7 +126,7 @@ M.palettes = {
 		},
 		syntax = {
 			func = "#00D7FF", -- Bright cyan for functions/imports
-			keyword = "#e645ff", -- Vibrant magenta for keywords
+			keyword = "#9D7CD8", -- Purple for keywords
 			string = "#38e8aa", -- Turquoise green for strings
 			type = "#87CEEB", -- Sky blue for types
 			const = "#FF8C00", -- Bright orange for constants

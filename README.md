@@ -185,7 +185,7 @@ require('suikimuku').setup({
 | **Base 0C** (Cyan) | `#69D2E7` | `#06B6D4` | `#A0A0A0` | `#00CED1` |
 | **Base 0D** (Blue) | `#69D2E7` | `#3B82F6` | `#909090` | `#00D7FF` |
 | **Base 0E** (Purple) | `#1e9ee8` | `#8B5CF6` | `#808080` | `#6C71C4` |
-| **Base 0F** (Magenta) | `#bce089` | `#EC4899` | `#707070` | `#e645ff` |
+| **Base 0F** (Magenta) | `#bce089` | `#EC4899` | `#707070` | `#9D7CD8` |
 
 #### Semantic Colors
 
@@ -193,7 +193,7 @@ require('suikimuku').setup({
 | Element | 翠 (Sui) | 輝 (Ki) | 無 (Mu) | 空 (Ku) |
 |---------|----------|---------|---------|---------|
 | **Functions** | `#69D2E7` | `#3B82F6` | `#FFFFFF` | `#00D7FF` |
-| **Keywords** | `#1e9ee8` | `#8B5CF6` | `#E0E0E0` | `#e645ff` |
+| **Keywords** | `#1e9ee8` | `#8B5CF6` | `#E0E0E0` | `#9D7CD8` |
 | **Strings** | `#52C489` | `#10B981` | `#B8B8B8` | `#38e8aa` |
 | **Types** | `#A7DBD8` | `#06B6D4` | `#D4D4D4` | `#87CEEB` |
 | **Constants** | `#F38630` | `#F97316` | `#A0A0A0` | `#FF8C00` |
@@ -245,7 +245,7 @@ require('suikimuku').setup({
 - **Electric Palette**: Deep space backgrounds with neon-bright syntax highlighting
 - **Vibrant Syntax Colors**: 
   - **Electric cyan**: `#00D7FF` for functions and imports
-  - **Vibrant magenta**: `#e645ff` for keywords and control flow
+  - **Vibrant purple**: `#9D7CD8` for keywords and control flow
   - **Turquoise green**: `#38e8aa` for strings and literals
   - **Sky blue**: `#87CEEB` for types and declarations
   - **Dark turquoise**: `#00CED1` for operators and special characters

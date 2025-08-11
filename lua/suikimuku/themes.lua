@@ -85,7 +85,7 @@ local themes = {
 		yellow = { "#FFD700", "#DDD389", "#EAB875" },
 		orange = { "#FF8C00", "#FD692A", "#EDC894" },
 		red = { "#DC322F", "#E11624", "#F8404C" },
-		magenta = { "#e645ff", "#F51875", "#FF76A7" },
+		magenta = { "#9D7CD8", "#F51875", "#FF76A7" },
 		cyan = { "#00CED1", "#1EACB6", "#5FF4E5" },
 		violet = { "#6C71C4", "#B132FF", "#BF65F6" },
 	},
