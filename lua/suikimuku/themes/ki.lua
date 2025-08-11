@@ -1,41 +1,41 @@
--- 輝 (Ki) - Radiant Dawn
--- Luminous purple-tinted light theme with warm yellow undertones for radiant coding
--- WARM LIGHT: Subtle golden warmth with lavender highlights for 輝 (radiance)
+-- 輝 (Ki) - Crystal Radiance
+-- Maximum brightness and crystal clarity with warm radiant spectrum for true 輝 (radiance)
+-- CRYSTAL BRIGHT: Pure radiant white with warm energy colors for ultimate brightness
 
--- Direct hex color palette for Radiant Dawn theme inspired by purple gradients
+-- Direct hex color palette for Crystal Radiance theme with warm-dominant spectrum
 
 local M = {}
 
 -- Theme transparency philosophy
-M.default_transparent = false  -- Radiant themes work beautifully with transparency
+M.default_transparent = false  -- Crystal radiance needs solid backgrounds for maximum impact
 
--- Direct hex color palette for Radiant Dawn theme
+-- Direct hex color palette for Crystal Radiance theme
 M.colors = {
-	-- Background colors - Warm lavender with golden undertones
-	bg_primary = '#FEFCFB',        -- Warm pearl white with golden hint
-	bg_secondary = '#F8F4FF',      -- Soft lavender whisper
-	bg_float = '#F2ECFF',          -- Light purple mist
-	bg_highlight = '#E8DFFF',      -- Gentle lavender selection
+	-- Background colors - Pure crystal radiance with golden warmth
+	bg_primary = '#FFFFFF',        -- Pure radiant white - maximum brightness
+	bg_secondary = '#FFFCF9',      -- Warm crystal tint with golden undertone
+	bg_float = '#FFF9F0',          -- Soft golden glow for floating elements
+	bg_highlight = '#FFF5E6',      -- Warm radiant selection with golden highlight
 	
-	-- Foreground colors - Rich purple-gray text
-	fg_primary = '#4A3B5C',        -- Deep purple-slate primary
-	fg_secondary = '#6B5B75',      -- Medium purple-slate secondary
-	fg_muted = '#8B7A95',          -- Muted purple-gray
-	fg_subtle = '#B8AFCA',         -- Subtle lavender-gray
+	-- Foreground colors - High contrast for crystal clarity
+	fg_primary = '#1A1A1A',        -- Deep charcoal - maximum contrast for radiance
+	fg_secondary = '#3D3A36',      -- Dark warm gray with subtle undertone
+	fg_muted = '#6B6560',          -- Medium warm gray - muted but warm
+	fg_subtle = '#A39A8F',         -- Light warm gray - warm subtle tones
 	
-	-- Syntax colors - Radiant spectrum with warmth
-	func = '#6366F1',              -- Radiant indigo functions
-	keyword = '#A855F7',           -- Bright purple keywords
-	string = '#059669',            -- Emerald strings
-	type = '#0891B2',              -- Teal types
-	const = '#EA580C',             -- Warm orange constants
-	special = '#7C3AED',           -- Vibrant purple operators
+	-- Syntax colors - Warm-dominant radiant spectrum (80% warm, 20% cool)
+	func = '#8B5CF6',              -- Vibrant purple functions - radiant energy
+	keyword = '#E91E63',           -- Bright magenta keywords - radiant power
+	string = '#FF8F00',            -- Golden amber strings - warm radiance
+	type = '#FF6B9D',              -- Warm pink types - radiant structure
+	const = '#FF5722',             -- Bright orange constants - energetic warmth
+	special = '#FFC107',           -- Yellow gold operators - radiant brilliance
 	
-	-- Diagnostic colors - Clear and warm indicators
-	error = '#DC2626',             -- Clear red for errors
-	warn = '#D97706',              -- Warm amber for warnings
-	info = '#2563EB',              -- Clear blue for info
-	hint = '#059669',              -- Emerald for hints
+	-- Diagnostic colors - Crystal clear with warm energy
+	error = '#F44336',             -- Bright red for errors
+	warn = '#FF9800',              -- Orange amber for warnings
+	info = '#00E5FF',              -- Bright cyan for info (20% cool accent)
+	hint = '#2196F3',              -- Light blue for hints (20% cool accent)
 }
 
 -- Smart transparency resolution
@@ -48,9 +48,9 @@ local function resolve_transparency(config)
 	end
 end
 
--- Highlight groups with radiant warmth
+-- Highlight groups with crystal radiance
 function M.highlights(colors, config)
-	-- Resolve transparency (Radiant Dawn philosophy: transparency enhances the luminous feel)
+	-- Resolve transparency (Crystal Radiance philosophy: solid backgrounds for maximum brightness impact)
 	local use_transparent = resolve_transparency(config)
 	local transparent_bg = use_transparent and 'NONE' or colors.bg_primary
 	local transparent_float = use_transparent and 'NONE' or colors.bg_float
@@ -61,7 +61,7 @@ function M.highlights(colors, config)
 		NormalFloat = { fg = colors.fg_primary, bg = transparent_float },
 		NormalNC = { fg = colors.fg_secondary, bg = transparent_bg },
 		
-		-- Cursor and selection - warm radiance
+		-- Cursor and selection - crystal radiance
 		Cursor = { fg = colors.bg_primary, bg = colors.func },
 		CursorLine = { bg = colors.bg_secondary },
 		CursorColumn = { bg = colors.bg_secondary },
@@ -74,7 +74,7 @@ function M.highlights(colors, config)
 		Visual = { bg = colors.bg_highlight },
 		VisualNOS = { bg = colors.bg_highlight },
 		
-		-- Search - radiant highlights
+		-- Search - crystal highlights
 		Search = { fg = colors.bg_primary, bg = colors.const },
 		IncSearch = { fg = colors.bg_primary, bg = colors.func },
 		Substitute = { fg = colors.bg_primary, bg = colors.special },
@@ -87,16 +87,16 @@ function M.highlights(colors, config)
 		TabLineSel = { fg = colors.fg_primary, bg = colors.bg_highlight },
 		WinSeparator = { fg = colors.bg_highlight },
 		
-		-- Popups - floating radiance
+		-- Popups - crystal interface
 		Pmenu = { fg = colors.fg_primary, bg = colors.bg_float },
 		PmenuSel = { fg = colors.bg_primary, bg = colors.func },
 		PmenuSbar = { bg = colors.bg_highlight },
 		PmenuThumb = { bg = colors.func },
 		
-		-- Syntax highlighting - luminous spectrum
+		-- Syntax highlighting - radiant warm spectrum
 		Comment = { fg = colors.fg_subtle, italic = true },
 		
-		-- Constants - warm glow
+		-- Constants - radiant energy
 		Constant = { fg = colors.const },
 		String = { fg = colors.string },
 		Character = { fg = colors.string },
@@ -108,7 +108,7 @@ function M.highlights(colors, config)
 		Identifier = { fg = colors.fg_primary },
 		Function = { fg = colors.func },
 		
-		-- Statements - radiant flow
+		-- Statements - crystal energy flow
 		Statement = { fg = colors.keyword },
 		Conditional = { fg = colors.keyword },
 		Repeat = { fg = colors.keyword },
@@ -124,7 +124,7 @@ function M.highlights(colors, config)
 		Macro = { fg = colors.special },
 		PreCondit = { fg = colors.keyword },
 		
-		-- Types - luminous structures
+		-- Types - radiant crystal structures
 		Type = { fg = colors.type },
 		StorageClass = { fg = colors.keyword },
 		Structure = { fg = colors.type },
@@ -138,19 +138,19 @@ function M.highlights(colors, config)
 		SpecialComment = { fg = colors.special, italic = true },
 		Debug = { fg = colors.warn },
 		
-		-- Diffs - radiant changes (using warm light backgrounds)
-		DiffAdd = { fg = colors.string, bg = '#F0FDF4' },     -- Warm light green
-		DiffChange = { fg = colors.func, bg = '#F0F9FF' },   -- Warm light blue
-		DiffDelete = { fg = colors.error, bg = '#FEF2F2' },  -- Warm light red
-		DiffText = { fg = colors.func, bg = '#EFF6FF' },     -- Warm highlighted blue
+		-- Diffs - crystal radiant changes (using crystal bright backgrounds)
+		DiffAdd = { fg = colors.string, bg = '#FFF8E1' },     -- Crystal golden green
+		DiffChange = { fg = colors.func, bg = '#F3E5F5' },   -- Crystal purple tint
+		DiffDelete = { fg = colors.error, bg = '#FFEBEE' },  -- Crystal light red
+		DiffText = { fg = colors.func, bg = '#EDE7F6' },     -- Crystal highlighted purple
 		
-		-- Diagnostics - warm indicators
+		-- Diagnostics - crystal clarity
 		DiagnosticError = { fg = colors.error },
 		DiagnosticWarn = { fg = colors.warn },
 		DiagnosticInfo = { fg = colors.info },
 		DiagnosticHint = { fg = colors.hint },
 		
-		-- TreeSitter highlights - radiant semantics
+		-- TreeSitter highlights - crystal radiant semantics
 		['@variable'] = { fg = colors.fg_primary },
 		['@variable.builtin'] = { fg = colors.keyword },
 		['@variable.parameter'] = { fg = colors.fg_secondary },
