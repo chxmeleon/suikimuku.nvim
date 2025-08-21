@@ -2,8 +2,6 @@
 -- Maximum brightness with arctic sunset purple-pink-blue gradients for ethereal 輝 (radiance)
 -- ARCTIC ILLUMINATION: Pure radiant light with aurora-inspired sunset spectrum
 
--- Direct hex color palette for Arctic Sunset theme with purple-pink-blue gradients
-
 local M = {}
 
 -- Theme transparency philosophy

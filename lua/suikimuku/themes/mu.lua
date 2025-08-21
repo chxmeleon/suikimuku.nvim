@@ -2,8 +2,6 @@
 -- Maximum contrast monochrome for accessibility and distraction-free coding  
 -- TRANSPARENT BY DEFAULT: Pure focus without visual distractions
 
--- Removed OKLCH dependency - using direct hex colors for simplicity and accuracy
-
 local M = {}
 
 -- Theme transparency philosophy

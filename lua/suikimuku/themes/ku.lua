@@ -2,8 +2,6 @@
 -- Deep blue cosmos with professional elegance and terminal harmony
 -- TRANSPARENT BY DEFAULT: Perfect harmony with terminal backgrounds
 
--- Direct hex color palette for Professional Navy theme inspired by blue gradient websites
-
 local M = {}
 
 -- Theme transparency philosophy
